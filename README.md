@@ -47,7 +47,7 @@ Edit `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
@@ -61,7 +61,7 @@ Edit `claude_desktop_config.json`:
 Run in terminal:
 
 ```bash
-claude mcp add vivado synthpilot
+claude mcp add synthpilot synthpilot
 ```
 
 Or add to `.mcp.json`:
@@ -69,7 +69,7 @@ Or add to `.mcp.json`:
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
@@ -85,7 +85,7 @@ Add to Cursor MCP settings:
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
@@ -177,7 +177,7 @@ synthpilot install
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
@@ -191,7 +191,7 @@ synthpilot install
 在终端运行：
 
 ```bash
-claude mcp add vivado synthpilot
+claude mcp add synthpilot synthpilot
 ```
 
 或添加到 `.mcp.json`：
@@ -199,7 +199,7 @@ claude mcp add vivado synthpilot
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
@@ -215,7 +215,7 @@ claude mcp add vivado synthpilot
 ```json
 {
   "mcpServers": {
-    "vivado": {
+    "synthpilot": {
       "command": "synthpilot"
     }
   }
