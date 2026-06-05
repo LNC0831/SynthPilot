@@ -1,270 +1,186 @@
+<div align="center">
+
 # SynthPilot
 
-**Let AI build your FPGA designs.**
+**Talk to your AI. Watch it drive Vivado.**
 
 [![PyPI](https://img.shields.io/pypi/v/synthpilot)](https://pypi.org/project/synthpilot/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
-[![Platform](https://img.shields.io/badge/platform-Windows%20x64-lightgrey)](https://www.synthpilot.dev)
-[![License](https://img.shields.io/badge/license-proprietary-orange)](https://www.synthpilot.dev)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/synthpilot/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey)](https://pypi.org/project/synthpilot/)
+[![License](https://img.shields.io/badge/license-proprietary-orange)](#license)
+[![Stars](https://img.shields.io/github/stars/LNC0831/SynthPilot?style=social)](https://github.com/LNC0831/SynthPilot)
 
-[English](#english) | [中文](#中文)
+[Website](https://synthpilot.dev) · [Docs](https://synthpilot.dev/docs.html) · [PyPI](https://pypi.org/project/synthpilot/) · [Changelog](CHANGELOG.md)
 
----
+</div>
 
-## English
+> **English** | [简体中文](#简体中文)
 
-### What is SynthPilot?
+SynthPilot is an [MCP](https://modelcontextprotocol.io) server that lets your AI assistant
+(Claude, Cursor, Cline, …) **control Xilinx Vivado** for FPGA development — create projects,
+write and lint RTL, run synthesis/implementation, close timing, configure IP & Block
+Designs, run simulations, and program hardware — all by **describing what you want**, in
+plain language.
 
-SynthPilot is an MCP (Model Context Protocol) server that gives AI assistants full control over AMD Vivado. With **414 tools** covering the entire FPGA development flow, you can create projects, run synthesis, analyze timing, configure IPs, build Block Designs, and program devices — all through natural language.
+It runs **locally**: your RTL never leaves your machine. **500+ tools** cover the whole
+FPGA flow.
+
+> *Used by engineers from **AMD**, **Tsinghua / Fudan / SJTU** and the **Chinese Academy of
+> Sciences (CAS)**, FPGA vendor **Fudan Microelectronics (复旦微)**, and lidar leaders
+> **Hesai (禾赛)** and **Benewake (北醒)**.*
+
+## How it works
 
 ```
-AI Tool (Claude / Cursor) ←—MCP (stdio)—→ SynthPilot ←—TCP:9999—→ Vivado (tcl_server)
+ AI editor (Claude / Cursor / Cline / …)
+        │   MCP (stdio)
+        ▼
+   SynthPilot   ──TCP:9999──▶   Vivado (Tcl server)
 ```
 
-### Quick Start
+The AI calls SynthPilot tools; SynthPilot drives Vivado over a local socket and returns
+structured results (timing metrics, utilization, error summaries, waveforms …) back to the AI.
+
+## See it in action
+
+> You: *"Create an Artix-7 project, add this counter, run synthesis, and show me the timing."*
+>
+> The AI: `create_project` → `add_source_file` → `run_synthesis` → `report_timing_summary`
+> → reports WNS/TNS and flags any failing paths — no Tcl, no wizard clicking.
+
+## Quick start
 
 ```bash
-# 1. Install
-pip install synthpilot
-
-# 2. Get a free license at https://www.synthpilot.dev, then activate
-synthpilot activate YOUR-LICENSE-KEY
-
-# 3. Set up Vivado integration (restart Vivado after this step)
-synthpilot install
-
-# 4. Configure your MCP client (see below)
-# 5. Open Vivado → start chatting with AI!
+pip install synthpilot          # or: uvx synthpilot@latest
+synthpilot install              # auto-detect Vivado & install the Tcl server
+synthpilot activate YOUR-KEY    # one-time license activation
 ```
 
-### MCP Configuration
+Then point your MCP client at it:
 
-<details>
-<summary><strong>Claude Desktop</strong></summary>
-
-Edit `claude_desktop_config.json`:
-
-```json
+```jsonc
 {
   "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
+    "synthpilot": { "command": "synthpilot" }
   }
 }
 ```
-</details>
 
-<details>
-<summary><strong>Claude Code</strong></summary>
+Works with Claude Desktop / Claude Code, Cursor, Cline, and other MCP clients.
 
-Run in terminal:
-
-```bash
-claude mcp add synthpilot synthpilot
-```
-
-Or add to `.mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><strong>Cursor</strong></summary>
-
-Add to Cursor MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
-  }
-}
-```
-</details>
-
-> **Tip:** You can also use `uvx` for auto-isolated environments:
-> ```json
-> { "command": "uvx", "args": ["synthpilot"] }
-> ```
-
-### CLI Reference
-
-| Command | Description |
-|---------|-------------|
-| `synthpilot` | Start MCP server (used by AI tools) |
-| `synthpilot install [path]` | Auto-detect Vivado & install Tcl server |
-| `synthpilot uninstall [path]` | Remove Tcl server from Vivado |
-| `synthpilot activate <KEY>` | Activate license key |
-| `synthpilot deactivate` | Deactivate license on this device |
-| `synthpilot --version` | Show version |
-
-### Features
+## Editions
 
 | | Free | Pro | Max |
 |---|---|---|---|
-| **Tools** | 39 | 380 | All 414 |
-| **Project & Synthesis** | ✅ | ✅ | ✅ |
-| **Timing & Reports** | ✅ | ✅ | ✅ |
-| **Device Programming** | ✅ | ✅ | ✅ |
-| **IP Configuration** | — | ✅ | ✅ |
-| **Block Design** | — | ✅ | ✅ |
-| **Simulation & Debug** | — | ✅ | ✅ |
-| **Linter** | — | ✅ | ✅ |
-| **Custom Tcl** | — | — | ✅ |
-| **Non-Project Mode** | — | — | ✅ |
-| **HW Debug Runtime** | — | — | ✅ |
-| **Devices** | 1 | 2 | 3 |
+| Tools | **40** core | **~470** | **all 502** |
+| Project / synth / impl / basic reports | ✅ | ✅ | ✅ |
+| IP config · Block Design · Simulation · Linter · async runs | — | ✅ | ✅ |
+| Devices | 1 | 2 | 3 |
 
-### Requirements
+Pricing, a **¥1 / 7-day trial**, and team / offline / academic editions are on
+**[synthpilot.dev](https://synthpilot.dev)**.
 
-- Python 3.10+
-- Windows x64
-- AMD Vivado 2018.1+
+## Requirements
 
-### Links
+- Xilinx Vivado 2018.1+ (Windows or Linux)
+- An MCP-capable AI client
+- Python 3.10+ (only if installing via `pip`/`uvx`)
 
-- 📖 **Full Documentation:** [www.synthpilot.dev/docs.html](https://www.synthpilot.dev/docs.html)
-- 🆓 **Get Free License:** [www.synthpilot.dev](https://www.synthpilot.dev)
-- 📧 **Support:** support@synthpilot.dev
-- 📋 **Issues:** [GitHub Issues](https://github.com/LNC0831/SynthPilot/issues)
+## Links
+
+- 🌐 Website & pricing — https://synthpilot.dev
+- 📦 PyPI — https://pypi.org/project/synthpilot/
+- 📖 Docs — https://synthpilot.dev/docs.html
+- 🗒️ [Changelog](CHANGELOG.md)
+
+## License
+
+SynthPilot is a **proprietary** commercial product. This repository hosts its public
+documentation and marketing materials only — the software itself is distributed via PyPI.
+The RTL you process stays on your machine; SynthPilot does not upload your design sources.
 
 ---
 
-## 中文
+<a name="简体中文"></a>
 
-### SynthPilot 是什么？
+## 简体中文
 
-SynthPilot 是一个 MCP (Model Context Protocol) 服务，让 AI 助手能够完整操控 AMD Vivado。提供 **414 个工具**，覆盖 FPGA 开发全流程 — 创建项目、运行综合、时序分析、IP 配置、Block Design、下载烧录，全部通过自然语言完成。
+**对你的 AI 说一句话,它替你操作 Vivado。**
+
+SynthPilot 是一个 [MCP](https://modelcontextprotocol.io) 服务器,让你的 AI 助手(Claude、
+Cursor、Cline…)用**自然语言**控制 Xilinx Vivado 做 FPGA 开发——建项目、写/查 RTL、
+跑综合与实现、收敛时序、配置 IP 与 Block Design、跑仿真、烧录硬件。
+
+**全程本地运行,你的 RTL 不出本机。500+ 工具**覆盖完整 FPGA 流程。
+
+> *已被 **AMD**、**清华 / 复旦 / 上海交大** 与 **中科院(CAS)** 的工程师,国产 FPGA 厂商
+> **复旦微**,以及激光雷达企业 **禾赛、北醒** 使用。*
+
+### 工作原理
 
 ```
-AI 工具 (Claude / Cursor) ←—MCP (stdio)—→ SynthPilot ←—TCP:9999—→ Vivado (tcl_server)
+ AI 编辑器 (Claude / Cursor / Cline / …)
+        │   MCP (stdio)
+        ▼
+   SynthPilot   ──TCP:9999──▶   Vivado (Tcl 服务器)
 ```
+
+AI 调用 SynthPilot 的工具,SynthPilot 通过本地 socket 驱动 Vivado,并把结构化结果
+(时序指标、资源利用、错误摘要、波形…)返回给 AI。
+
+### 一个例子
+
+> 你:*"建一个 Artix-7 工程,加入这个计数器,跑综合,把时序给我看看。"*
+>
+> AI:`create_project` → `add_source_file` → `run_synthesis` → `report_timing_summary`
+> → 报告 WNS/TNS 并标出违例路径——不写 Tcl,不点向导。
 
 ### 快速开始
 
 ```bash
-# 1. 安装
-pip install synthpilot
-
-# 2. 在 https://www.synthpilot.dev 申请免费 License，然后激活
-synthpilot activate YOUR-LICENSE-KEY
-
-# 3. 配置 Vivado 集成（完成后需重启 Vivado）
-synthpilot install
-
-# 4. 配置 MCP 客户端（见下方）
-# 5. 打开 Vivado → 开始和 AI 对话！
+pip install synthpilot          # 或:uvx synthpilot@latest
+synthpilot install              # 自动检测 Vivado 并安装 Tcl 服务器
+synthpilot activate YOUR-KEY    # 一次性激活授权
 ```
 
-### MCP 配置
+然后在 MCP 客户端里配置:
 
-<details>
-<summary><strong>Claude Desktop</strong></summary>
-
-编辑 `claude_desktop_config.json`：
-
-```json
+```jsonc
 {
   "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
+    "synthpilot": { "command": "synthpilot" }
   }
 }
 ```
-</details>
 
-<details>
-<summary><strong>Claude Code</strong></summary>
+支持 Claude Desktop / Claude Code、Cursor、Cline 等 MCP 客户端。
 
-在终端运行：
+### 档位
 
-```bash
-claude mcp add synthpilot synthpilot
-```
-
-或添加到 `.mcp.json`：
-
-```json
-{
-  "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><strong>Cursor</strong></summary>
-
-添加到 Cursor MCP 设置：
-
-```json
-{
-  "mcpServers": {
-    "synthpilot": {
-      "command": "synthpilot"
-    }
-  }
-}
-```
-</details>
-
-> **提示：** 也可以使用 `uvx` 自动隔离环境：
-> ```json
-> { "command": "uvx", "args": ["synthpilot"] }
-> ```
-
-### CLI 命令
-
-| 命令 | 说明 |
-|------|------|
-| `synthpilot` | 启动 MCP 服务（AI 工具调用） |
-| `synthpilot install [路径]` | 自动检测 Vivado 并安装 Tcl 服务 |
-| `synthpilot uninstall [路径]` | 从 Vivado 移除 Tcl 服务 |
-| `synthpilot activate <KEY>` | 激活 License |
-| `synthpilot deactivate` | 解绑当前设备 |
-| `synthpilot --version` | 查看版本号 |
-
-### 功能对比
-
-| | Free 免费版 | Pro 专业版 | Max 旗舰版 |
+| | 免费版 | Pro | Max |
 |---|---|---|---|
-| **工具数量** | 39 | 380 | 全部 414 |
-| **项目 & 综合** | ✅ | ✅ | ✅ |
-| **时序 & 报告** | ✅ | ✅ | ✅ |
-| **下载烧录** | ✅ | ✅ | ✅ |
-| **IP 配置** | — | ✅ | ✅ |
-| **Block Design** | — | ✅ | ✅ |
-| **仿真 & 调试** | — | ✅ | ✅ |
-| **Linter** | — | ✅ | ✅ |
-| **自定义 Tcl** | — | — | ✅ |
-| **Non-Project Mode** | — | — | ✅ |
-| **硬件调试运行时** | — | — | ✅ |
-| **设备数量** | 1 | 2 | 3 |
+| 工具数 | **40** 基础 | **约 470** | **全部 502** |
+| 工程 / 综合 / 实现 / 基础报告 | ✅ | ✅ | ✅ |
+| IP 配置 · Block Design · 仿真 · Linter · 异步执行 | — | ✅ | ✅ |
+| 设备数 | 1 | 2 | 3 |
 
-### 系统要求
+定价、**¥1 / 7 天试用**,以及团队 / 离线 / 高校版,见
+**[synthpilot.dev](https://synthpilot.dev)**。
 
-- Python 3.10+
-- Windows x64
-- AMD Vivado 2018.1+
+### 环境要求
 
-### 相关链接
+- Xilinx Vivado 2018.1+(Windows 或 Linux)
+- 一个支持 MCP 的 AI 客户端
+- Python 3.10+(仅 `pip`/`uvx` 安装时需要)
 
-- 📖 **完整文档：** [www.synthpilot.dev/docs.html](https://www.synthpilot.dev/docs.html)
-- 🆓 **获取免费 License：** [www.synthpilot.dev](https://www.synthpilot.dev)
-- 📧 **技术支持：** support@synthpilot.dev
-- 📋 **问题反馈：** [GitHub Issues](https://github.com/LNC0831/SynthPilot/issues)
+### 链接
+
+- 🌐 官网与定价 — https://synthpilot.dev
+- 📦 PyPI — https://pypi.org/project/synthpilot/
+- 📖 文档 — https://synthpilot.dev/docs.html
+- 🗒️ [更新日志](CHANGELOG.md)
+
+### 授权
+
+SynthPilot 是**专有**商业产品。本仓库仅托管其公开文档与宣传材料,软件本体经 PyPI 分发。
+你处理的 RTL 始终留在本机,SynthPilot 不上传你的设计源码。
