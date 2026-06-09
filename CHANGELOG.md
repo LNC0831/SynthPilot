@@ -1,7 +1,24 @@
 # Changelog
 
-User-facing changes to SynthPilot. Install or upgrade with `pip install -U synthpilot`
-(or `uvx synthpilot@latest`). For pricing and editions see [synthpilot.dev](https://synthpilot.dev).
+User-facing changes to SynthPilot. Install or upgrade with
+`uv tool install synthpilot --upgrade --refresh`. For pricing and editions see
+[synthpilot.dev](https://synthpilot.dev).
+
+## 1.3.0 — 2026-06-09
+
+- **One-command setup.** `synthpilot setup` detects Vivado, installs the Tcl server,
+  activates your license, **registers SynthPilot in your AI editor without hand-editing
+  JSON** (Claude Code / Claude Desktop / Cursor / Codex), and runs a health check.
+  `synthpilot doctor` diagnoses problems; `synthpilot doctor --fix` self-heals.
+- **A methodology layer for every client.** The 13
+  [oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) FPGA workflows now ship as built-in
+  **MCP prompts**, so Cursor / Codex / Claude Desktop get the same "describe the outcome"
+  experience Claude Code already gets from the skill plugin.
+- **Windows install no longer needs admin rights** — the Tcl server falls back to a per-user
+  `Vivado_init.tcl` when the install directory isn't writable, and auto-detect now scans all
+  drives.
+- New `synthpilot install-mcp` registers the server in your editor(s) on demand.
+- Published for Windows **and** Linux.
 
 ## 1.2.5 — 2026-06-05
 
