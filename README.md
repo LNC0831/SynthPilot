@@ -28,15 +28,17 @@ turns them into one-sentence outcomes.
 
 ## Public tool catalogs
 
-SynthPilot publishes its complete public MCP contracts for transparency. The
-running server registers only the selected FPGA platform and the tools allowed
-by the verified Free, Pro, or Max license; these catalogs are not loaded into
-one model context.
+SynthPilot publishes a user-facing index of its public tools. Each entry shows
+what the tool does, its category, plan, operation type, and a coarse parameter
+overview. Exact schemas and execution contracts remain available through the
+licensed MCP runtime.
+
+The running server registers only the selected FPGA platform and the tools
+allowed by the verified Free, Pro, or Max license.
 
 - [AMD Vivado tools](tools/vivado.md)
 - [Anlogic TD tools](tools/anlogic.md)
 - [Intel Quartus tools](tools/quartus.md)
-- [Machine-readable catalog](tools/catalog.json)
 
 > *Used by engineers from **AMD**, **Tsinghua / Fudan / SJTU** and the **Chinese Academy of
 > Sciences (CAS)**, FPGA vendor **Fudan Microelectronics (复旦微)**, and lidar leaders

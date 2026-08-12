@@ -4,13 +4,11 @@
 
 **510 public tools** — Free 43 · Pro 475 · Max 510
 
-The catalog documents all public capabilities. A running MCP server registers only the selected platform and the tools allowed by the verified license plan; these catalogs are not loaded together.
+This user-facing index summarizes public capabilities. Exact schemas and execution contracts are provided by the licensed MCP runtime.
 
 Trial currently uses the Pro tool entitlement.
 
-Catalog schema: `1` · Product version: `1.3.1` · Name digest: `31a66658cb9febd345b849035aab24251ecccdfc56c93be8b0d82ae48a4cdb49`
-
-[Machine-readable catalog](catalog.json)
+Public index schema: `2` · Product version: `1.3.1`
 
 ## Categories
 
@@ -43,45 +41,29 @@ Catalog schema: `1` · Product version: `1.3.1` · Name digest: `31a66658cb9febd
 
 Get Vivado Tcl command help
 
-Args:
-    topic: Command name or topic (leave empty for common commands)
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `topic` | `string` | No | `""` | Topic |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `topic` | `string` | No |
 
 </details>
 
 <details id="list_vivado">
-<summary><code>list_vivado</code> — Scan for active Vivado instances running SynthPilot Tcl servers. <strong>Free</strong></summary>
+<summary><code>list_vivado</code> — Find active Vivado sessions available to SynthPilot. <strong>Free</strong></summary>
 
-Scan for active Vivado instances running SynthPilot Tcl servers.
-
-    Probes a range of TCP ports to find running Vivado instances.
-    Shows port, Vivado version, and which project is open (if any).
-    Use switch_vivado() to connect to a specific instance.
-
-    Args:
-        port_start: First port to scan (default 9999)
-        port_end: Last port to scan (default 10003)
-
-    Returns:
-        List of found Vivado instances with port, version, and project info
+Find active Vivado sessions available to SynthPilot.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port_start` | `integer` | No | `9999` | Port Start |
-| `port_end` | `integer` | No | `10003` | Port End |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port_start` | `integer` | No |
+| `port_end` | `integer` | No |
 
 </details>
 
@@ -90,23 +72,13 @@ Scan for active Vivado instances running SynthPilot Tcl servers.
 
 Switch to a different Vivado instance by port number.
 
-    Use list_vivado() first to see available instances.
-    All subsequent tool calls will target the new Vivado instance.
-
-    Args:
-        port: TCP port of the target Vivado Tcl server (e.g. 9999, 10000)
-
-    Returns:
-        Connection status of the new target
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `integer` | Yes | `—` | Port |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `integer` | Yes |
 
 </details>
 
@@ -116,7 +88,6 @@ Switch to a different Vivado instance by port number.
 Test the connection to Vivado
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -130,7 +101,6 @@ No parameters.
 Get Vivado version information
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -146,19 +116,14 @@ No parameters.
 
 Add an IP to the Block Design
 
-Args:
-    vlnv: IP VLNV identifier, e.g. xilinx.com:ip:axi_gpio:2.0
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `vlnv` | `string` | Yes | `—` | Vlnv |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `vlnv` | `string` | Yes |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -167,28 +132,14 @@ Args:
 
 Apply built-in MPSoC preset template
 
-Args:
-    cell: MPSoC instance name
-    preset: Preset name, available options:
-        - minimal: PL0 + M_AXI_HPM0_FPD only
-        - ddr_enabled: DDR controller on (no capacity/speed/width)
-        - hp_slave: S_AXI_HP0_FPD high-performance port
-        - multi_clock: All 4 PL clocks enabled
-
-Note:
-    Presets are board-independent. For board-specific settings (DDR config,
-    MIO pins), use bd_get_mpsoc_config() to inspect then bd_configure_mpsoc()
-    to write the exact parameters.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `preset` | `string` | Yes | `—` | Preset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `preset` | `string` | Yes |
 
 </details>
 
@@ -197,28 +148,14 @@ Note:
 
 Apply built-in PS7 preset template
 
-Args:
-    cell: PS7 instance name
-    preset: Preset name, available options:
-        - minimal: FCLK0 + M_AXI_GP0 only
-        - ddr_enabled: DDR controller on (type=DDR3, no part/bus width)
-        - hp_slave: S_AXI_HP0 high-performance port
-        - multi_clock: All 4 FCLKs enabled
-
-Note:
-    Presets are board-independent. For board-specific settings (DDR part,
-    MIO pins), use bd_get_ps7_config() to inspect then bd_configure_ps7()
-    to write the exact parameters.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `preset` | `string` | Yes | `—` | Preset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `preset` | `string` | Yes |
 
 </details>
 
@@ -228,7 +165,6 @@ Note:
 Automatically assign addresses
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -241,17 +177,13 @@ No parameters.
 
 Get AXI Clock Converter configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -260,19 +192,14 @@ Args:
 
 Set AXI Clock Converter protocol
 
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4, AXI4LITE, AXI3
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | Yes | `—` | Protocol |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | Yes |
 
 </details>
 
@@ -281,17 +208,13 @@ Args:
 
 Get AXI Data FIFO configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -300,28 +223,17 @@ Args:
 
 Set AXI Data FIFO read/write depths and delay modes
 
-FIFO depth only accepts 0 (none), 32, or 512.
-FIFO delay can only be enabled when depth=512.
-
-Args:
-    name: Instance name
-    write_fifo_depth: Write channel FIFO depth (0, 32, 512)
-    read_fifo_depth: Read channel FIFO depth (0, 32, 512)
-    write_fifo_delay: Write FIFO delay mode (only valid when write_fifo_depth=512)
-    read_fifo_delay: Read FIFO delay mode (only valid when read_fifo_depth=512)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `write_fifo_depth` | `integer` | No | `null` | Write Fifo Depth |
-| `read_fifo_depth` | `integer` | No | `null` | Read Fifo Depth |
-| `write_fifo_delay` | `boolean` | No | `null` | Write Fifo Delay |
-| `read_fifo_delay` | `boolean` | No | `null` | Read Fifo Delay |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `write_fifo_depth` | `integer` | No |
+| `read_fifo_depth` | `integer` | No |
+| `write_fifo_delay` | `boolean` | No |
+| `read_fifo_delay` | `boolean` | No |
 
 </details>
 
@@ -330,21 +242,14 @@ Args:
 
 Set AXI Data FIFO protocol
 
-Warning: Changing protocol resets ID_WIDTH and USER widths to 0.
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4, AXI4LITE, AXI3
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | Yes | `—` | Protocol |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | Yes |
 
 </details>
 
@@ -353,17 +258,13 @@ Args:
 
 Get AXI Data Width Converter configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -372,21 +273,15 @@ Args:
 
 Set data widths for AXI Data Width Converter
 
-Args:
-    name: Instance name
-    si_data_width: Slave interface data width (None to keep current)
-    mi_data_width: Master interface data width (None to keep current)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `si_data_width` | `integer` | No | `null` | Si Data Width |
-| `mi_data_width` | `integer` | No | `null` | Mi Data Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `si_data_width` | `integer` | No |
+| `mi_data_width` | `integer` | No |
 
 </details>
 
@@ -395,22 +290,14 @@ Args:
 
 Enable/disable Fast Interrupt mode
 
-When enabling, IRQ connection is automatically set to single mode first,
-as Fast Interrupt is not compatible with cascade mode.
-
-Args:
-    name: Instance name
-    enable: Whether to enable Fast Interrupt mode
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -419,17 +306,13 @@ Args:
 
 Get AXI Interrupt Controller configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -438,22 +321,14 @@ Args:
 
 Set IRQ connection type
 
-When switching to cascade mode, Fast Interrupt mode is automatically
-disabled first to avoid mutual exclusion conflicts.
-
-Args:
-    name: Instance name
-    irq_connection: IRQ connection type - single or cascade
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `irq_connection` | `string` | Yes | `—` | Irq Connection |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `irq_connection` | `string` | Yes |
 
 </details>
 
@@ -462,17 +337,13 @@ Args:
 
 Get AXI Protocol Converter configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -481,21 +352,15 @@ Args:
 
 Set protocols for AXI Protocol Converter
 
-Args:
-    name: Instance name
-    si_protocol: Slave interface protocol (None to keep current)
-    mi_protocol: Master interface protocol (None to keep current)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `si_protocol` | `string` | No | `null` | Si Protocol |
-| `mi_protocol` | `string` | No | `null` | Mi Protocol |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `si_protocol` | `string` | No |
+| `mi_protocol` | `string` | No |
 
 </details>
 
@@ -504,59 +369,39 @@ Args:
 
 Get AXI VIP configuration including mode, protocol, widths, and signal flags.
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
 <details id="bd_axi_vip_set_config">
-<summary><code>bd_axi_vip_set_config</code> — Configure AXI VIP parameters. Only specified (non-None) parameters are modified. Note: switching protocol may auto-adjust HAS_* flags (e.g. AXI4LITE disables HAS_BURST/CACHE/LOCK/QOS). <strong>Max</strong></summary>
+<summary><code>bd_axi_vip_set_config</code> — Configure AXI VIP parameters. <strong>Max</strong></summary>
 
-Configure AXI VIP parameters. Only specified (non-None) parameters are modified.
-Note: switching protocol may auto-adjust HAS_* flags (e.g. AXI4LITE disables HAS_BURST/CACHE/LOCK/QOS).
-
-Args:
-    name: Instance name
-    mode: Interface mode - MASTER, SLAVE, or PASS_THROUGH
-    protocol: AXI protocol - AXI4, AXI4LITE, or AXI3
-    data_width: AXI data width in bits (AXI4/AXI3: 32-1024, AXI4LITE: 32 or 64)
-    addr_width: AXI address width in bits (1-64)
-    id_width: AXI ID width in bits (0-32)
-    read_write_mode: READ_WRITE, READ_ONLY, or WRITE_ONLY
-    has_prot: Enable PROT signal (0 or 1)
-    has_cache: Enable CACHE signal (0 or 1)
-    has_wstrb: Enable WSTRB signal (0 or 1)
-    has_bresp: Enable BRESP signal (0 or 1)
-    has_rresp: Enable RRESP signal (0 or 1)
+Configure AXI VIP parameters.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mode` | `string` | No | `null` | Mode |
-| `protocol` | `string` | No | `null` | Protocol |
-| `data_width` | `integer` | No | `null` | Data Width |
-| `addr_width` | `integer` | No | `null` | Addr Width |
-| `id_width` | `integer` | No | `null` | Id Width |
-| `read_write_mode` | `string` | No | `null` | Read Write Mode |
-| `has_prot` | `integer` | No | `null` | Has Prot |
-| `has_cache` | `integer` | No | `null` | Has Cache |
-| `has_wstrb` | `integer` | No | `null` | Has Wstrb |
-| `has_bresp` | `integer` | No | `null` | Has Bresp |
-| `has_rresp` | `integer` | No | `null` | Has Rresp |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mode` | `string` | No |
+| `protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
+| `id_width` | `integer` | No |
+| `read_write_mode` | `string` | No |
+| `has_prot` | `integer` | No |
+| `has_cache` | `integer` | No |
+| `has_wstrb` | `integer` | No |
+| `has_bresp` | `integer` | No |
+| `has_rresp` | `integer` | No |
 
 </details>
 
@@ -565,17 +410,13 @@ Args:
 
 Get AXI4-Stream Data FIFO configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -584,27 +425,18 @@ Args:
 
 Set AXI4-Stream Data FIFO core configuration
 
-Args:
-    name: Instance name
-    tdata_num_bytes: Data width in bytes (1=8bit, 4=32bit, 8=64bit)
-    fifo_depth: FIFO depth in words
-    fifo_mode: 1=Normal, 2=Packet (forces TLAST on)
-    is_aclk_async: True for async clocks (CDC)
-    fifo_memory_type: Memory type - auto, block, distributed
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `tdata_num_bytes` | `integer` | No | `null` | Tdata Num Bytes |
-| `fifo_depth` | `integer` | No | `null` | Fifo Depth |
-| `fifo_mode` | `integer` | No | `null` | Fifo Mode |
-| `is_aclk_async` | `boolean` | No | `null` | Is Aclk Async |
-| `fifo_memory_type` | `string` | No | `null` | Fifo Memory Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `tdata_num_bytes` | `integer` | No |
+| `fifo_depth` | `integer` | No |
+| `fifo_mode` | `integer` | No |
+| `is_aclk_async` | `boolean` | No |
+| `fifo_memory_type` | `string` | No |
 
 </details>
 
@@ -613,32 +445,19 @@ Args:
 
 Set AXI4-Stream Data FIFO optional signal configuration
 
-Note: HAS_TREADY is always enabled (read-only).
-HAS_TLAST is forced to 1 when FIFO_MODE=2 (packet mode).
-
-Args:
-    name: Instance name
-    has_tkeep: Enable TKEEP signal
-    has_tstrb: Enable TSTRB signal
-    has_tlast: Enable TLAST signal (forced True in packet mode)
-    tdest_width: TDEST signal width (0 to disable)
-    tid_width: TID signal width (0 to disable)
-    tuser_width: TUSER signal width (0 to disable)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `has_tkeep` | `boolean` | No | `null` | Has Tkeep |
-| `has_tstrb` | `boolean` | No | `null` | Has Tstrb |
-| `has_tlast` | `boolean` | No | `null` | Has Tlast |
-| `tdest_width` | `integer` | No | `null` | Tdest Width |
-| `tid_width` | `integer` | No | `null` | Tid Width |
-| `tuser_width` | `integer` | No | `null` | Tuser Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `has_tkeep` | `boolean` | No |
+| `has_tstrb` | `boolean` | No |
+| `has_tlast` | `boolean` | No |
+| `tdest_width` | `integer` | No |
+| `tid_width` | `integer` | No |
+| `tuser_width` | `integer` | No |
 
 </details>
 
@@ -647,19 +466,14 @@ Args:
 
 Enable/disable ECC error checking
 
-Args:
-    name: BRAM Controller instance name
-    enable: Whether to enable ECC
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -668,17 +482,13 @@ Args:
 
 Get AXI BRAM Controller configuration
 
-Args:
-    name: BRAM Controller instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -687,19 +497,14 @@ Args:
 
 Set BRAM Controller data bit width
 
-Args:
-    name: BRAM Controller instance name
-    width: Data bit width (32, 64, 128, 256, 512)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -708,24 +513,14 @@ Args:
 
 [Deprecated] Set BRAM Controller memory depth
 
-In IP Integrator, memory depth is determined by the address range in Address Editor,
-and cannot be set directly via CONFIG.MEM_DEPTH.
-
-Please use bd_assign_addresses or set the range in Vivado&#x27;s Address Editor GUI.
-
-Args:
-    name: BRAM Controller instance name
-    depth: Memory depth (this parameter is no longer effective)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `depth` | `integer` | Yes | `—` | Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `depth` | `integer` | Yes |
 
 </details>
 
@@ -734,19 +529,14 @@ Args:
 
 Set BRAM Controller protocol type
 
-Args:
-    name: BRAM Controller instance name
-    protocol: Protocol type (AXI4 or AXI4LITE)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | Yes | `—` | Protocol |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | Yes |
 
 </details>
 
@@ -755,19 +545,14 @@ Args:
 
 Set single-port/dual-port mode
 
-Args:
-    name: BRAM Controller instance name
-    single_port: True for single-port, False for dual-port
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `single_port` | `boolean` | Yes | `—` | Single Port |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `single_port` | `boolean` | Yes |
 
 </details>
 
@@ -777,7 +562,6 @@ Args:
 Check output product generation status
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -790,17 +574,13 @@ No parameters.
 
 Get Clocking Wizard configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -809,23 +589,16 @@ Args:
 
 Set input clock parameters
 
-Args:
-    name: Clocking Wizard instance name
-    freq_mhz: Input frequency (MHz)
-    jitter_ps: Input jitter (ps), default 100
-    differential: Whether differential input, default False
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `freq_mhz` | `number` | Yes | `—` | Freq Mhz |
-| `jitter_ps` | `number` | No | `100.0` | Jitter Ps |
-| `differential` | `boolean` | No | `false` | Differential |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `freq_mhz` | `number` | Yes |
+| `jitter_ps` | `number` | No |
+| `differential` | `boolean` | No |
 
 </details>
 
@@ -834,25 +607,17 @@ Args:
 
 Set clock output parameters
 
-Args:
-    name: Clocking Wizard instance name
-    output_num: Output number (1-7)
-    freq_mhz: Output frequency (MHz)
-    phase_deg: Output phase (degrees), default 0
-    duty_cycle: Duty cycle (%), default 50
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `output_num` | `integer` | Yes | `—` | Output Num |
-| `freq_mhz` | `number` | Yes | `—` | Freq Mhz |
-| `phase_deg` | `number` | No | `0.0` | Phase Deg |
-| `duty_cycle` | `number` | No | `50.0` | Duty Cycle |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `output_num` | `integer` | Yes |
+| `freq_mhz` | `number` | Yes |
+| `phase_deg` | `number` | No |
+| `duty_cycle` | `number` | No |
 
 </details>
 
@@ -861,17 +626,13 @@ Args:
 
 Get Concat configuration
 
-Args:
-    name: Concat instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -880,19 +641,14 @@ Args:
 
 Set Concat port count
 
-Args:
-    name: Concat instance name
-    num_ports: Port count (2-32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_ports` | `integer` | Yes | `—` | Num Ports |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_ports` | `integer` | Yes |
 
 </details>
 
@@ -901,21 +657,15 @@ Args:
 
 Set Concat single port width
 
-Args:
-    name: Concat instance name
-    port_num: Port number (0-31)
-    width: Bit width
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `port_num` | `integer` | Yes | `—` | Port Num |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `port_num` | `integer` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -924,23 +674,14 @@ Args:
 
 Configure MPSoC properties via configuration dictionary
 
-Args:
-    cell: MPSoC instance name
-    config: JSON format configuration dictionary, e.g.:
-            {&quot;PSU__FPGA_PL0_ENABLE&quot;: &quot;1&quot;, &quot;PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ&quot;: &quot;100&quot;}
-
-Note:
-    CONFIG. prefix is not required for config items, it will be added automatically
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `config` | `string` | Yes | `—` | Config |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `config` | `string` | Yes |
 
 </details>
 
@@ -949,23 +690,14 @@ Note:
 
 Configure PS7 properties via configuration dictionary
 
-Args:
-    cell: PS7 instance name
-    config: JSON format configuration dictionary, e.g.:
-            {&quot;PCW_FPGA_FCLK0_ENABLE&quot;: &quot;1&quot;, &quot;PCW_FPGA0_PERIPHERAL_FREQMHZ&quot;: &quot;100&quot;}
-
-Note:
-    CONFIG. prefix is not required for config items, it will be added automatically
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `config` | `string` | Yes | `—` | Config |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `config` | `string` | Yes |
 
 </details>
 
@@ -974,22 +706,14 @@ Note:
 
 Connect ILA clock
 
-Args:
-    ila_name: ILA instance name
-    clock_path: Clock signal path (e.g. &quot;ps7/FCLK_CLK0&quot;)
-
-Returns:
-    Connection result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ila_name` | `string` | Yes | `—` | Ila Name |
-| `clock_path` | `string` | Yes | `—` | Clock Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ila_name` | `string` | Yes |
+| `clock_path` | `string` | Yes |
 
 </details>
 
@@ -998,24 +722,15 @@ Returns:
 
 Connect ILA probe to signal
 
-Args:
-    ila_name: ILA instance name
-    probe_index: Probe index
-    signal_path: Signal path (e.g. &quot;ps7/FCLK_CLK0&quot; or &quot;axi_gpio_0/gpio_io_o&quot;)
-
-Returns:
-    Connection result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ila_name` | `string` | Yes | `—` | Ila Name |
-| `probe_index` | `integer` | Yes | `—` | Probe Index |
-| `signal_path` | `string` | Yes | `—` | Signal Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ila_name` | `string` | Yes |
+| `probe_index` | `integer` | Yes |
+| `signal_path` | `string` | Yes |
 
 </details>
 
@@ -1024,19 +739,14 @@ Returns:
 
 Connect an external interface port to an IP interface pin
 
-Args:
-    port: External interface port name
-    pin: IP interface pin, e.g. axi_gpio_0/GPIO
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
-| `pin` | `string` | Yes | `—` | Pin |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
+| `pin` | `string` | Yes |
 
 </details>
 
@@ -1045,19 +755,14 @@ Args:
 
 Connect two interfaces
 
-Args:
-    src: Source interface, e.g. processing_system7_0/M_AXI_GP0
-    dst: Destination interface, e.g. axi_interconnect_0/S00_AXI
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `src` | `string` | Yes | `—` | Src |
-| `dst` | `string` | Yes | `—` | Dst |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `src` | `string` | Yes |
+| `dst` | `string` | Yes |
 
 </details>
 
@@ -1066,19 +771,14 @@ Args:
 
 Connect two pins
 
-Args:
-    src: Source pin, e.g. clk_wiz_0/clk_out1
-    dst: Destination pin, e.g. proc_sys_reset_0/slowest_sync_clk
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `src` | `string` | Yes | `—` | Src |
-| `dst` | `string` | Yes | `—` | Dst |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `src` | `string` | Yes |
+| `dst` | `string` | Yes |
 
 </details>
 
@@ -1087,19 +787,14 @@ Args:
 
 Connect an external port to an IP pin
 
-Args:
-    port: External port name
-    pin: IP pin, e.g. clk_wiz_0/clk_in1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
-| `pin` | `string` | Yes | `—` | Pin |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
+| `pin` | `string` | Yes |
 
 </details>
 
@@ -1108,24 +803,15 @@ Args:
 
 Connect System ILA monitor slot to AXI interface
 
-Args:
-    ila_name: System ILA instance name
-    slot: Slot index
-    interface_path: AXI interface path (e.g. &quot;ps7/M_AXI_GP0&quot;)
-
-Returns:
-    Connection result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ila_name` | `string` | Yes | `—` | Ila Name |
-| `slot` | `integer` | Yes | `—` | Slot |
-| `interface_path` | `string` | Yes | `—` | Interface Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ila_name` | `string` | Yes |
+| `slot` | `integer` | Yes |
+| `interface_path` | `string` | Yes |
 
 </details>
 
@@ -1134,23 +820,16 @@ Returns:
 
 Connect an IP to AXI Interconnect
 
-Args:
-    interconnect: Interconnect instance name
-    target: Target IP&#x27;s AXI interface, e.g. ps7/M_AXI_GP0 or gpio_0/S_AXI
-    si_index: Index of Interconnect&#x27;s S port (for Master connection)
-    mi_index: Index of Interconnect&#x27;s M port (for Slave connection)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `interconnect` | `string` | Yes | `—` | Interconnect |
-| `target` | `string` | Yes | `—` | Target |
-| `si_index` | `integer` | No | `null` | Si Index |
-| `mi_index` | `integer` | No | `null` | Mi Index |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `interconnect` | `string` | Yes |
+| `target` | `string` | Yes |
+| `si_index` | `integer` | No |
+| `mi_index` | `integer` | No |
 
 </details>
 
@@ -1159,17 +838,13 @@ Args:
 
 Get Constant (xlconstant) configuration
 
-Args:
-    name: Constant instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -1178,21 +853,15 @@ Args:
 
 Set constant value and optionally width
 
-Args:
-    name: Constant instance name
-    const_val: Constant value as hex string, e.g. &quot;1&quot;, &quot;FF&quot;
-    const_width: Output bit width (1-64), leave unset to keep current
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `const_val` | `string` | Yes | `—` | Const Val |
-| `const_width` | `integer` | No | `null` | Const Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `const_val` | `string` | Yes |
+| `const_width` | `integer` | No |
 
 </details>
 
@@ -1201,28 +870,17 @@ Args:
 
 Create an AXI BRAM Controller
 
-Args:
-    name: Instance name
-    data_width: Data bit width (32, 64, 128, 256, 512), default 32
-    protocol: Protocol type (AXI4 or AXI4LITE), default AXI4
-    single_port: Whether to use single-port BRAM, default False (dual-port)
-    use_ecc: Whether to enable ECC error checking, default False
-
-Note:
-    Memory depth is determined by address range in Address Editor, cannot be set directly
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
-| `single_port` | `boolean` | No | `false` | Single Port |
-| `use_ecc` | `boolean` | No | `false` | Use Ecc |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | No |
+| `protocol` | `string` | No |
+| `single_port` | `boolean` | No |
+| `use_ecc` | `boolean` | No |
 
 </details>
 
@@ -1231,24 +889,15 @@ Note:
 
 Create an AXI BRAM Controller and auto-connect Block Memory
 
-Args:
-    name: Instance name
-    data_width: Data bit width (32, 64, 128, 256, 512)
-    protocol: Protocol type (AXI4 or AXI4LITE)
-
-Note:
-    Memory depth is determined by address range in Address Editor
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | No |
+| `protocol` | `string` | No |
 
 </details>
 
@@ -1257,30 +906,18 @@ Note:
 
 Create an AXI Clock Converter
 
-Converts AXI transactions between two clock domains.
-Connect s_axi_aclk/m_axi_aclk to source/destination clocks.
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4, AXI4LITE, AXI3
-    aclk_async: True for asynchronous clocks (default), False for synchronous (ratio-based)
-    addr_width: Address width in bits (default 32)
-    data_width: Data width in bits (default 32)
-    id_width: ID width (0 for AXI4LITE, typically 1-16 for AXI4)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
-| `aclk_async` | `boolean` | No | `true` | Aclk Async |
-| `addr_width` | `integer` | No | `32` | Addr Width |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `id_width` | `integer` | No | `0` | Id Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | No |
+| `aclk_async` | `boolean` | No |
+| `addr_width` | `integer` | No |
+| `data_width` | `integer` | No |
+| `id_width` | `integer` | No |
 
 </details>
 
@@ -1289,34 +926,20 @@ Args:
 
 Create an AXI Data FIFO
 
-Buffers AXI read/write transactions. Useful for pipelining
-and improving timing closure. FIFO depth only accepts 0, 32, or 512.
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4, AXI4LITE, AXI3, default AXI4
-    data_width: Data width in bits, default 32
-    addr_width: Address width in bits, default 32
-    id_width: ID width (0 for AXI4LITE), default 0
-    write_fifo_depth: Write FIFO depth (0=none, 32, 512), default 512
-    read_fifo_depth: Read FIFO depth (0=none, 32, 512), default 512
-    read_write_mode: READ_WRITE, READ_ONLY, WRITE_ONLY, default READ_WRITE
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `addr_width` | `integer` | No | `32` | Addr Width |
-| `id_width` | `integer` | No | `0` | Id Width |
-| `write_fifo_depth` | `integer` | No | `512` | Write Fifo Depth |
-| `read_fifo_depth` | `integer` | No | `512` | Read Fifo Depth |
-| `read_write_mode` | `string` | No | `"READ_WRITE"` | Read Write Mode |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
+| `id_width` | `integer` | No |
+| `write_fifo_depth` | `integer` | No |
+| `read_fifo_depth` | `integer` | No |
+| `read_write_mode` | `string` | No |
 
 </details>
 
@@ -1325,29 +948,19 @@ Args:
 
 Create an AXI DMA
 
-Args:
-    name: Instance name
-    data_width: Data width (32/64/128/256/512/1024), default 32
-    include_sg: Whether to include Scatter/Gather engine, default True
-    include_mm2s: Whether to include MM2S channel (memory to stream), default True
-    include_s2mm: Whether to include S2MM channel (stream to memory), default True
-    burst_size: Burst size (2/4/8/16/32/64/128/256), default 16
-    addr_width: Address width, default 32
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `include_sg` | `boolean` | No | `true` | Include Sg |
-| `include_mm2s` | `boolean` | No | `true` | Include Mm2S |
-| `include_s2mm` | `boolean` | No | `true` | Include S2Mm |
-| `burst_size` | `integer` | No | `16` | Burst Size |
-| `addr_width` | `integer` | No | `32` | Addr Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | No |
+| `include_sg` | `boolean` | No |
+| `include_mm2s` | `boolean` | No |
+| `include_s2mm` | `boolean` | No |
+| `burst_size` | `integer` | No |
+| `addr_width` | `integer` | No |
 
 </details>
 
@@ -1356,19 +969,14 @@ Args:
 
 Create a simple AXI DMA (no Scatter/Gather, direct register mode)
 
-Args:
-    name: Instance name
-    data_width: Data width, default 32
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | No | `32` | Data Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | No |
 
 </details>
 
@@ -1377,28 +985,17 @@ Args:
 
 Create an AXI Data Width Converter
 
-Converts AXI data bus width between slave and master interfaces.
-Supports upsizing (e.g. 32→64) and downsizing (e.g. 64→32).
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4, AXI4LITE, AXI3
-    si_data_width: Slave interface data width (input side), default 32
-    mi_data_width: Master interface data width (output side), default 64
-    addr_width: Address width in bits (default 32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
-| `si_data_width` | `integer` | No | `32` | Si Data Width |
-| `mi_data_width` | `integer` | No | `64` | Mi Data Width |
-| `addr_width` | `integer` | No | `32` | Addr Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | No |
+| `si_data_width` | `integer` | No |
+| `mi_data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
 
 </details>
 
@@ -1407,27 +1004,18 @@ Args:
 
 Create an AXI GPIO
 
-Args:
-    name: Instance name
-    gpio_width: GPIO channel 1 bit width (1-32)
-    gpio2_width: GPIO channel 2 bit width (0=disabled, 1-32=enable dual channel)
-    all_inputs: Whether to set all as inputs
-    all_outputs: Whether to set all as outputs
-    interrupt: Whether to enable interrupt
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `gpio_width` | `integer` | No | `32` | Gpio Width |
-| `gpio2_width` | `integer` | No | `0` | Gpio2 Width |
-| `all_inputs` | `boolean` | No | `false` | All Inputs |
-| `all_outputs` | `boolean` | No | `false` | All Outputs |
-| `interrupt` | `boolean` | No | `false` | Interrupt |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `gpio_width` | `integer` | No |
+| `gpio2_width` | `integer` | No |
+| `all_inputs` | `boolean` | No |
+| `all_outputs` | `boolean` | No |
+| `interrupt` | `boolean` | No |
 
 </details>
 
@@ -1436,28 +1024,17 @@ Args:
 
 Create an AXI IIC (I2C) controller
 
-Args:
-    name: Instance name
-    freq_khz: I2C clock frequency (KHz), default 100 (standard mode)
-        - 100: Standard mode (100 KHz)
-        - 400: Fast mode (400 KHz)
-        - 1000: Fast mode+ (1 MHz)
-    ten_bit_addr: Whether to use 10-bit address mode, default False (7-bit)
-    scl_inertial_delay: SCL inertial delay (ns), for filtering
-    sda_inertial_delay: SDA inertial delay (ns), for filtering
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `freq_khz` | `integer` | No | `100` | Freq Khz |
-| `ten_bit_addr` | `boolean` | No | `false` | Ten Bit Addr |
-| `scl_inertial_delay` | `integer` | No | `0` | Scl Inertial Delay |
-| `sda_inertial_delay` | `integer` | No | `0` | Sda Inertial Delay |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `freq_khz` | `integer` | No |
+| `ten_bit_addr` | `boolean` | No |
+| `scl_inertial_delay` | `integer` | No |
+| `sda_inertial_delay` | `integer` | No |
 
 </details>
 
@@ -1466,17 +1043,13 @@ Args:
 
 Create Fast Mode AXI IIC (400 KHz)
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -1485,17 +1058,13 @@ Args:
 
 Create Standard Mode AXI IIC (100 KHz)
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -1504,30 +1073,16 @@ Args:
 
 Create an AXI Interrupt Controller
 
-Manages interrupt signals and presents them to a processor via AXI.
-
-Note: C_NUM_INTR_INPUTS is read-only and automatically determined by
-the number of interrupt ports connected to the controller.
-
-Args:
-    name: Instance name
-    irq_connection: IRQ output connection type
-        - single: Single output IRQ (connect to processor interrupt)
-        - cascade: Cascade mode for chaining multiple controllers
-    enable_fast: Enable Fast Interrupt mode (default False, only valid with single IRQ)
-    cascade_master: Set as cascade master (for multi-controller setups, default False)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `irq_connection` | `string` | No | `"single"` | Irq Connection |
-| `enable_fast` | `boolean` | No | `false` | Enable Fast |
-| `cascade_master` | `boolean` | No | `false` | Cascade Master |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `irq_connection` | `string` | No |
+| `enable_fast` | `boolean` | No |
+| `cascade_master` | `boolean` | No |
 
 </details>
 
@@ -1536,26 +1091,16 @@ Args:
 
 Create an AXI Interconnect
 
-Args:
-    name: Instance name
-    num_si: Number of Slave Interfaces, default 1
-    num_mi: Number of Master Interfaces, default 1
-    strategy: Interconnect strategy
-        - auto: Auto select
-        - area: Area optimized (shared arbitration)
-        - performance: Performance optimized (full crossbar)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_si` | `integer` | No | `1` | Num Si |
-| `num_mi` | `integer` | No | `1` | Num Mi |
-| `strategy` | `string` | No | `"auto"` | Strategy |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_si` | `integer` | No |
+| `num_mi` | `integer` | No |
+| `strategy` | `string` | No |
 
 </details>
 
@@ -1564,32 +1109,18 @@ Args:
 
 Create an AXI Protocol Converter
 
-Converts between AXI protocol versions. Common use cases:
-- AXI4 to AXI4LITE: Connect full AXI4 master to lite slave
-- AXI3 to AXI4: Bridge legacy AXI3 to AXI4
-- AXI4 to AXI3: Connect AXI4 master to AXI3 slave
-
-Args:
-    name: Instance name
-    si_protocol: Slave interface protocol (input) - AXI4, AXI4LITE, AXI3
-    mi_protocol: Master interface protocol (output) - AXI4, AXI4LITE, AXI3
-    data_width: Data width in bits (default 32)
-    addr_width: Address width in bits (default 32)
-    id_width: Transaction ID width (0 for LITE, typically 1-16 for AXI4/AXI3)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `si_protocol` | `string` | No | `"AXI4"` | Si Protocol |
-| `mi_protocol` | `string` | No | `"AXI4LITE"` | Mi Protocol |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `addr_width` | `integer` | No | `32` | Addr Width |
-| `id_width` | `integer` | No | `0` | Id Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `si_protocol` | `string` | No |
+| `mi_protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
+| `id_width` | `integer` | No |
 
 </details>
 
@@ -1598,30 +1129,17 @@ Args:
 
 Create an AXI Quad SPI controller (for SPI Flash)
 
-Args:
-    name: Instance name
-    memory: Flash type
-        - mixed: Generic
-        - winbond: Winbond
-        - micron: Micron
-        - spansion: Spansion
-        - macronix: Macronix
-    xip_mode: Whether to enable XIP (Execute In Place) mode
-    use_startup: Whether to use STARTUP primitive (required for quad mode)
-    addr_bits: Flash address bit width (24 or 32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `memory` | `string` | No | `"winbond"` | Memory |
-| `xip_mode` | `boolean` | No | `false` | Xip Mode |
-| `use_startup` | `boolean` | No | `true` | Use Startup |
-| `addr_bits` | `integer` | No | `24` | Addr Bits |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `memory` | `string` | No |
+| `xip_mode` | `boolean` | No |
+| `use_startup` | `boolean` | No |
+| `addr_bits` | `integer` | No |
 
 </details>
 
@@ -1630,30 +1148,18 @@ Args:
 
 Create an AXI SPI controller
 
-Args:
-    name: Instance name
-    mode: SPI mode
-        - standard: Standard SPI (MOSI/MISO)
-        - dual: Dual SPI
-        - quad: Quad SPI
-    master: True for master mode, False for slave mode
-    num_ss: Number of slave select signals (1-32)
-    fifo_depth: FIFO depth (0, 16, 256)
-    transfer_bits: Transfer bit width (8, 16, 32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mode` | `string` | No | `"standard"` | Mode |
-| `master` | `boolean` | No | `true` | Master |
-| `num_ss` | `integer` | No | `1` | Num Ss |
-| `fifo_depth` | `integer` | No | `16` | Fifo Depth |
-| `transfer_bits` | `integer` | No | `8` | Transfer Bits |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mode` | `string` | No |
+| `master` | `boolean` | No |
+| `num_ss` | `integer` | No |
+| `fifo_depth` | `integer` | No |
+| `transfer_bits` | `integer` | No |
 
 </details>
 
@@ -1662,25 +1168,17 @@ Args:
 
 Create an AXI Timer
 
-Args:
-    name: Instance name
-    count_width: Counter bit width, default 32
-    enable_timer2: Whether to enable second timer, default True
-    mode_64bit: Whether to use 64-bit mode (two timers cascaded), default False
-    use_interrupt: Whether to use interrupt, default True
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `count_width` | `integer` | No | `32` | Count Width |
-| `enable_timer2` | `boolean` | No | `true` | Enable Timer2 |
-| `mode_64bit` | `boolean` | No | `false` | Mode 64Bit |
-| `use_interrupt` | `boolean` | No | `true` | Use Interrupt |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `count_width` | `integer` | No |
+| `enable_timer2` | `boolean` | No |
+| `mode_64bit` | `boolean` | No |
+| `use_interrupt` | `boolean` | No |
 
 </details>
 
@@ -1689,21 +1187,15 @@ Args:
 
 Create an AXI UART 16550 (more complete features)
 
-Args:
-    name: Instance name
-    clock_freq: Clock frequency (Hz), used for baud rate calculation
-    use_interrupt: Whether to use interrupt
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `clock_freq` | `integer` | No | `100000000` | Clock Freq |
-| `use_interrupt` | `boolean` | No | `true` | Use Interrupt |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `clock_freq` | `integer` | No |
+| `use_interrupt` | `boolean` | No |
 
 </details>
 
@@ -1712,25 +1204,17 @@ Args:
 
 Create an AXI UART Lite
 
-Args:
-    name: Instance name
-    baudrate: Baud rate, default 115200
-    data_bits: Data bits (5/6/7/8), default 8
-    parity: Parity - none/odd/even, default none
-    use_interrupt: Whether to use interrupt, default True
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `baudrate` | `integer` | No | `115200` | Baudrate |
-| `data_bits` | `integer` | No | `8` | Data Bits |
-| `parity` | `string` | No | `"none"` | Parity |
-| `use_interrupt` | `boolean` | No | `true` | Use Interrupt |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `baudrate` | `integer` | No |
+| `data_bits` | `integer` | No |
+| `parity` | `string` | No |
+| `use_interrupt` | `boolean` | No |
 
 </details>
 
@@ -1739,59 +1223,39 @@ Args:
 
 Create an AXI VDMA (Video DMA)
 
-Args:
-    name: Instance name
-    data_width: Memory interface data width (32/64/128/256/512/1024), default 64
-    stream_width: Stream interface data width, default 32
-    include_mm2s: Whether to include MM2S channel (read channel), default True
-    include_s2mm: Whether to include S2MM channel (write channel), default True
-    num_fstores: Number of frame stores (1-32), default 3
-    linebuffer_depth: Line buffer depth, default 512
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | No | `64` | Data Width |
-| `stream_width` | `integer` | No | `32` | Stream Width |
-| `include_mm2s` | `boolean` | No | `true` | Include Mm2S |
-| `include_s2mm` | `boolean` | No | `true` | Include S2Mm |
-| `num_fstores` | `integer` | No | `3` | Num Fstores |
-| `linebuffer_depth` | `integer` | No | `512` | Linebuffer Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | No |
+| `stream_width` | `integer` | No |
+| `include_mm2s` | `boolean` | No |
+| `include_s2mm` | `boolean` | No |
+| `num_fstores` | `integer` | No |
+| `linebuffer_depth` | `integer` | No |
 
 </details>
 
 <details id="bd_create_axi_vip">
-<summary><code>bd_create_axi_vip</code> — Create an AXI Verification IP in the Block Design. Used in simulation to generate/monitor AXI transactions. <strong>Max</strong></summary>
+<summary><code>bd_create_axi_vip</code> — Create an AXI Verification IP in the Block Design. <strong>Max</strong></summary>
 
 Create an AXI Verification IP in the Block Design.
-Used in simulation to generate/monitor AXI transactions.
-
-Args:
-    name: Instance name
-    mode: Interface mode - MASTER, SLAVE, or PASS_THROUGH
-    protocol: AXI protocol - AXI4, AXI4LITE, or AXI3
-    data_width: AXI data width in bits (AXI4/AXI3: 32-1024, AXI4LITE: 32 or 64)
-    addr_width: AXI address width in bits (1-64)
-    id_width: AXI ID width in bits (0-32)
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mode` | `string` | No | `"MASTER"` | Mode |
-| `protocol` | `string` | No | `"AXI4"` | Protocol |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `addr_width` | `integer` | No | `32` | Addr Width |
-| `id_width` | `integer` | No | `0` | Id Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mode` | `string` | No |
+| `protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
+| `id_width` | `integer` | No |
 
 </details>
 
@@ -1800,32 +1264,19 @@ Args:
 
 Create an AXI4-Stream Data FIFO
 
-Buffers AXI-Stream data. Supports clock domain crossing (async mode)
-and packet mode (stores complete packets before forwarding).
-
-Args:
-    name: Instance name
-    tdata_num_bytes: Data width in bytes (1=8bit, 4=32bit, 8=64bit), default 4
-    fifo_depth: FIFO depth in words, default 1024
-    fifo_mode: 1=Normal, 2=Packet (requires TLAST), default 1
-    is_aclk_async: True for asynchronous clocks (CDC), default False
-    has_tlast: Enable TLAST signal (forced True in packet mode), default True
-    fifo_memory_type: Memory type - auto, block, distributed, default auto
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `tdata_num_bytes` | `integer` | No | `4` | Tdata Num Bytes |
-| `fifo_depth` | `integer` | No | `1024` | Fifo Depth |
-| `fifo_mode` | `integer` | No | `1` | Fifo Mode |
-| `is_aclk_async` | `boolean` | No | `false` | Is Aclk Async |
-| `has_tlast` | `boolean` | No | `true` | Has Tlast |
-| `fifo_memory_type` | `string` | No | `"auto"` | Fifo Memory Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `tdata_num_bytes` | `integer` | No |
+| `fifo_depth` | `integer` | No |
+| `fifo_mode` | `integer` | No |
+| `is_aclk_async` | `boolean` | No |
+| `has_tlast` | `boolean` | No |
+| `fifo_memory_type` | `string` | No |
 
 </details>
 
@@ -1834,24 +1285,15 @@ Args:
 
 Create an AXI4-Stream Data FIFO for clock domain crossing
 
-Convenience wrapper: creates an async FIFO with TLAST enabled,
-ready for CDC between two clock domains.
-
-Args:
-    name: Instance name
-    tdata_num_bytes: Data width in bytes (1=8bit, 4=32bit, 8=64bit), default 4
-    fifo_depth: FIFO depth in words, default 256
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `tdata_num_bytes` | `integer` | No | `4` | Tdata Num Bytes |
-| `fifo_depth` | `integer` | No | `256` | Fifo Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `tdata_num_bytes` | `integer` | No |
+| `fifo_depth` | `integer` | No |
 
 </details>
 
@@ -1860,19 +1302,14 @@ Args:
 
 Create BUFG (global clock buffer)
 
-Args:
-    name: Instance name
-    size: Number of buffers, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | No |
 
 </details>
 
@@ -1881,29 +1318,19 @@ Args:
 
 Create Clocking Wizard IP (single output)
 
-Args:
-    name: Instance name
-    input_freq_mhz: Input clock frequency (MHz), default 100
-    output_freq_mhz: Output clock frequency (MHz), default 100
-    primitive: Clock primitive type MMCM or PLL, default MMCM
-    use_locked: Whether to output locked signal, default True
-    use_reset: Whether to use reset signal, default True
-    reset_active_low: Whether reset is active low, default True
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `input_freq_mhz` | `number` | No | `100.0` | Input Freq Mhz |
-| `output_freq_mhz` | `number` | No | `100.0` | Output Freq Mhz |
-| `primitive` | `string` | No | `"MMCM"` | Primitive |
-| `use_locked` | `boolean` | No | `true` | Use Locked |
-| `use_reset` | `boolean` | No | `true` | Use Reset |
-| `reset_active_low` | `boolean` | No | `true` | Reset Active Low |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `input_freq_mhz` | `number` | No |
+| `output_freq_mhz` | `number` | No |
+| `primitive` | `string` | No |
+| `use_locked` | `boolean` | No |
+| `use_reset` | `boolean` | No |
+| `reset_active_low` | `boolean` | No |
 
 </details>
 
@@ -1912,27 +1339,18 @@ Args:
 
 Create multi-output Clocking Wizard
 
-Args:
-    name: Instance name
-    input_freq_mhz: Input clock frequency (MHz)
-    output_freqs: Output frequency list, comma-separated, e.g. &quot;100,50,25&quot; (max 7)
-    primitive: Clock primitive type MMCM or PLL
-    use_locked: Whether to output locked signal
-    use_reset: Whether to use reset signal
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `input_freq_mhz` | `number` | No | `100.0` | Input Freq Mhz |
-| `output_freqs` | `string` | No | `"100,50"` | Output Freqs |
-| `primitive` | `string` | No | `"MMCM"` | Primitive |
-| `use_locked` | `boolean` | No | `true` | Use Locked |
-| `use_reset` | `boolean` | No | `true` | Use Reset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `input_freq_mhz` | `number` | No |
+| `output_freqs` | `string` | No |
+| `primitive` | `string` | No |
+| `use_locked` | `boolean` | No |
+| `use_reset` | `boolean` | No |
 
 </details>
 
@@ -1941,19 +1359,14 @@ Args:
 
 Create a clock input port
 
-Args:
-    name: Port name
-    freq_hz: Clock frequency (Hz), e.g. 100000000 for 100MHz
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `freq_hz` | `integer` | Yes | `—` | Freq Hz |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `freq_hz` | `integer` | Yes |
 
 </details>
 
@@ -1962,21 +1375,15 @@ Args:
 
 Create Concat IP
 
-Args:
-    name: Instance name
-    num_ports: Number of input ports (2-32), default 2
-    port_widths: Port widths, comma-separated, e.g. &quot;1,1,8&quot; (empty for all 1-bit)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_ports` | `integer` | No | `2` | Num Ports |
-| `port_widths` | `string` | No | `""` | Port Widths |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_ports` | `integer` | No |
+| `port_widths` | `string` | No |
 
 </details>
 
@@ -1985,23 +1392,15 @@ Args:
 
 Create a Constant IP (xlconstant)
 
-Generates a constant value output signal in Block Design.
-
-Args:
-    name: Instance name
-    const_width: Output bit width (1-64), default 1
-    const_val: Constant value as hex string, default &quot;1&quot;. Examples: &quot;1&quot;, &quot;0&quot;, &quot;FF&quot;, &quot;DEADBEEF&quot;
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `const_width` | `integer` | No | `1` | Const Width |
-| `const_val` | `string` | No | `"1"` | Const Val |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `const_width` | `integer` | No |
+| `const_val` | `string` | No |
 
 </details>
 
@@ -2010,27 +1409,15 @@ Args:
 
 Create generic differential signal buffer
 
-Args:
-    name: Instance name
-    buf_type: Buffer type, options:
-        - IBUFDS: Differential input buffer
-        - OBUFDS: Differential output buffer
-        - IOBUFDS: Differential bidirectional buffer
-        - BUFG: Global clock buffer
-        - IBUFGDS: Differential global clock input buffer
-        - IBUFDS_GTE2/GTE3/GTE4: GT transceiver clock buffer
-    size: Number of buffers, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `buf_type` | `string` | No | `"IBUFDS"` | Buf Type |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `buf_type` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -2039,19 +1426,14 @@ Args:
 
 Create IBUFDS (differential input buffer)
 
-Args:
-    name: Instance name
-    size: Number of buffers, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | No |
 
 </details>
 
@@ -2060,39 +1442,21 @@ Args:
 
 Create ILA (Integrated Logic Analyzer) IP for signal probing
 
-Note: In Block Design, Xilinx recommends using System ILA for AXI interface monitoring.
-This tool creates a Native mode ILA for probing regular signals.
-
-Args:
-    name: Instance name
-    num_probes: Number of probes (1-64)
-    sample_depth: Sample depth (1024/2048/4096/8192/16384/32768/65536/131072)
-    probe_widths: Probe width configuration, format &quot;probe0:8,probe1:32,probe2:1&quot; (optional)
-    enable_trigger_in: Enable external trigger input
-    enable_trigger_out: Enable trigger output
-    advanced_trigger: Enable advanced trigger (state machine trigger)
-    capture_control: Enable capture control (storage qualification)
-    input_pipe_stages: Input pipeline stages (0-6), for timing optimization
-
-Returns:
-    Creation result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_probes` | `integer` | No | `1` | Num Probes |
-| `sample_depth` | `integer` | No | `1024` | Sample Depth |
-| `probe_widths` | `string` | No | `""` | Probe Widths |
-| `enable_trigger_in` | `boolean` | No | `false` | Enable Trigger In |
-| `enable_trigger_out` | `boolean` | No | `false` | Enable Trigger Out |
-| `advanced_trigger` | `boolean` | No | `false` | Advanced Trigger |
-| `capture_control` | `boolean` | No | `false` | Capture Control |
-| `input_pipe_stages` | `integer` | No | `0` | Input Pipe Stages |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_probes` | `integer` | No |
+| `sample_depth` | `integer` | No |
+| `probe_widths` | `string` | No |
+| `enable_trigger_in` | `boolean` | No |
+| `enable_trigger_out` | `boolean` | No |
+| `advanced_trigger` | `boolean` | No |
+| `capture_control` | `boolean` | No |
+| `input_pipe_stages` | `integer` | No |
 
 </details>
 
@@ -2101,21 +1465,15 @@ Returns:
 
 Create an external interface port
 
-Args:
-    name: Port name
-    mode: Master or Slave
-    vlnv: Interface type VLNV, e.g. xilinx.com:interface:gpio_rtl:1.0
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mode` | `string` | Yes | `—` | Mode |
-| `vlnv` | `string` | Yes | `—` | Vlnv |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mode` | `string` | Yes |
+| `vlnv` | `string` | Yes |
 
 </details>
 
@@ -2124,45 +1482,32 @@ Args:
 
 Create inverter (NOT gate)
 
-Args:
-    name: Instance name
-    size: Bit width, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | No |
 
 </details>
 
 <details id="bd_create_jtag_axi">
-<summary><code>bd_create_jtag_axi</code> — Create a JTAG-to-AXI Master IP in the Block Design. Sends AXI read/write transactions over JTAG for hardware debugging. <strong>Max</strong></summary>
+<summary><code>bd_create_jtag_axi</code> — Create a JTAG-to-AXI Master IP in the Block Design. <strong>Max</strong></summary>
 
 Create a JTAG-to-AXI Master IP in the Block Design.
-Sends AXI read/write transactions over JTAG for hardware debugging.
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4 (supports 32/64-bit data) or AXI4LITE (32-bit only)
-    data_width: AXI data width in bits (32 or 64, AXI4LITE only supports 32)
-    addr_width: AXI address width in bits (32 or 64)
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | No | `"AXI4LITE"` | Protocol |
-| `data_width` | `integer` | No | `32` | Data Width |
-| `addr_width` | `integer` | No | `32` | Addr Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
 
 </details>
 
@@ -2171,27 +1516,15 @@ Args:
 
 Create and configure MPSoC instance (one-click creation)
 
-Args:
-    name: Instance name, default zynq_ultra_ps_e_0
-    preset: Preset template (minimal / ddr_enabled / hp_slave / multi_clock)
-    run_automation: Whether to run block automation, default True
-
-Note:
-    - Requires a project with UltraScale+ device
-    - With board part set: run_automation auto-configures DDR and MIO
-    - Without board part: use bd_get_mpsoc_config() to inspect, then
-      bd_configure_mpsoc() to set DDR capacity, speed, MIO pins, etc.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | No | `"zynq_ultra_ps_e_0"` | Name |
-| `preset` | `string` | No | `"minimal"` | Preset |
-| `run_automation` | `boolean` | No | `true` | Run Automation |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | No |
+| `preset` | `string` | No |
+| `run_automation` | `boolean` | No |
 
 </details>
 
@@ -2200,19 +1533,14 @@ Note:
 
 Create OBUFDS (differential output buffer)
 
-Args:
-    name: Instance name
-    size: Number of buffers, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | No |
 
 </details>
 
@@ -2221,25 +1549,17 @@ Args:
 
 Create an external port
 
-Args:
-    name: Port name
-    direction: Direction I(input)/O(output)/IO(bidirectional)
-    width: Bit width, default 1
-    port_type: Type (optional) clk/rst/data
-    freq_hz: Clock frequency (only used when port_type=&quot;clk&quot;), e.g. 100000000 for 100MHz
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `direction` | `string` | Yes | `—` | Direction |
-| `width` | `integer` | No | `1` | Width |
-| `port_type` | `string` | No | `""` | Port Type |
-| `freq_hz` | `integer` | No | `0` | Freq Hz |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `direction` | `string` | Yes |
+| `width` | `integer` | No |
+| `port_type` | `string` | No |
+| `freq_hz` | `integer` | No |
 
 </details>
 
@@ -2248,28 +1568,15 @@ Args:
 
 Create a Processor System Reset IP
 
-Generates synchronized reset signals for the system. Accepts an external
-reset and produces properly synchronized peripheral_reset and
-interconnect_resetn outputs.
-
-Note: External reset polarity (C_EXT_RESET_HIGH) is read-only and
-defaults to active high (1). It cannot be changed after IP creation.
-
-Args:
-    name: Instance name
-    aux_reset_active_low: Auxiliary reset is active low (default True)
-    use_board_flow: Enable board flow automation (default False)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `aux_reset_active_low` | `boolean` | No | `true` | Aux Reset Active Low |
-| `use_board_flow` | `boolean` | No | `false` | Use Board Flow |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `aux_reset_active_low` | `boolean` | No |
+| `use_board_flow` | `boolean` | No |
 
 </details>
 
@@ -2278,26 +1585,15 @@ Args:
 
 Create and configure PS7 instance (one-click creation)
 
-Args:
-    name: Instance name, default ps7_0
-    preset: Preset template (minimal / ddr_enabled / hp_slave / multi_clock)
-    run_automation: Whether to run block automation to export DDR/FIXED_IO, default True
-
-Note:
-    - With board part set: run_automation auto-configures DDR and MIO
-    - Without board part: use bd_get_ps7_config() to inspect, then
-      bd_configure_ps7() to set DDR part, bus width, MIO pins, etc.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | No | `"ps7_0"` | Name |
-| `preset` | `string` | No | `"minimal"` | Preset |
-| `run_automation` | `boolean` | No | `true` | Run Automation |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | No |
+| `preset` | `string` | No |
+| `run_automation` | `boolean` | No |
 
 </details>
 
@@ -2306,19 +1602,14 @@ Note:
 
 Create a reset input port
 
-Args:
-    name: Port name
-    polarity: Polarity ACTIVE_LOW or ACTIVE_HIGH
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `polarity` | `string` | No | `"ACTIVE_LOW"` | Polarity |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `polarity` | `string` | No |
 
 </details>
 
@@ -2327,30 +1618,16 @@ Args:
 
 Create Slice IP (xlslice)
 
-Extracts a signal slice from input vector at specified bit range.
-Output width is automatically calculated as din_from - din_to + 1.
-
-Args:
-    name: Instance name
-    din_width: Input signal bit width (1-4096), default 32
-    din_from: Slice high bit index, default 0
-    din_to: Slice low bit index, default 0
-
-Example:
-    - Extract [7:0] from 32-bit signal: din_width=32, din_from=7, din_to=0
-    - Extract single bit [15]: din_width=32, din_from=15, din_to=15
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `din_width` | `integer` | No | `32` | Din Width |
-| `din_from` | `integer` | No | `0` | Din From |
-| `din_to` | `integer` | No | `0` | Din To |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `din_width` | `integer` | No |
+| `din_from` | `integer` | No |
+| `din_to` | `integer` | No |
 
 </details>
 
@@ -2359,23 +1636,16 @@ Example:
 
 Create a SmartConnect (recommended for Zynq UltraScale+)
 
-Args:
-    name: Instance name
-    num_si: Number of Slave Interfaces
-    num_mi: Number of Master Interfaces
-    num_clks: Number of clock domains (1=single clock, &gt;1=async)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_si` | `integer` | No | `1` | Num Si |
-| `num_mi` | `integer` | No | `1` | Num Mi |
-| `num_clks` | `integer` | No | `1` | Num Clks |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_si` | `integer` | No |
+| `num_mi` | `integer` | No |
+| `num_clks` | `integer` | No |
 
 </details>
 
@@ -2384,31 +1654,17 @@ Args:
 
 Create System ILA (for AXI interface monitoring)
 
-Args:
-    name: Instance name
-    num_monitor_slots: Number of monitor slots (1-16), each slot can connect to one AXI interface
-    sample_depth: Sample depth (1024/2048/4096/8192/16384/32768/65536/131072)
-    monitor_type: Monitor type
-        - INTERFACE: Monitor AXI interfaces (default)
-        - NATIVE: Monitor regular signals
-        - MIX: Mixed mode
-    num_probes: Number of probes in NATIVE mode (0 for interface monitoring only)
-
-Returns:
-    Creation result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_monitor_slots` | `integer` | No | `1` | Num Monitor Slots |
-| `sample_depth` | `integer` | No | `1024` | Sample Depth |
-| `monitor_type` | `string` | No | `"INTERFACE"` | Monitor Type |
-| `num_probes` | `integer` | No | `0` | Num Probes |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_monitor_slots` | `integer` | No |
+| `sample_depth` | `integer` | No |
+| `monitor_type` | `string` | No |
+| `num_probes` | `integer` | No |
 
 </details>
 
@@ -2417,21 +1673,15 @@ Returns:
 
 Create Utility Vector Logic IP
 
-Args:
-    name: Instance name
-    operation: Logic operation type: and, or, xor, not, default and
-    size: Vector bit width, default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `operation` | `string` | No | `"and"` | Operation |
-| `size` | `integer` | No | `1` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `operation` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -2440,30 +1690,18 @@ Args:
 
 Create VIO (Virtual I/O) IP
 
-Args:
-    name: Instance name
-    num_probe_in: Number of input probes (for observing signals)
-    num_probe_out: Number of output probes (for controlling signals)
-    probe_in_widths: Input probe widths, format &quot;8,32,1&quot; (optional)
-    probe_out_widths: Output probe widths, format &quot;1,8&quot; (optional)
-    probe_out_init_vals: Output probe initial values, format &quot;0x00,0xFF&quot; (optional)
-
-Returns:
-    Creation result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_probe_in` | `integer` | No | `1` | Num Probe In |
-| `num_probe_out` | `integer` | No | `1` | Num Probe Out |
-| `probe_in_widths` | `string` | No | `""` | Probe In Widths |
-| `probe_out_widths` | `string` | No | `""` | Probe Out Widths |
-| `probe_out_init_vals` | `string` | No | `""` | Probe Out Init Vals |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_probe_in` | `integer` | No |
+| `num_probe_out` | `integer` | No |
+| `probe_in_widths` | `string` | No |
+| `probe_out_widths` | `string` | No |
+| `probe_out_init_vals` | `string` | No |
 
 </details>
 
@@ -2472,31 +1710,19 @@ Returns:
 
 Create XDMA IP (PCIe to AXI DMA Bridge)
 
-Note: Only available on PCIe-capable devices
-
-Args:
-    name: Instance name
-    link_width: PCIe link width (X1/X2/X4/X8/X16), default X1
-    link_speed: Link speed, default &quot;8.0_GT/s&quot;
-    axi_data_width: AXI data width (64/128/256/512), default 64
-    axi_addr_width: AXI address width (32-64), default 64
-    h2c_channels: Host to Card DMA channel count (1-4), default 1
-    c2h_channels: Card to Host DMA channel count (1-4), default 1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `link_width` | `string` | No | `"X1"` | Link Width |
-| `link_speed` | `string` | No | `"5.0_GT/s"` | Link Speed |
-| `axi_data_width` | `integer` | No | `64` | Axi Data Width |
-| `axi_addr_width` | `integer` | No | `64` | Axi Addr Width |
-| `h2c_channels` | `integer` | No | `1` | H2C Channels |
-| `c2h_channels` | `integer` | No | `1` | C2H Channels |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `link_width` | `string` | No |
+| `link_speed` | `string` | No |
+| `axi_data_width` | `integer` | No |
+| `axi_addr_width` | `integer` | No |
+| `h2c_channels` | `integer` | No |
+| `c2h_channels` | `integer` | No |
 
 </details>
 
@@ -2505,21 +1731,14 @@ Args:
 
 Create basic XDMA configuration
 
-Quickly create XDMA IP with default configuration
-
-Args:
-    name: Instance name
-    link_width: PCIe link width (X1/X2/X4/X8/X16), default X1
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `link_width` | `string` | No | `"X1"` | Link Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `link_width` | `string` | No |
 
 </details>
 
@@ -2528,17 +1747,13 @@ Args:
 
 Delete an external interface port
 
-Args:
-    name: Interface port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2547,17 +1762,13 @@ Args:
 
 Delete an IP from the Block Design
 
-Args:
-    name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2566,17 +1777,13 @@ Args:
 
 Delete an external port
 
-Args:
-    name: Port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2585,17 +1792,13 @@ Args:
 
 Disconnect all connections of an interface port
 
-Args:
-    port: Interface port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
 
 </details>
 
@@ -2604,17 +1807,13 @@ Args:
 
 Disconnect a network connection
 
-Args:
-    net_name: Network name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `net_name` | `string` | Yes | `—` | Net Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `net_name` | `string` | Yes |
 
 </details>
 
@@ -2623,17 +1822,13 @@ Args:
 
 Disconnect all connections of a port
 
-Args:
-    port: Port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
 
 </details>
 
@@ -2642,21 +1837,15 @@ Args:
 
 Enable Data Realignment Engine (DRE)
 
-Args:
-    name: DMA instance name
-    mm2s: Whether to enable for MM2S
-    s2mm: Whether to enable for S2MM
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mm2s` | `boolean` | No | `true` | Mm2S |
-| `s2mm` | `boolean` | No | `true` | S2Mm |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mm2s` | `boolean` | No |
+| `s2mm` | `boolean` | No |
 
 </details>
 
@@ -2665,17 +1854,13 @@ Args:
 
 Get AXI DMA configuration
 
-Args:
-    name: DMA instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2684,19 +1869,14 @@ Args:
 
 Set DMA burst size
 
-Args:
-    name: DMA instance name
-    size: Burst size (2/4/8/16/32/64/128/256)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | Yes | `—` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | Yes |
 
 </details>
 
@@ -2705,19 +1885,14 @@ Args:
 
 Set DMA data width
 
-Args:
-    name: DMA instance name
-    width: Data width (32/64/128/256/512/1024)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -2726,17 +1901,13 @@ Args:
 
 Get DS Buffer configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2745,19 +1916,14 @@ Args:
 
 Set number of buffers
 
-Args:
-    name: Instance name
-    size: Number of buffers
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | Yes | `—` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | Yes |
 
 </details>
 
@@ -2766,19 +1932,14 @@ Args:
 
 Set buffer type
 
-Args:
-    name: Instance name
-    buf_type: Buffer type (IBUFDS, OBUFDS, BUFG, etc.)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `buf_type` | `string` | Yes | `—` | Buf Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `buf_type` | `string` | Yes |
 
 </details>
 
@@ -2787,19 +1948,14 @@ Args:
 
 Export MPSoC configuration to TCL file
 
-Args:
-    cell: MPSoC instance name
-    tcl_file: Output TCL file path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `tcl_file` | `string` | Yes | `—` | Tcl File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `tcl_file` | `string` | Yes |
 
 </details>
 
@@ -2808,19 +1964,14 @@ Args:
 
 Export PS7 configuration to TCL file
 
-Args:
-    cell: PS7 instance name
-    tcl_file: Output TCL file path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `tcl_file` | `string` | Yes | `—` | Tcl File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `tcl_file` | `string` | Yes |
 
 </details>
 
@@ -2829,28 +1980,14 @@ Args:
 
 Export the entire Block Design as a recreatable TCL script (write_bd_tcl).
 
-The exported script contains all IP instantiations, connections, ports,
-address maps, and configuration — everything needed to rebuild the BD from scratch.
-
-Use cases:
-    - Review BD structure after AI-assisted construction
-    - Version control (TCL diff is cleaner than .bd XML diff)
-    - Migrate BD to another project via &#x27;source exported.tcl&#x27;
-    - Documentation and tutorials
-
-Args:
-    output_file: Output TCL file path, e.g. F:/project/my_design.tcl
-    no_ip_version: If True, omit IP version numbers for cross-Vivado-version portability (default True)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `output_file` | `string` | Yes | `—` | Output File |
-| `no_ip_version` | `boolean` | No | `true` | No Ip Version |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `output_file` | `string` | Yes |
+| `no_ip_version` | `boolean` | No |
 
 </details>
 
@@ -2859,28 +1996,14 @@ Args:
 
 Generate Block Design output products (HDL files, constraints, etc.)
 
-Args:
-    synth_mode: Synthesis mode
-        - ooc_per_ip: Out of Context per IP (default, each IP synthesized separately, launches OOC runs)
-        - ooc_per_bd: Out of Context per Block Design
-        - global: Global synthesis (simplest, synthesis happens during run_synthesis)
-    jobs: Number of parallel jobs, default 4
-
-Note:
-    - global mode: Only generates output files, does not run synthesis
-    - OOC mode: Generates output files and launches OOC synthesis runs (async),
-      use bd_wait_on_output_generation or bd_check_output_status to check status
-    - Recommended to use bd_generate_output_and_wrapper for complete flow
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `synth_mode` | `string` | No | `"ooc_per_ip"` | Synth Mode |
-| `jobs` | `integer` | No | `4` | Jobs |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `synth_mode` | `string` | No |
+| `jobs` | `integer` | No |
 
 </details>
 
@@ -2889,21 +2012,13 @@ Note:
 
 One-click generate output products and Wrapper (auto-validate, generate, and set as top)
 
-Args:
-    synth_mode: Synthesis mode (ooc_per_ip/ooc_per_bd/global)
-
-Flow description:
-    - ooc_per_ip/ooc_per_bd: generate_target -&gt; create_ip_run -&gt; wait for OOC synthesis -&gt; make_wrapper
-    - global: generate_target -&gt; make_wrapper (synthesis happens during run_synthesis later)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `synth_mode` | `string` | No | `"ooc_per_ip"` | Synth Mode |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `synth_mode` | `string` | No |
 
 </details>
 
@@ -2912,17 +2027,13 @@ Flow description:
 
 Generate HDL Wrapper
 
-Args:
-    set_as_top: Whether to set as top module, default True
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `set_as_top` | `boolean` | No | `true` | Set As Top |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `set_as_top` | `boolean` | No |
 
 </details>
 
@@ -2932,7 +2043,6 @@ Args:
 Get address mapping
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -2946,7 +2056,6 @@ No parameters.
 Get detailed information about the current Block Design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -2959,17 +2068,13 @@ No parameters.
 
 Get CONFIG.* properties of an IP (common configuration items)
 
-Args:
-    name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2978,17 +2083,13 @@ Args:
 
 Get all configurable properties of an IP
 
-Args:
-    name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -2997,19 +2098,14 @@ Args:
 
 Get an IP property value
 
-Args:
-    name: IP instance name
-    property_name: Property name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `property_name` | `string` | Yes |
 
 </details>
 
@@ -3018,21 +2114,13 @@ Args:
 
 Get MPSoC current configuration summary (covers DDR, Clocks, I/O, Interrupts, PS-PL)
 
-Returns DDR Memory, PL Clocks, Peripheral I/O (with MIO assignments),
-Interrupts, and PS-PL Interfaces. Use this to inspect the full MPSoC
-state before making changes via bd_configure_mpsoc().
-
-Args:
-    cell: MPSoC instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
 
 </details>
 
@@ -3041,17 +2129,13 @@ Args:
 
 View the connection status of a port
 
-Args:
-    port: Port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
 
 </details>
 
@@ -3060,17 +2144,13 @@ Args:
 
 Get all properties of a port (supports both regular and interface ports)
 
-Args:
-    name: Port name (regular port or interface port)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3079,21 +2159,13 @@ Args:
 
 Get PS7 current configuration summary (covers 5 of 7 Vivado GUI pages)
 
-Returns DDR Memory, Clocks, Peripheral I/O (with MIO assignments),
-Interrupts, and PS-PL Interfaces. Use this to inspect the full PS7
-state before making changes via bd_configure_ps7().
-
-Args:
-    cell: PS7 instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
 
 </details>
 
@@ -3102,12 +2174,7 @@ Args:
 
 Get all unconnected pins and interfaces.
 
-        Note: This checks for missing net connections. For clock source validity
-        issues (e.g. clock pin connected but source invalid), use bd_validate_design
-        which provides specific pin paths in its error output.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3120,19 +2187,14 @@ No parameters.
 
 Enable/disable GPIO interrupt
 
-Args:
-    name: GPIO instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -3141,17 +2203,13 @@ Args:
 
 Get GPIO configuration
 
-Args:
-    name: GPIO instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3160,21 +2218,15 @@ Args:
 
 Set GPIO direction
 
-Args:
-    name: GPIO instance name
-    direction: Direction - input/output/bidirectional
-    channel: Channel number (1 or 2)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `direction` | `string` | Yes | `—` | Direction |
-| `channel` | `integer` | No | `1` | Channel |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `direction` | `string` | Yes |
+| `channel` | `integer` | No |
 
 </details>
 
@@ -3183,21 +2235,15 @@ Args:
 
 Set GPIO bit width
 
-Args:
-    name: GPIO instance name
-    width: Bit width (1-32)
-    channel: Channel number (1 or 2)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `channel` | `integer` | No | `1` | Channel |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `channel` | `integer` | No |
 
 </details>
 
@@ -3206,17 +2252,13 @@ Args:
 
 Get AXI IIC configuration
 
-Args:
-    name: IIC instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3225,19 +2267,14 @@ Args:
 
 Set IIC address mode
 
-Args:
-    name: IIC instance name
-    ten_bit: True for 10-bit mode, False for 7-bit mode
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `ten_bit` | `boolean` | Yes | `—` | Ten Bit |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `ten_bit` | `boolean` | Yes |
 
 </details>
 
@@ -3246,19 +2283,14 @@ Args:
 
 Set IIC clock frequency
 
-Args:
-    name: IIC instance name
-    freq_khz: Frequency (KHz): 100, 400, or 1000
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `freq_khz` | `integer` | Yes | `—` | Freq Khz |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `freq_khz` | `integer` | Yes |
 
 </details>
 
@@ -3267,21 +2299,15 @@ Args:
 
 Set IIC inertial delay (for signal filtering)
 
-Args:
-    name: IIC instance name
-    scl_delay: SCL inertial delay (ns)
-    sda_delay: SDA inertial delay (ns)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `scl_delay` | `integer` | No | `0` | Scl Delay |
-| `sda_delay` | `integer` | No | `0` | Sda Delay |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `scl_delay` | `integer` | No |
+| `sda_delay` | `integer` | No |
 
 </details>
 
@@ -3290,20 +2316,13 @@ Args:
 
 Get ILA configuration information
 
-Args:
-    name: ILA instance name
-
-Returns:
-    Configuration details
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3312,22 +2331,14 @@ Returns:
 
 Batch set ILA all probe widths
 
-Args:
-    name: ILA instance name
-    widths: Width list, comma-separated, e.g. &quot;8,32,1,16&quot; for probe0-3
-
-Returns:
-    Configuration result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `widths` | `string` | Yes | `—` | Widths |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `widths` | `string` | Yes |
 
 </details>
 
@@ -3336,24 +2347,15 @@ Returns:
 
 Set ILA probe width
 
-Args:
-    name: ILA instance name
-    probe_index: Probe index (0-63)
-    width: Probe width (1-4096)
-
-Returns:
-    Configuration result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `probe_index` | `integer` | Yes | `—` | Probe Index |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `probe_index` | `integer` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -3362,19 +2364,14 @@ Returns:
 
 Import MPSoC configuration from TCL file
 
-Args:
-    cell: MPSoC instance name, e.g. zynq_ultra_ps_e_0
-    tcl_file: TCL configuration file path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `tcl_file` | `string` | Yes | `—` | Tcl File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `tcl_file` | `string` | Yes |
 
 </details>
 
@@ -3383,26 +2380,14 @@ Args:
 
 Import PS7 configuration from TCL file
 
-Args:
-    cell: PS7 instance name, e.g. ps7_0
-    tcl_file: TCL configuration file path
-
-Note:
-    TCL file format example:
-    set_property -dict [list \
-        CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
-        CONFIG.PCW_USE_M_AXI_GP0 {1} \
-    ] [get_bd_cells ps7_0]
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `tcl_file` | `string` | Yes | `—` | Tcl File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `tcl_file` | `string` | Yes |
 
 </details>
 
@@ -3411,17 +2396,13 @@ Note:
 
 Get AXI Interconnect configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3430,21 +2411,15 @@ Args:
 
 Set AXI Interconnect port count
 
-Args:
-    name: Instance name
-    num_si: Number of Slave Interfaces (leave unset to keep current)
-    num_mi: Number of Master Interfaces (leave unset to keep current)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_si` | `integer` | No | `null` | Num Si |
-| `num_mi` | `integer` | No | `null` | Num Mi |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_si` | `integer` | No |
+| `num_mi` | `integer` | No |
 
 </details>
 
@@ -3453,48 +2428,33 @@ Args:
 
 Get JTAG-to-AXI Master IP configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
 <details id="bd_jtag_axi_set_config">
-<summary><code>bd_jtag_axi_set_config</code> — Configure JTAG-to-AXI Master IP parameters. Only specified (non-None) parameters are modified. Note: switching to AXI4LITE resets data_width to 32. <strong>Max</strong></summary>
+<summary><code>bd_jtag_axi_set_config</code> — Configure JTAG-to-AXI Master IP parameters. <strong>Max</strong></summary>
 
 Configure JTAG-to-AXI Master IP parameters.
-Only specified (non-None) parameters are modified.
-Note: switching to AXI4LITE resets data_width to 32.
-
-Args:
-    name: Instance name
-    protocol: AXI protocol - AXI4 or AXI4LITE
-    data_width: AXI data width (32 or 64, AXI4LITE only supports 32)
-    addr_width: AXI address width (32 or 64)
-    rd_txn_queue_length: Read transaction queue depth (1-16)
-    wr_txn_queue_length: Write transaction queue depth (1-16)
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `protocol` | `string` | No | `null` | Protocol |
-| `data_width` | `integer` | No | `null` | Data Width |
-| `addr_width` | `integer` | No | `null` | Addr Width |
-| `rd_txn_queue_length` | `integer` | No | `null` | Rd Txn Queue Length |
-| `wr_txn_queue_length` | `integer` | No | `null` | Wr Txn Queue Length |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `protocol` | `string` | No |
+| `data_width` | `integer` | No |
+| `addr_width` | `integer` | No |
+| `rd_txn_queue_length` | `integer` | No |
+| `wr_txn_queue_length` | `integer` | No |
 
 </details>
 
@@ -3504,7 +2464,6 @@ Args:
 List all external interface ports
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3517,17 +2476,13 @@ No parameters.
 
 List all interfaces of an IP
 
-Args:
-    name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3536,17 +2491,13 @@ Args:
 
 List all pins of an IP
 
-Args:
-    name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3556,7 +2507,6 @@ Args:
 List all IPs in the Block Design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3570,7 +2520,6 @@ No parameters.
 List all available MPSoC preset templates
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3584,7 +2533,6 @@ No parameters.
 List all network connections
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3598,7 +2546,6 @@ No parameters.
 List all external ports and their properties
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3612,7 +2559,6 @@ No parameters.
 List all available PS7 preset templates
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3625,22 +2571,15 @@ No parameters.
 
 Export an IP interface pin as an external interface port
 
-Args:
-    pin: IP interface pin, e.g. processing_system7_0/DDR
-    port_name: External port name (leave empty for auto-naming)
-    freq_hz: Clock frequency in Hz to set on the created port (optional).
-             Use this to fix inherited FREQ_HZ mismatches, e.g. &quot;50000000&quot;
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `pin` | `string` | Yes | `—` | Pin |
-| `port_name` | `string` | No | `""` | Port Name |
-| `freq_hz` | `string` | No | `""` | Freq Hz |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `pin` | `string` | Yes |
+| `port_name` | `string` | No |
+| `freq_hz` | `string` | No |
 
 </details>
 
@@ -3649,19 +2588,14 @@ Args:
 
 Export an IP pin as an external port
 
-Args:
-    pin: IP pin, e.g. axi_gpio_0/gpio_io_o
-    port_name: External port name (leave empty for auto-naming)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `pin` | `string` | Yes | `—` | Pin |
-| `port_name` | `string` | No | `""` | Port Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `pin` | `string` | Yes |
+| `port_name` | `string` | No |
 
 </details>
 
@@ -3670,25 +2604,15 @@ Args:
 
 Enable/disable MPSoC AXI port
 
-Args:
-    cell: MPSoC instance name
-    port: Port name:
-        - M_AXI_HPM0_FPD, M_AXI_HPM1_FPD, M_AXI_HPM0_LPD (Master)
-        - S_AXI_HP0_FPD ~ S_AXI_HP3_FPD (High Performance Slave)
-        - S_AXI_HPC0_FPD, S_AXI_HPC1_FPD (High Performance Coherent)
-        - S_AXI_LPD (Low Power Domain)
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `port` | `string` | Yes | `—` | Port |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `port` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -3697,19 +2621,14 @@ Args:
 
 Enable MPSoC EMIO GPIO
 
-Args:
-    cell: MPSoC instance name
-    width: EMIO GPIO bit width (1-96)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `width` | `integer` | No | `1` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `width` | `integer` | No |
 
 </details>
 
@@ -3718,21 +2637,15 @@ Args:
 
 Enable MPSoC UART
 
-Args:
-    cell: MPSoC instance name
-    uart_id: UART ID (0 or 1)
-    io_mio: MIO pin configuration (leave empty for default)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `uart_id` | `integer` | Yes | `—` | Uart Id |
-| `io_mio` | `string` | No | `""` | Io Mio |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `uart_id` | `integer` | Yes |
+| `io_mio` | `string` | No |
 
 </details>
 
@@ -3741,23 +2654,16 @@ Args:
 
 Configure MPSoC PL clock
 
-Args:
-    cell: MPSoC instance name
-    clk_id: Clock ID (0-3)
-    freq_mhz: Frequency (MHz)
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `clk_id` | `integer` | Yes | `—` | Clk Id |
-| `freq_mhz` | `number` | Yes | `—` | Freq Mhz |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `clk_id` | `integer` | Yes |
+| `freq_mhz` | `number` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -3766,17 +2672,13 @@ Args:
 
 Get Processor System Reset configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -3785,22 +2687,14 @@ Args:
 
 Set auxiliary reset polarity for Processor System Reset
 
-Note: External reset polarity (C_EXT_RESET_HIGH) is read-only and cannot
-be changed. Only auxiliary reset polarity can be configured.
-
-Args:
-    name: Instance name
-    aux_reset_active_low: Auxiliary reset active low (True=active low, False=active high)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `aux_reset_active_low` | `boolean` | Yes | `—` | Aux Reset Active Low |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `aux_reset_active_low` | `boolean` | Yes |
 
 </details>
 
@@ -3809,21 +2703,15 @@ Args:
 
 Enable/disable PS7 AXI port
 
-Args:
-    cell: PS7 instance name
-    port: Port name: M_AXI_GP0, M_AXI_GP1, S_AXI_GP0, S_AXI_HP0-3, S_AXI_ACP
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `port` | `string` | Yes | `—` | Port |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `port` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -3832,19 +2720,14 @@ Args:
 
 Enable PS7 GPIO
 
-Args:
-    cell: PS7 instance name
-    emio_width: EMIO GPIO bit width (0 for MIO GPIO only, 1-64 for EMIO width)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `emio_width` | `integer` | No | `0` | Emio Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `emio_width` | `integer` | No |
 
 </details>
 
@@ -3853,21 +2736,15 @@ Args:
 
 Enable PS7 UART
 
-Args:
-    cell: PS7 instance name
-    uart_id: UART ID (0 or 1)
-    io_mio: MIO pin configuration, e.g. &quot;MIO 48 .. 49&quot; (leave empty for default)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `uart_id` | `integer` | Yes | `—` | Uart Id |
-| `io_mio` | `string` | No | `""` | Io Mio |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `uart_id` | `integer` | Yes |
+| `io_mio` | `string` | No |
 
 </details>
 
@@ -3876,23 +2753,16 @@ Args:
 
 Configure PS7 FCLK clock
 
-Args:
-    cell: PS7 instance name
-    fclk_id: Clock ID (0-3)
-    freq_mhz: Frequency (MHz)
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
-| `fclk_id` | `integer` | Yes | `—` | Fclk Id |
-| `freq_mhz` | `number` | Yes | `—` | Freq Mhz |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `fclk_id` | `integer` | Yes |
+| `freq_mhz` | `number` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -3902,7 +2772,6 @@ Args:
 Regenerate Block Design layout
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -3915,19 +2784,14 @@ No parameters.
 
 Rename an interface port
 
-Args:
-    old_name: Original port name
-    new_name: New port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `old_name` | `string` | Yes | `—` | Old Name |
-| `new_name` | `string` | Yes | `—` | New Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `old_name` | `string` | Yes |
+| `new_name` | `string` | Yes |
 
 </details>
 
@@ -3936,19 +2800,14 @@ Args:
 
 Rename a port
 
-Args:
-    old_name: Original port name
-    new_name: New port name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `old_name` | `string` | Yes | `—` | Old Name |
-| `new_name` | `string` | Yes | `—` | New Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `old_name` | `string` | Yes |
+| `new_name` | `string` | Yes |
 
 </details>
 
@@ -3957,17 +2816,13 @@ Args:
 
 Run automation connection
 
-Args:
-    target: Target object (leave empty to auto-detect all unconnected AXI slave interfaces)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target` | `string` | No | `""` | Target |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target` | `string` | No |
 
 </details>
 
@@ -3976,17 +2831,13 @@ Args:
 
 Run block automation (for complex IPs like PS)
 
-Args:
-    cell: IP cell name, e.g. processing_system7_0
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
 
 </details>
 
@@ -3995,17 +2846,13 @@ Args:
 
 Search for available IPs
 
-Args:
-    keyword: Search keyword, e.g. gpio, fifo, axi
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `keyword` | `string` | Yes | `—` | Keyword |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `keyword` | `string` | Yes |
 
 </details>
 
@@ -4014,21 +2861,15 @@ Args:
 
 Set an IP property
 
-Args:
-    name: IP instance name
-    property_name: Property name, e.g. CONFIG.C_GPIO_WIDTH
-    value: Property value
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -4037,21 +2878,15 @@ Args:
 
 Set a port property (supports both regular and interface ports)
 
-Args:
-    name: Port name (regular port or interface port)
-    property_name: Property name, e.g. CONFIG.FREQ_HZ
-    value: Property value
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -4060,17 +2895,13 @@ Args:
 
 Get Slice configuration
 
-Args:
-    name: Slice instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4079,19 +2910,14 @@ Args:
 
 Set Slice input bit width
 
-Args:
-    name: Slice instance name
-    width: Input bit width (1-4096)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -4100,21 +2926,15 @@ Args:
 
 Set Slice range
 
-Args:
-    name: Slice instance name
-    din_from: Slice high bit index
-    din_to: Slice low bit index
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `din_from` | `integer` | Yes | `—` | Din From |
-| `din_to` | `integer` | Yes | `—` | Din To |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `din_from` | `integer` | Yes |
+| `din_to` | `integer` | Yes |
 
 </details>
 
@@ -4123,19 +2943,14 @@ Args:
 
 Enable/disable XIP (Execute In Place) mode
 
-Args:
-    name: SPI instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -4144,17 +2959,13 @@ Args:
 
 Get AXI SPI configuration
 
-Args:
-    name: SPI instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4163,19 +2974,14 @@ Args:
 
 Set SPI FIFO depth
 
-Args:
-    name: SPI instance name
-    depth: FIFO depth (0, 16, 256)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `depth` | `integer` | Yes | `—` | Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `depth` | `integer` | Yes |
 
 </details>
 
@@ -4184,19 +2990,14 @@ Args:
 
 Set SPI Flash type
 
-Args:
-    name: SPI instance name
-    memory: Flash type (mixed, winbond, micron, spansion, macronix)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `memory` | `string` | Yes | `—` | Memory |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `memory` | `string` | Yes |
 
 </details>
 
@@ -4205,19 +3006,14 @@ Args:
 
 Set SPI mode
 
-Args:
-    name: SPI instance name
-    mode: SPI mode (standard, dual, quad)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `mode` | `string` | Yes | `—` | Mode |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `mode` | `string` | Yes |
 
 </details>
 
@@ -4226,19 +3022,14 @@ Args:
 
 Set number of slave select signals
 
-Args:
-    name: SPI instance name
-    num_ss: Number of SS signals (1-32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num_ss` | `integer` | Yes | `—` | Num Ss |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num_ss` | `integer` | Yes |
 
 </details>
 
@@ -4247,20 +3038,13 @@ Args:
 
 Get System ILA configuration information
 
-Args:
-    name: System ILA instance name
-
-Returns:
-    Configuration details
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4269,34 +3053,18 @@ Returns:
 
 Configure System ILA monitor slot
 
-Args:
-    name: System ILA instance name
-    slot: Slot index (0-15)
-    axi_protocol: AXI protocol type
-        - AXI4: AXI4 full-featured (default)
-        - AXI4LITE: AXI4-Lite
-        - AXI3: AXI3
-        - AXI4S: AXI4-Stream
-    data_width: Data width (AUTO/32/64/128/256/512/1024)
-    addr_width: Address width (AUTO or specific value)
-    id_width: ID width (AUTO or specific value)
-
-Returns:
-    Configuration result
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `slot` | `integer` | Yes | `—` | Slot |
-| `axi_protocol` | `string` | No | `"AXI4"` | Axi Protocol |
-| `data_width` | `string` | No | `"AUTO"` | Data Width |
-| `addr_width` | `string` | No | `"AUTO"` | Addr Width |
-| `id_width` | `string` | No | `"AUTO"` | Id Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `slot` | `integer` | Yes |
+| `axi_protocol` | `string` | No |
+| `data_width` | `string` | No |
+| `addr_width` | `string` | No |
+| `id_width` | `string` | No |
 
 </details>
 
@@ -4305,19 +3073,14 @@ Returns:
 
 Enable/disable 64-bit cascaded mode
 
-Args:
-    name: Timer instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -4326,19 +3089,14 @@ Args:
 
 Enable/disable second timer
 
-Args:
-    name: Timer instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -4347,17 +3105,13 @@ Args:
 
 Get AXI Timer configuration
 
-Args:
-    name: Timer instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4366,19 +3120,14 @@ Args:
 
 Set timer counter bit width
 
-Args:
-    name: Timer instance name
-    width: Bit width (8-32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `width` | `integer` | Yes | `—` | Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `width` | `integer` | Yes |
 
 </details>
 
@@ -4387,21 +3136,15 @@ Args:
 
 Set generate signal polarity
 
-Args:
-    name: Timer instance name
-    generator: Generator number (0 or 1)
-    active_high: Whether active high
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `generator` | `integer` | Yes | `—` | Generator |
-| `active_high` | `boolean` | No | `true` | Active High |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `generator` | `integer` | Yes |
+| `active_high` | `boolean` | No |
 
 </details>
 
@@ -4410,21 +3153,15 @@ Args:
 
 Set trigger signal polarity
 
-Args:
-    name: Timer instance name
-    trigger: Trigger number (0 or 1)
-    active_high: Whether active high
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `trigger` | `integer` | Yes | `—` | Trigger |
-| `active_high` | `boolean` | No | `true` | Active High |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `trigger` | `integer` | Yes |
+| `active_high` | `boolean` | No |
 
 </details>
 
@@ -4433,17 +3170,13 @@ Args:
 
 Get UART configuration
 
-Args:
-    name: UART instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4452,19 +3185,14 @@ Args:
 
 Set UART Lite baud rate
 
-Args:
-    name: UART instance name
-    baudrate: Baud rate
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `baudrate` | `integer` | Yes | `—` | Baudrate |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `baudrate` | `integer` | Yes |
 
 </details>
 
@@ -4473,31 +3201,24 @@ Args:
 
 Set UART Lite data format
 
-Args:
-    name: UART instance name
-    data_bits: Data bits (5/6/7/8)
-    parity: Parity - none/odd/even
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_bits` | `integer` | No | `8` | Data Bits |
-| `parity` | `string` | No | `"none"` | Parity |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_bits` | `integer` | No |
+| `parity` | `string` | No |
 
 </details>
 
 <details id="bd_validate_design">
-<summary><code>bd_validate_design</code> — Validate Block Design. Returns full error details including specific pin/net paths on failure. <strong>Pro</strong></summary>
+<summary><code>bd_validate_design</code> — Validate Block Design. <strong>Pro</strong></summary>
 
-Validate Block Design. Returns full error details including specific pin/net paths on failure.
+Validate Block Design.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -4510,19 +3231,14 @@ No parameters.
 
 Enable/disable VDMA internal Genlock
 
-Args:
-    name: VDMA instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -4531,17 +3247,13 @@ Args:
 
 Get AXI VDMA configuration
 
-Args:
-    name: VDMA instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4550,19 +3262,14 @@ Args:
 
 Set VDMA frame store count
 
-Args:
-    name: VDMA instance name
-    num: Number of frame stores (1-32)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `num` | `integer` | Yes | `—` | Num |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `num` | `integer` | Yes |
 
 </details>
 
@@ -4571,19 +3278,14 @@ Args:
 
 Set VDMA line buffer depth
 
-Args:
-    name: VDMA instance name
-    depth: Line buffer depth (128/256/512/1024/2048/4096)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `depth` | `integer` | Yes | `—` | Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `depth` | `integer` | Yes |
 
 </details>
 
@@ -4592,17 +3294,13 @@ Args:
 
 Get Vector Logic configuration
 
-Args:
-    name: Instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4611,19 +3309,14 @@ Args:
 
 Set logic operation type
 
-Args:
-    name: Instance name
-    operation: Logic operation: and, or, xor, not
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `operation` | `string` | Yes | `—` | Operation |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `operation` | `string` | Yes |
 
 </details>
 
@@ -4632,19 +3325,14 @@ Args:
 
 Set vector bit width
 
-Args:
-    name: Instance name
-    size: Bit width
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `size` | `integer` | Yes | `—` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `size` | `integer` | Yes |
 
 </details>
 
@@ -4653,20 +3341,13 @@ Args:
 
 Get VIO configuration information
 
-Args:
-    name: VIO instance name
-
-Returns:
-    Configuration details
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4676,7 +3357,6 @@ Returns:
 Wait for all output product generation to complete (OOC mode)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -4689,21 +3369,14 @@ No parameters.
 
 Enable XDMA AXI-Lite master interface
 
-For accessing user logic control/status registers
-
-Args:
-    name: XDMA instance name
-    enable: Whether to enable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `enable` | `boolean` | No | `true` | Enable |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `enable` | `boolean` | No |
 
 </details>
 
@@ -4712,17 +3385,13 @@ Args:
 
 Get XDMA configuration information
 
-Args:
-    name: XDMA instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -4731,21 +3400,15 @@ Args:
 
 Set XDMA AXI interface configuration
 
-Args:
-    name: XDMA instance name
-    data_width: Data width (64/128/256/512)
-    addr_width: Address width (32-64), default 64
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `data_width` | `integer` | Yes | `—` | Data Width |
-| `addr_width` | `integer` | No | `64` | Addr Width |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `data_width` | `integer` | Yes |
+| `addr_width` | `integer` | No |
 
 </details>
 
@@ -4754,23 +3417,16 @@ Args:
 
 Set XDMA BAR to AXI address mapping
 
-Args:
-    name: XDMA instance name
-    bar_index: BAR index (0-5)
-    axi_base_addr: AXI base address (hexadecimal, e.g. &quot;0x00000000&quot;)
-    size: BAR size (e.g. &quot;1M&quot;, &quot;64K&quot;, &quot;4G&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `bar_index` | `integer` | Yes | `—` | Bar Index |
-| `axi_base_addr` | `string` | Yes | `—` | Axi Base Addr |
-| `size` | `string` | No | `"1M"` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `bar_index` | `integer` | Yes |
+| `axi_base_addr` | `string` | Yes |
+| `size` | `string` | No |
 
 </details>
 
@@ -4779,21 +3435,15 @@ Args:
 
 Set XDMA PCIe device identification
 
-Args:
-    name: XDMA instance name
-    vendor_id: Vendor ID (default &quot;10EE&quot; - Xilinx)
-    device_id: Device ID (default &quot;9031&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `vendor_id` | `string` | No | `"10EE"` | Vendor Id |
-| `device_id` | `string` | No | `"9031"` | Device Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `vendor_id` | `string` | No |
+| `device_id` | `string` | No |
 
 </details>
 
@@ -4802,21 +3452,15 @@ Args:
 
 Set XDMA DMA channel count
 
-Args:
-    name: XDMA instance name
-    h2c_channels: Host to Card channel count (1-4)
-    c2h_channels: Card to Host channel count (1-4)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `h2c_channels` | `integer` | No | `1` | H2C Channels |
-| `c2h_channels` | `integer` | No | `1` | C2H Channels |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `h2c_channels` | `integer` | No |
+| `c2h_channels` | `integer` | No |
 
 </details>
 
@@ -4825,24 +3469,15 @@ Args:
 
 Set XDMA PCIe link configuration
 
-Args:
-    name: XDMA instance name
-    link_width: Link width (X1/X2/X4/X8/X16)
-    link_speed: Link speed, default &quot;5.0_GT/s&quot; (Gen2)
-               - 2.5_GT/s: Gen1
-               - 5.0_GT/s: Gen2 (Kintex-7 max supported)
-               - 8.0_GT/s: Gen3 (UltraScale+)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `link_width` | `string` | Yes | `—` | Link Width |
-| `link_speed` | `string` | No | `"5.0_GT/s"` | Link Speed |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `link_width` | `string` | Yes |
+| `link_speed` | `string` | No |
 
 </details>
 
@@ -4852,7 +3487,6 @@ Args:
 Close the current Block Design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -4865,17 +3499,13 @@ No parameters.
 
 Create a new Block Design
 
-Args:
-    bd_name: Block Design name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bd_name` | `string` | Yes | `—` | Bd Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bd_name` | `string` | Yes |
 
 </details>
 
@@ -4885,7 +3515,6 @@ Args:
 List all Block Designs in the project
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -4898,17 +3527,13 @@ No parameters.
 
 Open a Block Design
 
-Args:
-    bd_name: Block Design name (leave empty to open the first one)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bd_name` | `string` | No | `""` | Bd Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bd_name` | `string` | No |
 
 </details>
 
@@ -4918,7 +3543,6 @@ Args:
 Save the current Block Design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -4934,21 +3558,15 @@ No parameters.
 
 Create clock constraint
 
-Args:
-    clock_port: Clock port name
-    period_ns: Clock period (nanoseconds)
-    name: Clock name (optional)
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `clock_port` | `string` | Yes | `—` | Clock Port |
-| `period_ns` | `number` | Yes | `—` | Period Ns |
-| `name` | `string` | No | `""` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `clock_port` | `string` | Yes |
+| `period_ns` | `number` | Yes |
+| `name` | `string` | No |
 
 </details>
 
@@ -4957,49 +3575,24 @@ Args:
 
 Create generated clock constraint (for PLL/MMCM outputs, dividers, etc.)
 
-Args:
-    name: Generated clock name
-    source: Source clock pin (e.g., PLL input pin &quot;pll_inst/clkin1&quot;)
-    target: Generated clock output pin (e.g., PLL output &quot;pll_inst/clkout0&quot;)
-    divide_by: Division factor (mutually exclusive with multiply_by)
-    multiply_by: Multiplication factor (mutually exclusive with divide_by)
-    duty_cycle: Duty cycle percentage, default 50.0
-    phase: Phase offset (degrees), default 0.0
-    invert: Invert output, default False
-    master_clock: Master clock name (when source pin has multiple clocks)
-    edges: Edge list (e.g., &quot;1 2 3&quot;, for complex waveforms)
-    edge_shift: Edge shift list (used with edges, e.g., &quot;0.0 0.0 0.0&quot;)
-    add: Add to existing clock definition (instead of replace), default False
-
-Examples:
-    # Divide-by-2 clock
-    create_generated_clock(&quot;clk_div2&quot;, &quot;clk_in&quot;, &quot;div_reg/Q&quot;, divide_by=2)
-
-    # PLL output clock (generate 200MHz from 100MHz)
-    create_generated_clock(&quot;clk_200m&quot;, &quot;pll/CLKIN1&quot;, &quot;pll/CLKOUT0&quot;, multiply_by=2)
-
-    # Clock with phase offset
-    create_generated_clock(&quot;clk_90deg&quot;, &quot;pll/CLKIN1&quot;, &quot;pll/CLKOUT1&quot;, multiply_by=1, phase=90.0)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `source` | `string` | Yes | `—` | Source |
-| `target` | `string` | Yes | `—` | Target |
-| `divide_by` | `integer` | No | `0` | Divide By |
-| `multiply_by` | `integer` | No | `0` | Multiply By |
-| `duty_cycle` | `number` | No | `50.0` | Duty Cycle |
-| `phase` | `number` | No | `0.0` | Phase |
-| `invert` | `boolean` | No | `false` | Invert |
-| `master_clock` | `string` | No | `""` | Master Clock |
-| `edges` | `string` | No | `""` | Edges |
-| `edge_shift` | `string` | No | `""` | Edge Shift |
-| `add` | `boolean` | No | `false` | Add |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `source` | `string` | Yes |
+| `target` | `string` | Yes |
+| `divide_by` | `integer` | No |
+| `multiply_by` | `integer` | No |
+| `duty_cycle` | `number` | No |
+| `phase` | `number` | No |
+| `invert` | `boolean` | No |
+| `master_clock` | `string` | No |
+| `edges` | `string` | No |
+| `edge_shift` | `string` | No |
+| `add` | `boolean` | No |
 
 </details>
 
@@ -5008,21 +3601,15 @@ Examples:
 
 Create IO pin constraint
 
-Args:
-    port_name: Port name
-    pin: Pin number, e.g., H16
-    io_standard: IO standard, default LVCMOS33
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port_name` | `string` | Yes | `—` | Port Name |
-| `pin` | `string` | Yes | `—` | Pin |
-| `io_standard` | `string` | No | `"LVCMOS33"` | Io Standard |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port_name` | `string` | Yes |
+| `pin` | `string` | Yes |
+| `io_standard` | `string` | No |
 
 </details>
 
@@ -5032,7 +3619,6 @@ Args:
 Get all clocks in the design
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5045,17 +3631,13 @@ No parameters.
 
 Get detailed information for a specific clock
 
-Args:
-    clock_name: Clock name
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `clock_name` | `string` | Yes | `—` | Clock Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `clock_name` | `string` | Yes |
 
 </details>
 
@@ -5064,17 +3646,13 @@ Args:
 
 Save current constraints to XDC file
 
-Args:
-    file_name: Output file name
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | No | `"constraints.xdc"` | File Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | No |
 
 </details>
 
@@ -5083,44 +3661,15 @@ Args:
 
 Set bus skew constraint (control maximum timing deviation between bus signals)
 
-Used to ensure all signals in a parallel bus arrive simultaneously, common for:
-- Gray code pointer synchronization in CDC
-- Source-synchronous interfaces (DDR, LVDS data buses)
-- Multi-bit signal alignment requirements
-
-Args:
-    skew_ns: Maximum allowed skew (nanoseconds), recommend setting to target clock period
-    from_pins: Source register clock pins, must end with /C (e.g., &quot;src_reg[*]/C&quot;)
-    to_pins: Target register data pins, must end with /D (e.g., &quot;dst_reg[*]/D&quot;)
-
-Notes:
-    - Important: from_pins must be clock pins (/C), not /Q or clock names
-    - Important: to_pins must be data pins (/D), not /Q
-    - Skew constraints are not affected by clock_groups/false_path/max_delay
-    - Can use wildcards for multiple pins (e.g., &quot;reg[*]/C&quot;)
-    - Recommend using with set_max_delay -datapath_only for layout optimization
-
-Examples:
-    # Gray code pointer CDC skew constraint (correct example)
-    set_bus_skew(2.5, from_pins=&quot;gray_rd_ptr_reg[*]/C&quot;, to_pins=&quot;gray_wr_ptr_reg[*]/D&quot;)
-
-    # 8-bit data bus skew
-    set_bus_skew(0.5, from_pins=&quot;tx_data_reg[*]/C&quot;, to_pins=&quot;rx_data_reg[*]/D&quot;)
-
-    # Wrong examples (will produce warnings):
-    # - from_pins=&quot;clk_a&quot; -&gt; Wrong! Use pins, not clock names
-    # - from_pins=&quot;reg[*]/Q&quot; -&gt; Wrong! Use /C not /Q
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `skew_ns` | `number` | Yes | `—` | Skew Ns |
-| `from_pins` | `string` | Yes | `—` | From Pins |
-| `to_pins` | `string` | Yes | `—` | To Pins |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `skew_ns` | `number` | Yes |
+| `from_pins` | `string` | Yes |
+| `to_pins` | `string` | Yes |
 
 </details>
 
@@ -5129,44 +3678,18 @@ Examples:
 
 Set clock groups constraint (define relationships between clocks)
 
-Args:
-    group1: First clock group (space-separated clocks, e.g., &quot;clk_a clk_a_div2&quot;)
-    group2: Second clock group
-    group3: Third clock group (optional)
-    group4: Fourth clock group (optional)
-    relationship: Clock relationship type
-        - &quot;asynchronous&quot;: Asynchronous clocks (no phase relationship, most common)
-        - &quot;exclusive&quot;: Exclusive clocks (never active simultaneously)
-        - &quot;physically_exclusive&quot;: Physically exclusive (share clock source but different configs)
-        - &quot;logically_exclusive&quot;: Logically exclusive (selected by MUX)
-    name: Constraint name (optional, for management and debugging)
-
-Examples:
-    # Asynchronous clock domains (most common)
-    set_clock_groups(&quot;clk_100&quot;, &quot;clk_125&quot;, relationship=&quot;asynchronous&quot;)
-
-    # Multiple asynchronous clock domains
-    set_clock_groups(&quot;clk_sys&quot;, &quot;clk_eth&quot;, group3=&quot;clk_usb&quot;)
-
-    # Exclusive clocks (dynamically switched clocks)
-    set_clock_groups(&quot;clk_slow&quot;, &quot;clk_fast&quot;, relationship=&quot;exclusive&quot;)
-
-    # Different PLL outputs treated as asynchronous
-    set_clock_groups(&quot;clk_100 clk_100_phase90&quot;, &quot;clk_200&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `group1` | `string` | Yes | `—` | Group1 |
-| `group2` | `string` | Yes | `—` | Group2 |
-| `group3` | `string` | No | `""` | Group3 |
-| `group4` | `string` | No | `""` | Group4 |
-| `relationship` | `string` | No | `"asynchronous"` | Relationship |
-| `name` | `string` | No | `""` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `group1` | `string` | Yes |
+| `group2` | `string` | Yes |
+| `group3` | `string` | No |
+| `group4` | `string` | No |
+| `relationship` | `string` | No |
+| `name` | `string` | No |
 
 </details>
 
@@ -5175,48 +3698,18 @@ Examples:
 
 Set clock uncertainty constraint (for clock jitter, skew, etc.)
 
-Args:
-    uncertainty_ns: Uncertainty value (nanoseconds)
-    clock: Target clock (single clock mode, mutually exclusive with from_clock/to_clock)
-    from_clock: Source clock (cross-domain mode)
-    to_clock: Target clock (cross-domain mode)
-    setup: Apply only to setup analysis
-    hold: Apply only to hold analysis
-
-Notes:
-    - If setup/hold not specified, applies to both
-    - Single clock mode: only specify clock parameter
-    - Cross-domain mode: specify from_clock and to_clock parameters
-
-Examples:
-    # Single clock uncertainty (affects both setup and hold)
-    set_clock_uncertainty(0.5, clock=&quot;sys_clk&quot;)
-
-    # Setup time uncertainty only
-    set_clock_uncertainty(0.3, clock=&quot;sys_clk&quot;, setup=True)
-
-    # Hold time uncertainty only
-    set_clock_uncertainty(0.2, clock=&quot;sys_clk&quot;, hold=True)
-
-    # Cross-domain uncertainty
-    set_clock_uncertainty(1.0, from_clock=&quot;clk_a&quot;, to_clock=&quot;clk_b&quot;)
-
-    # Cross-domain setup only
-    set_clock_uncertainty(0.8, from_clock=&quot;clk_a&quot;, to_clock=&quot;clk_b&quot;, setup=True)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `uncertainty_ns` | `number` | Yes | `—` | Uncertainty Ns |
-| `clock` | `string` | No | `""` | Clock |
-| `from_clock` | `string` | No | `""` | From Clock |
-| `to_clock` | `string` | No | `""` | To Clock |
-| `setup` | `boolean` | No | `false` | Setup |
-| `hold` | `boolean` | No | `false` | Hold |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `uncertainty_ns` | `number` | Yes |
+| `clock` | `string` | No |
+| `from_clock` | `string` | No |
+| `to_clock` | `string` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
 
 </details>
 
@@ -5225,46 +3718,17 @@ Examples:
 
 Set data check constraint (for checking timing relationships between data signals)
 
-Used for non-clock-triggered datapath checks, such as:
-- MUX select signal vs data signal
-- Enable signal vs data signal
-- Timing relationship between any two data signals
-
-Args:
-    from_pin: Reference signal pin (acts like clock edge)
-    to_pin: Data signal pin to be checked
-    setup: Setup time requirement (nanoseconds), data must be stable before reference edge
-    hold: Hold time requirement (nanoseconds), data must remain stable after reference edge
-    clock: Reference clock name (optional, to specify clock domain for check)
-
-Notes:
-    - Must specify at least one of setup or hold (non-zero value)
-    - Can specify both setup and hold for bidirectional check
-    - from_pin acts as reference signal, similar to clock edge
-    - to_pin is the data signal being checked
-
-Examples:
-    # MUX select signal vs data signal check
-    set_data_check(&quot;mux/sel&quot;, &quot;mux/data_in&quot;, setup=1.0, hold=0.5)
-
-    # Enable signal check
-    set_data_check(&quot;ctrl/enable&quot;, &quot;data/D&quot;, setup=2.0)
-
-    # Data check with clock reference
-    set_data_check(&quot;sig_a&quot;, &quot;sig_b&quot;, setup=1.5, hold=0.3, clock=&quot;sys_clk&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_pin` | `string` | Yes | `—` | From Pin |
-| `to_pin` | `string` | Yes | `—` | To Pin |
-| `setup` | `number` | No | `0.0` | Setup |
-| `hold` | `number` | No | `0.0` | Hold |
-| `clock` | `string` | No | `""` | Clock |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_pin` | `string` | Yes |
+| `to_pin` | `string` | Yes |
+| `setup` | `number` | No |
+| `hold` | `number` | No |
+| `clock` | `string` | No |
 
 </details>
 
@@ -5273,33 +3737,16 @@ Examples:
 
 Set false path (ignore timing analysis)
 
-Args:
-    from_signal: Start signal (optional, matches all if not specified)
-    to_signal: Target signal (optional, matches all if not specified)
-    from_type: Start type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-    to_type: End type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-
-Examples:
-    # From reset port to all targets
-    set_false_path(from_signal=&quot;rst_n&quot;, from_type=&quot;port&quot;)
-
-    # Async reset path
-    set_false_path(from_signal=&quot;async_rst&quot;, to_signal=&quot;*&quot;, from_type=&quot;port&quot;)
-
-    # Cross clock domain (recommend using set_clock_groups instead)
-    set_false_path(from_signal=&quot;clk_a&quot;, to_signal=&quot;clk_b&quot;, from_type=&quot;clock&quot;, to_type=&quot;clock&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_signal` | `string` | No | `""` | From Signal |
-| `to_signal` | `string` | No | `""` | To Signal |
-| `from_type` | `string` | No | `"auto"` | From Type |
-| `to_type` | `string` | No | `"auto"` | To Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_signal` | `string` | No |
+| `to_signal` | `string` | No |
+| `from_type` | `string` | No |
+| `to_type` | `string` | No |
 
 </details>
 
@@ -5308,21 +3755,15 @@ Examples:
 
 Set input delay constraint
 
-Args:
-    port_name: Input port name
-    delay_ns: Delay time (nanoseconds)
-    clock_name: Reference clock name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port_name` | `string` | Yes | `—` | Port Name |
-| `delay_ns` | `number` | Yes | `—` | Delay Ns |
-| `clock_name` | `string` | Yes | `—` | Clock Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port_name` | `string` | Yes |
+| `delay_ns` | `number` | Yes |
+| `clock_name` | `string` | Yes |
 
 </details>
 
@@ -5331,39 +3772,19 @@ Args:
 
 Set maximum delay constraint (commonly used for CDC paths)
 
-Args:
-    delay_ns: Maximum delay value (nanoseconds)
-    from_node: Start node (clock name, port name, or pin path)
-    to_node: End node (clock name, port name, or pin path)
-    through_node: Through node (optional)
-    datapath_only: Only constrain datapath, ignore clock path (common for CDC)
-    from_type: Start type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-    to_type: End type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-
-Examples:
-    # CDC path constraint (most common)
-    set_max_delay(10.0, from_node=&quot;clk_a&quot;, to_node=&quot;clk_b&quot;, datapath_only=True, from_type=&quot;clock&quot;, to_type=&quot;clock&quot;)
-
-    # Between specific pins
-    set_max_delay(5.0, from_node=&quot;reg_a/Q&quot;, to_node=&quot;reg_b/D&quot;)
-
-    # Port to port
-    set_max_delay(8.0, from_node=&quot;data_in&quot;, to_node=&quot;data_out&quot;, from_type=&quot;port&quot;, to_type=&quot;port&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `delay_ns` | `number` | Yes | `—` | Delay Ns |
-| `from_node` | `string` | No | `""` | From Node |
-| `to_node` | `string` | No | `""` | To Node |
-| `through_node` | `string` | No | `""` | Through Node |
-| `datapath_only` | `boolean` | No | `false` | Datapath Only |
-| `from_type` | `string` | No | `"auto"` | From Type |
-| `to_type` | `string` | No | `"auto"` | To Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `delay_ns` | `number` | Yes |
+| `from_node` | `string` | No |
+| `to_node` | `string` | No |
+| `through_node` | `string` | No |
+| `datapath_only` | `boolean` | No |
+| `from_type` | `string` | No |
+| `to_type` | `string` | No |
 
 </details>
 
@@ -5372,34 +3793,18 @@ Examples:
 
 Set minimum delay constraint (for hold time or preventing early data arrival)
 
-Args:
-    delay_ns: Minimum delay value (nanoseconds)
-    from_node: Start node (clock name, port name, or pin path)
-    to_node: End node (clock name, port name, or pin path)
-    through_node: Through node (optional)
-    from_type: Start type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-    to_type: End type - &quot;auto&quot;(auto detect), &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-
-Examples:
-    # Prevent early data arrival
-    set_min_delay(2.0, from_node=&quot;fast_reg/Q&quot;, to_node=&quot;slow_reg/D&quot;)
-
-    # Port constraint
-    set_min_delay(1.0, from_node=&quot;data_in&quot;, to_node=&quot;reg/D&quot;, from_type=&quot;port&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `delay_ns` | `number` | Yes | `—` | Delay Ns |
-| `from_node` | `string` | No | `""` | From Node |
-| `to_node` | `string` | No | `""` | To Node |
-| `through_node` | `string` | No | `""` | Through Node |
-| `from_type` | `string` | No | `"auto"` | From Type |
-| `to_type` | `string` | No | `"auto"` | To Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `delay_ns` | `number` | Yes |
+| `from_node` | `string` | No |
+| `to_node` | `string` | No |
+| `through_node` | `string` | No |
+| `from_type` | `string` | No |
+| `to_type` | `string` | No |
 
 </details>
 
@@ -5408,48 +3813,21 @@ Examples:
 
 Set multicycle path
 
-Args:
-    cycles: Number of cycles (setup defaults to N, hold auto-adjusts to N-1)
-    from_signal: Start signal (register clock pin /C or input port)
-    to_signal: Target signal (register data pin /D or output port)
-    from_type: Start type - &quot;auto&quot;, &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-    to_type: End type - &quot;auto&quot;, &quot;clock&quot;, &quot;port&quot;, &quot;pin&quot;, &quot;cell&quot;
-    setup: Constrain setup time (default True)
-    hold: Constrain hold time (default False, usually auto-handled)
-    start: Calculate relative to source clock (default False)
-    end: Calculate relative to target clock (default True)
-
-Notes:
-    - Valid start points: clock pins (/C), primary input ports, clocks
-    - Valid end points: data pins (/D), primary output ports
-    - Don&#x27;t use /* wildcard, it matches invalid pins
-
-Examples:
-    # 2-cycle path (register to register)
-    set_multicycle_path(2, from_signal=&quot;slow_reg[*]/C&quot;, to_signal=&quot;fast_reg[*]/D&quot;)
-
-    # Using cell names (auto finds /C and /D)
-    set_multicycle_path(3, from_signal=&quot;slow_reg[*]&quot;, to_signal=&quot;fast_reg[*]&quot;, from_type=&quot;cell&quot;, to_type=&quot;cell&quot;)
-
-    # From clock domain to clock domain
-    set_multicycle_path(2, from_signal=&quot;clk_slow&quot;, to_signal=&quot;clk_fast&quot;, from_type=&quot;clock&quot;, to_type=&quot;clock&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cycles` | `integer` | Yes | `—` | Cycles |
-| `from_signal` | `string` | No | `""` | From Signal |
-| `to_signal` | `string` | No | `""` | To Signal |
-| `from_type` | `string` | No | `"auto"` | From Type |
-| `to_type` | `string` | No | `"auto"` | To Type |
-| `setup` | `boolean` | No | `true` | Setup |
-| `hold` | `boolean` | No | `false` | Hold |
-| `start` | `boolean` | No | `false` | Start |
-| `end` | `boolean` | No | `true` | End |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cycles` | `integer` | Yes |
+| `from_signal` | `string` | No |
+| `to_signal` | `string` | No |
+| `from_type` | `string` | No |
+| `to_type` | `string` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `start` | `boolean` | No |
+| `end` | `boolean` | No |
 
 </details>
 
@@ -5458,21 +3836,15 @@ Examples:
 
 Set output delay constraint
 
-Args:
-    port_name: Output port name
-    delay_ns: Delay time (nanoseconds)
-    clock_name: Reference clock name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port_name` | `string` | Yes | `—` | Port Name |
-| `delay_ns` | `number` | Yes | `—` | Delay Ns |
-| `clock_name` | `string` | Yes | `—` | Clock Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port_name` | `string` | Yes |
+| `delay_ns` | `number` | Yes |
+| `clock_name` | `string` | Yes |
 
 </details>
 
@@ -5484,21 +3856,15 @@ Args:
 
 Create ILA (Integrated Logic Analyzer) IP core
 
-Args:
-    ila_name: ILA instance name
-    num_probes: Number of probes (1-64)
-    sample_depth: Sample depth (1024/2048/4096/8192/16384/32768/65536/131072)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ila_name` | `string` | Yes | `—` | Ila Name |
-| `num_probes` | `integer` | No | `1` | Num Probes |
-| `sample_depth` | `integer` | No | `1024` | Sample Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ila_name` | `string` | Yes |
+| `num_probes` | `integer` | No |
+| `sample_depth` | `integer` | No |
 
 </details>
 
@@ -5507,21 +3873,15 @@ Args:
 
 Create VIO (Virtual I/O) IP core
 
-Args:
-    vio_name: VIO instance name
-    num_inputs: Number of input probes
-    num_outputs: Number of output probes
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `vio_name` | `string` | Yes | `—` | Vio Name |
-| `num_inputs` | `integer` | No | `0` | Num Inputs |
-| `num_outputs` | `integer` | No | `0` | Num Outputs |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `vio_name` | `string` | Yes |
+| `num_inputs` | `integer` | No |
+| `num_outputs` | `integer` | No |
 
 </details>
 
@@ -5531,7 +3891,6 @@ Args:
 Implement debug core (run after synthesis)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5545,7 +3904,6 @@ No parameters.
 List all debug cores in the design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5559,7 +3917,6 @@ No parameters.
 List all signals marked for debug
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5572,17 +3929,13 @@ No parameters.
 
 Mark signal for debug (add MARK_DEBUG attribute)
 
-Args:
-    signal_name: Signal name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `signal_name` | `string` | Yes | `—` | Signal Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `signal_name` | `string` | Yes |
 
 </details>
 
@@ -5591,11 +3944,7 @@ Args:
 
 Auto setup debug cores (based on marked signals)
 
-Note: Requires synthesized design to be open.
-Will create ILA and probe connections for all MARK_DEBUG signals.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5608,17 +3957,13 @@ No parameters.
 
 Generate debug probes file
 
-Args:
-    file_name: Output file name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | No | `"debug_probes.ltx"` | File Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | No |
 
 </details>
 
@@ -5630,19 +3975,14 @@ Args:
 
 Add a source file to an application project
 
-Args:
-    name: Application name
-    file_path: Path to the source file (.c, .h, .cpp, .S)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -5651,17 +3991,13 @@ Args:
 
 Add a breakpoint
 
-Args:
-    location: Function name (e.g. &quot;main&quot;) or hex address (e.g. &quot;0x00100000&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `location` | `string` | Yes | `—` | Location |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `location` | `string` | Yes |
 
 </details>
 
@@ -5670,21 +4006,15 @@ Args:
 
 Add a library to the BSP
 
-Args:
-    platform: Platform name
-    domain: Domain name
-    lib: Library name (e.g. lwip, xilffs, xilpm)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
-| `lib` | `string` | Yes | `—` | Lib |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
+| `lib` | `string` | Yes |
 
 </details>
 
@@ -5693,23 +4023,16 @@ Args:
 
 Add a software domain to a platform
 
-Args:
-    platform: Platform name
-    name: Domain name
-    os_type: OS type - standalone, freertos, or linux
-    processor: Processor instance (e.g. ps7_cortexa9_0)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `name` | `string` | Yes | `—` | Name |
-| `os_type` | `string` | Yes | `—` | Os Type |
-| `processor` | `string` | Yes | `—` | Processor |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `name` | `string` | Yes |
+| `os_type` | `string` | Yes |
+| `processor` | `string` | Yes |
 
 </details>
 
@@ -5719,7 +4042,6 @@ Args:
 Get the call stack backtrace
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5728,48 +4050,32 @@ No parameters.
 </details>
 
 <details id="emb_build_application">
-<summary><code>emb_build_application</code> — Build an application project. Returns compiler error output on failure for diagnosis (file, line, error message), or ELF path and size on success. Detects stale ELF from previous builds to avoid false positives. <strong>Pro</strong></summary>
+<summary><code>emb_build_application</code> — Build an application project. <strong>Pro</strong></summary>
 
 Build an application project.
-Returns compiler error output on failure for diagnosis (file, line,
-error message), or ELF path and size on success. Detects stale ELF
-from previous builds to avoid false positives.
-
-Args:
-    name: Application name
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
 <details id="emb_build_platform">
-<summary><code>emb_build_platform</code> — Build a platform (generates BSP libraries). Returns compiler output on failure for diagnosis. <strong>Pro</strong></summary>
+<summary><code>emb_build_platform</code> — Build a platform (generates BSP libraries). <strong>Pro</strong></summary>
 
 Build a platform (generates BSP libraries).
-Returns compiler output on failure for diagnosis.
-
-Note: platform generate regenerates BSP source files and may overwrite
-manual modifications. For persistent BSP changes, use emb_configure_bsp
-to set parameters before building.
-
-Args:
-    name: Platform name
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -5778,17 +4084,13 @@ Args:
 
 Build a project
 
-Args:
-    name: Project name to build
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -5797,17 +4099,13 @@ Args:
 
 Clean build artifacts of an application
 
-Args:
-    name: Application name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -5816,17 +4114,13 @@ Args:
 
 Clean build artifacts of a project
 
-Args:
-    name: Project name to clean
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -5836,7 +4130,6 @@ Args:
 Close the current hardware design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5849,23 +4142,16 @@ No parameters.
 
 Configure a BSP parameter
 
-Args:
-    platform: Platform name
-    domain: Domain name
-    param: BSP parameter name
-    value: Parameter value
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
-| `param` | `string` | Yes | `—` | Param |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
+| `param` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -5874,17 +4160,13 @@ Args:
 
 Connect to hw_server for JTAG access
 
-Args:
-    url: hw_server URL (default: TCP:localhost:3121)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `url` | `string` | No | `"TCP:localhost:3121"` | Url |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `url` | `string` | No |
 
 </details>
 
@@ -5893,25 +4175,17 @@ Args:
 
 Create an embedded application project
 
-Args:
-    name: Application project name
-    platform: Platform name to build on
-    domain: Domain name (empty for default domain)
-    template: Application template (e.g. &quot;Hello World&quot;, &quot;Empty Application&quot;, &quot;LWIP Echo Server&quot;)
-    language: Programming language - c or c++
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | No | `""` | Domain |
-| `template` | `string` | No | `"Empty Application"` | Template |
-| `language` | `string` | No | `"c"` | Language |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `platform` | `string` | Yes |
+| `domain` | `string` | No |
+| `template` | `string` | No |
+| `language` | `string` | No |
 
 </details>
 
@@ -5920,23 +4194,16 @@ Args:
 
 Create a hardware platform from XSA file
 
-Args:
-    name: Platform project name
-    xsa_path: Path to .xsa hardware description file (exported from Vivado)
-    os_type: OS type - standalone, freertos, or linux
-    processor: Processor instance (e.g. ps7_cortexa9_0). Empty for auto-select
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `xsa_path` | `string` | Yes | `—` | Xsa Path |
-| `os_type` | `string` | No | `"standalone"` | Os Type |
-| `processor` | `string` | No | `""` | Processor |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `xsa_path` | `string` | Yes |
+| `os_type` | `string` | No |
+| `processor` | `string` | No |
 
 </details>
 
@@ -5945,17 +4212,13 @@ Args:
 
 Delete a project from the workspace
 
-Args:
-    name: Project name to delete
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -5965,7 +4228,6 @@ Args:
 Disconnect from hw_server
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -5978,40 +4240,29 @@ No parameters.
 
 Download binary data file to memory
 
-Args:
-    file_path: Path to binary data file
-    address: Target memory address
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `address` | `string` | Yes | `—` | Address |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `address` | `string` | Yes |
 
 </details>
 
 <details id="emb_download_elf">
-<summary><code>emb_download_elf</code> — Download an ELF file to the selected processor. Automatically restores force-mem-access to 0 after download (safe to call regardless of force-mem-access state). <strong>Pro</strong></summary>
+<summary><code>emb_download_elf</code> — Download an ELF file to the selected processor. <strong>Pro</strong></summary>
 
 Download an ELF file to the selected processor.
-Automatically restores force-mem-access to 0 after download
-(safe to call regardless of force-mem-access state).
-
-Args:
-    elf_path: Path to the .elf executable file
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `elf_path` | `string` | Yes | `—` | Elf Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `elf_path` | `string` | Yes |
 
 </details>
 
@@ -6020,23 +4271,16 @@ Args:
 
 Fill a memory region with a repeating value
 
-Args:
-    address: Start address (hex string)
-    count: Number of words to fill
-    value: Fill value (hex string, e.g. &quot;0x00000000&quot;)
-    word_size: Word size in bytes (1, 2, or 4)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `count` | `integer` | Yes | `—` | Count |
-| `value` | `string` | Yes | `—` | Value |
-| `word_size` | `integer` | No | `4` | Word Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `count` | `integer` | Yes |
+| `value` | `string` | Yes |
+| `word_size` | `integer` | No |
 
 </details>
 
@@ -6045,19 +4289,14 @@ Args:
 
 Download a bitstream to the FPGA
 
-Args:
-    bitstream: Path to bitstream file (.bit)
-    target_id: Target ID (0 for auto-select FPGA target)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bitstream` | `string` | Yes | `—` | Bitstream |
-| `target_id` | `integer` | No | `0` | Target Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bitstream` | `string` | Yes |
+| `target_id` | `integer` | No |
 
 </details>
 
@@ -6066,17 +4305,13 @@ Args:
 
 Get all configuration settings for an application
 
-Args:
-    name: Application name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -6085,19 +4320,14 @@ Args:
 
 Get all BSP settings for a domain
 
-Args:
-    platform: Platform name
-    domain: Domain name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
 
 </details>
 
@@ -6107,7 +4337,6 @@ Args:
 Get clock frequency information from the hardware design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6121,7 +4350,6 @@ No parameters.
 Get a high-level summary of the hardware design (processors, IPs, address ranges)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6134,17 +4362,13 @@ No parameters.
 
 Get the interrupt map for a processor
 
-Args:
-    processor: Processor instance name (empty for first processor)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `processor` | `string` | No | `""` | Processor |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `processor` | `string` | No |
 
 </details>
 
@@ -6153,17 +4377,13 @@ Args:
 
 Get the memory address map for a processor
 
-Args:
-    processor: Processor instance name (empty for first processor)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `processor` | `string` | No | `""` | Processor |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `processor` | `string` | No |
 
 </details>
 
@@ -6173,7 +4393,6 @@ Args:
 Get the current program counter (PC) value
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6186,17 +4405,13 @@ No parameters.
 
 Get detailed properties of a peripheral
 
-Args:
-    name: Peripheral instance name (from emb_get_peripherals)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -6206,7 +4421,6 @@ Args:
 List all peripherals in the hardware design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6219,37 +4433,28 @@ No parameters.
 
 Get all pins of a hardware cell
 
-Args:
-    cell: Cell instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
 
 </details>
 
 <details id="emb_get_platform_info">
 <summary><code>emb_get_platform_info</code> — Get detailed information about a platform including OS, processor, domains, and XSA path. <strong>Pro</strong></summary>
 
-Get detailed information about a platform including OS, processor,
-domains, and XSA path.
-
-Args:
-    name: Platform name
+Get detailed information about a platform including OS, processor, domains, and XSA path.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -6259,7 +4464,6 @@ Args:
 List all processors in the hardware design
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6272,17 +4476,13 @@ No parameters.
 
 Get detailed information about a JTAG target
 
-Args:
-    target_id: Target ID from emb_list_targets
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target_id` | `integer` | Yes | `—` | Target Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target_id` | `integer` | Yes |
 
 </details>
 
@@ -6292,7 +4492,6 @@ Args:
 Get the current Vitis workspace path
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6305,17 +4504,13 @@ No parameters.
 
 Import an existing project into the workspace
 
-Args:
-    path: Path to the project directory or archive
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `path` | `string` | Yes | `—` | Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `path` | `string` | Yes |
 
 </details>
 
@@ -6325,7 +4520,6 @@ Args:
 Read the JTAG IDCODE of the current target device
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6338,17 +4532,13 @@ No parameters.
 
 Get or set the JTAG clock frequency
 
-Args:
-    freq_mhz: Frequency in MHz (0 to query current value)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `freq_mhz` | `number` | No | `0` | Freq Mhz |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `freq_mhz` | `number` | No |
 
 </details>
 
@@ -6358,7 +4548,6 @@ Args:
 Lock the JTAG port for exclusive access
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6372,7 +4561,6 @@ No parameters.
 Scan the JTAG chain and report discovered devices
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6385,17 +4573,13 @@ No parameters.
 
 Select a JTAG target
 
-Args:
-    target_id: JTAG target ID
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target_id` | `integer` | Yes | `—` | Target Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target_id` | `integer` | Yes |
 
 </details>
 
@@ -6404,19 +4588,14 @@ Args:
 
 Execute a raw JTAG DR shift sequence
 
-Args:
-    tdi_data: TDI data as hex string (e.g. &quot;DEADBEEF&quot;)
-    bit_count: Number of bits to shift
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `tdi_data` | `string` | Yes | `—` | Tdi Data |
-| `bit_count` | `integer` | Yes | `—` | Bit Count |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `tdi_data` | `string` | Yes |
+| `bit_count` | `integer` | Yes |
 
 </details>
 
@@ -6426,7 +4605,6 @@ Args:
 List JTAG targets in the scan chain
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6440,7 +4618,6 @@ No parameters.
 Unlock the JTAG port
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6453,17 +4630,13 @@ No parameters.
 
 List available application templates
 
-Args:
-    platform: Platform name to filter templates (empty for all)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | No | `""` | Platform |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | No |
 
 </details>
 
@@ -6473,7 +4646,6 @@ Args:
 List all breakpoints
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6486,19 +4658,14 @@ No parameters.
 
 List available and included BSP libraries
 
-Args:
-    platform: Platform name
-    domain: Domain name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
 
 </details>
 
@@ -6508,7 +4675,6 @@ Args:
 List all platforms in the current workspace
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6521,17 +4687,13 @@ No parameters.
 
 List processors available in an XSA hardware description
 
-Args:
-    xsa_path: Path to .xsa file
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `xsa_path` | `string` | Yes | `—` | Xsa Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `xsa_path` | `string` | Yes |
 
 </details>
 
@@ -6541,7 +4703,6 @@ Args:
 List all projects in the current workspace
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6555,7 +4716,6 @@ No parameters.
 List all processor registers and their values
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6569,7 +4729,6 @@ No parameters.
 List all available JTAG targets (processors and FPGA devices)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6583,7 +4742,6 @@ No parameters.
 Get local variables at the current execution point
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6596,19 +4754,14 @@ No parameters.
 
 Dump a formatted memory region (hex + ASCII display)
 
-Args:
-    address: Start address (hex string)
-    length: Number of bytes to dump (default 256)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `length` | `integer` | No | `256` | Length |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `length` | `integer` | No |
 
 </details>
 
@@ -6617,17 +4770,13 @@ Args:
 
 Open a hardware design (.xsa) for inspection
 
-Args:
-    xsa_path: Path to .xsa hardware description file
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `xsa_path` | `string` | Yes | `—` | Xsa Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `xsa_path` | `string` | Yes |
 
 </details>
 
@@ -6636,65 +4785,47 @@ Args:
 
 Print the value of a variable or expression
 
-Args:
-    expr: Variable name or expression to evaluate
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `expr` | `string` | Yes | `—` | Expr |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `expr` | `string` | Yes |
 
 </details>
 
 <details id="emb_ps7_init">
-<summary><code>emb_ps7_init</code> — Run Zynq PS7 initialization (DDR, clocks, MIO) via ps7_init.tcl. Required before downloading ELF to DDR on Zynq devices via JTAG. <strong>Pro</strong></summary>
+<summary><code>emb_ps7_init</code> — Run Zynq PS7 initialization (DDR, clocks, MIO) via ps7_init.tcl. <strong>Pro</strong></summary>
 
 Run Zynq PS7 initialization (DDR, clocks, MIO) via ps7_init.tcl.
-Required before downloading ELF to DDR on Zynq devices via JTAG.
-
-Args:
-    init_tcl: Direct path to ps7_init.tcl file
-    workspace: Vitis workspace path (auto-searches &lt;workspace&gt;/*/hw/ps7_init.tcl)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `init_tcl` | `string` | No | `""` | Init Tcl |
-| `workspace` | `string` | No | `""` | Workspace |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `init_tcl` | `string` | No |
+| `workspace` | `string` | No |
 
 </details>
 
 <details id="emb_quick_run">
-<summary><code>emb_quick_run</code> — One-click: download bitstream + ELF + run. Chains: connect → fpga download → select ARM core → [ps7_init] → download ELF → continue. <strong>Pro</strong></summary>
+<summary><code>emb_quick_run</code> — One-click: download bitstream + ELF + run. <strong>Pro</strong></summary>
 
 One-click: download bitstream + ELF + run.
-Chains: connect → fpga download → select ARM core → [ps7_init] → download ELF → continue.
-
-Args:
-    bitstream: Path to .bit file
-    elf_path: Path to .elf file
-    hw_server_url: hw_server URL (default TCP:localhost:3121)
-    ps7_init_tcl: Path to ps7_init.tcl (required for Zynq DDR access)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bitstream` | `string` | Yes | `—` | Bitstream |
-| `elf_path` | `string` | Yes | `—` | Elf Path |
-| `hw_server_url` | `string` | No | `"TCP:localhost:3121"` | Hw Server Url |
-| `ps7_init_tcl` | `string` | No | `""` | Ps7 Init Tcl |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bitstream` | `string` | Yes |
+| `elf_path` | `string` | Yes |
+| `hw_server_url` | `string` | No |
+| `ps7_init_tcl` | `string` | No |
 
 </details>
 
@@ -6703,23 +4834,16 @@ Args:
 
 Read memory from the selected processor
 
-Args:
-    address: Start address (hex string, e.g. &quot;0x00100000&quot;)
-    count: Number of words to read
-    word_size: Word size in bytes (1, 2, or 4)
-    format: Output format - hex or bin
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `count` | `integer` | No | `1` | Count |
-| `word_size` | `integer` | No | `4` | Word Size |
-| `format` | `string` | No | `"hex"` | Format |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `count` | `integer` | No |
+| `word_size` | `integer` | No |
+| `format` | `string` | No |
 
 </details>
 
@@ -6728,17 +4852,13 @@ Args:
 
 Read a processor register
 
-Args:
-    reg_name: Register name (e.g. r0, r1, sp, lr, pc, cpsr)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `reg_name` | `string` | Yes | `—` | Reg Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `reg_name` | `string` | Yes |
 
 </details>
 
@@ -6747,17 +4867,13 @@ Args:
 
 Remove a breakpoint
 
-Args:
-    bp_id: Breakpoint ID from emb_list_breakpoints
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bp_id` | `integer` | Yes | `—` | Bp Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bp_id` | `integer` | Yes |
 
 </details>
 
@@ -6766,21 +4882,15 @@ Args:
 
 Remove a library from the BSP
 
-Args:
-    platform: Platform name
-    domain: Domain name
-    lib: Library name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
-| `lib` | `string` | Yes | `—` | Lib |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
+| `lib` | `string` | Yes |
 
 </details>
 
@@ -6789,17 +4899,13 @@ Args:
 
 Reset the processor
 
-Args:
-    reset_type: Reset type - system, processor, or cores
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `reset_type` | `string` | No | `"system"` | Reset Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `reset_type` | `string` | No |
 
 </details>
 
@@ -6809,7 +4915,6 @@ Args:
 Resume (continue) execution on the selected processor
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6822,17 +4927,13 @@ No parameters.
 
 Select a JTAG target (processor) for subsequent operations
 
-Args:
-    target_id: Target ID from emb_list_targets
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target_id` | `integer` | Yes | `—` | Target Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target_id` | `integer` | Yes |
 
 </details>
 
@@ -6841,11 +4942,7 @@ Args:
 
 Close the open serial port.
 
-        Returns:
-            Confirmation or message if no port was open
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6858,15 +4955,7 @@ No parameters.
 
 List all available serial ports with device names, hardware IDs, and busy status.
 
-        Use this before emb_serial_open() to find the correct port.
-        Shows COM port number, device description (e.g. CH340, FTDI, Digilent),
-        hardware ID (VID:PID), and whether the port is currently busy.
-
-        Returns:
-            List of serial ports with descriptions and availability
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -6879,33 +4968,17 @@ No parameters.
 
 Open a serial port for UART communication.
 
-        Use emb_serial_list() first to find available ports.
-        If a port is already open (this session), it will be closed first.
-        If the port is locked by another process, try emb_serial_list() to
-        check which ports are busy, or close the other program using it.
-
-        Args:
-            port: Serial port name (e.g. &quot;COM3&quot;, &quot;/dev/ttyUSB0&quot;)
-            baudrate: Baud rate (default 115200). Common: 9600, 19200, 38400, 57600, 115200
-            bytesize: Data bits - 5, 6, 7, or 8 (default 8)
-            stopbits: Stop bits - 1 or 2 (default 1)
-            parity: Parity - &quot;N&quot; (none), &quot;E&quot; (even), &quot;O&quot; (odd) (default &quot;N&quot;)
-
-        Returns:
-            Confirmation with port settings
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `port` | `string` | Yes | `—` | Port |
-| `baudrate` | `integer` | No | `115200` | Baudrate |
-| `bytesize` | `integer` | No | `8` | Bytesize |
-| `stopbits` | `integer` | No | `1` | Stopbits |
-| `parity` | `string` | No | `"N"` | Parity |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `port` | `string` | Yes |
+| `baudrate` | `integer` | No |
+| `bytesize` | `integer` | No |
+| `stopbits` | `integer` | No |
+| `parity` | `string` | No |
 
 </details>
 
@@ -6914,22 +4987,13 @@ Open a serial port for UART communication.
 
 Read all available data from the open serial port.
 
-        Collects data until timeout or no more data arrives.
-
-        Args:
-            timeout: Read timeout in seconds (default 2.0)
-
-        Returns:
-            Received text (UTF-8), or hex dump if not decodable
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `timeout` | `number` | No | `2.0` | Timeout |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `timeout` | `number` | No |
 
 </details>
 
@@ -6938,20 +5002,13 @@ Read all available data from the open serial port.
 
 Write data to the open serial port.
 
-        Args:
-            data: String to send (UTF-8 encoded)
-
-        Returns:
-            Number of bytes sent
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `data` | `string` | Yes | `—` | Data |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `data` | `string` | Yes |
 
 </details>
 
@@ -6960,19 +5017,14 @@ Write data to the open serial port.
 
 Set the active domain for subsequent BSP operations
 
-Args:
-    platform: Platform name
-    domain: Domain name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `platform` | `string` | Yes | `—` | Platform |
-| `domain` | `string` | Yes | `—` | Domain |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `platform` | `string` | Yes |
+| `domain` | `string` | Yes |
 
 </details>
 
@@ -6981,21 +5033,15 @@ Args:
 
 Add a preprocessor define to the application
 
-Args:
-    name: Application name
-    symbol: Define symbol name
-    value: Define value (empty for flag-only define)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `symbol` | `string` | Yes | `—` | Symbol |
-| `value` | `string` | No | `""` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `symbol` | `string` | Yes |
+| `value` | `string` | No |
 
 </details>
 
@@ -7004,19 +5050,14 @@ Args:
 
 Set the build configuration for an application
 
-Args:
-    name: Application name
-    config: Build configuration - Debug or Release
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `config` | `string` | No | `"Release"` | Config |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `config` | `string` | No |
 
 </details>
 
@@ -7025,19 +5066,14 @@ Args:
 
 Set compiler flags for an application
 
-Args:
-    name: Application name
-    flags: Compiler flags (e.g. &quot;-O2 -Wall&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `flags` | `string` | Yes | `—` | Flags |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `flags` | `string` | Yes |
 
 </details>
 
@@ -7046,19 +5082,14 @@ Args:
 
 Add an include path to the application
 
-Args:
-    name: Application name
-    path: Include directory path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `path` | `string` | Yes | `—` | Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `path` | `string` | Yes |
 
 </details>
 
@@ -7067,19 +5098,14 @@ Args:
 
 Set linker flags for an application
 
-Args:
-    name: Application name
-    flags: Linker flags (e.g. &quot;-Wl,--gc-sections&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `flags` | `string` | Yes | `—` | Flags |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `flags` | `string` | Yes |
 
 </details>
 
@@ -7088,19 +5114,14 @@ Args:
 
 Set a custom linker script for the application
 
-Args:
-    name: Application name
-    script_path: Path to the linker script (.ld)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `script_path` | `string` | Yes | `—` | Script Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `script_path` | `string` | Yes |
 
 </details>
 
@@ -7109,17 +5130,13 @@ Args:
 
 Set the Vitis workspace directory
 
-Args:
-    path: Workspace directory path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `path` | `string` | Yes | `—` | Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `path` | `string` | Yes |
 
 </details>
 
@@ -7129,7 +5146,6 @@ Args:
 Step into the next instruction/function
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7143,7 +5159,6 @@ No parameters.
 Step out of the current function
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7157,7 +5172,6 @@ No parameters.
 Step over the next instruction/function call
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7171,7 +5185,6 @@ No parameters.
 Stop (halt) execution on the selected processor
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7185,7 +5198,6 @@ No parameters.
 Test the connection to XSCT xsdbserver
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7198,19 +5210,14 @@ No parameters.
 
 Update platform hardware specification (after Vivado re-export)
 
-Args:
-    name: Platform name
-    xsa_path: Path to updated .xsa file
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Name |
-| `xsa_path` | `string` | Yes | `—` | Xsa Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `xsa_path` | `string` | Yes |
 
 </details>
 
@@ -7219,19 +5226,14 @@ Args:
 
 Verify memory contents against a file
 
-Args:
-    address: Start address to verify from
-    file_path: Path to binary/ELF file for comparison
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -7240,21 +5242,15 @@ Args:
 
 Write data to memory
 
-Args:
-    address: Start address (hex string, e.g. &quot;0x00100000&quot;)
-    values: Space-separated hex values to write (e.g. &quot;0xDEADBEEF 0x12345678&quot;)
-    word_size: Word size in bytes (1, 2, or 4)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `values` | `string` | Yes | `—` | Values |
-| `word_size` | `integer` | No | `4` | Word Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `values` | `string` | Yes |
+| `word_size` | `integer` | No |
 
 </details>
 
@@ -7263,19 +5259,14 @@ Args:
 
 Write a value to a processor register
 
-Args:
-    reg_name: Register name (e.g. r0, r1, sp, lr, pc)
-    value: Value to write (hex string, e.g. &quot;0x00100000&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `reg_name` | `string` | Yes | `—` | Reg Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `reg_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -7283,24 +5274,18 @@ Args:
 ## File Operations
 
 <details id="append_to_file">
-<summary><code>append_to_file</code> — Append content to an existing file (e.g., add constraints to XDC). A newline separator is added before the content. <strong>Free</strong></summary>
+<summary><code>append_to_file</code> — Append content to an existing file (e.g., add constraints to XDC). <strong>Free</strong></summary>
 
 Append content to an existing file (e.g., add constraints to XDC).
-A newline separator is added before the content.
-
-Args:
-    file_path: File path (absolute or project-relative)
-    content: Content to append
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `content` | `string` | Yes | `—` | Content |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `content` | `string` | Yes |
 
 </details>
 
@@ -7309,19 +5294,14 @@ Args:
 
 Create an XDC constraint file and add to project
 
-Args:
-    file_name: File name, e.g., timing.xdc
-    content: Constraint content
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | Yes | `—` | File Name |
-| `content` | `string` | Yes | `—` | Content |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | Yes |
+| `content` | `string` | Yes |
 
 </details>
 
@@ -7330,19 +5310,14 @@ Args:
 
 Create a Verilog/VHDL/SystemVerilog source file and add to project
 
-Args:
-    file_name: File name, e.g., counter.v or fsm.sv
-    content: File content (complete code)
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | Yes | `—` | File Name |
-| `content` | `string` | Yes | `—` | Content |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | Yes |
+| `content` | `string` | Yes |
 
 </details>
 
@@ -7351,19 +5326,14 @@ Args:
 
 Create a testbench file and add to simulation fileset
 
-Args:
-    file_name: File name, e.g., tb_counter.v
-    content: Testbench content
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | Yes | `—` | File Name |
-| `content` | `string` | Yes | `—` | Content |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | Yes |
+| `content` | `string` | Yes |
 
 </details>
 
@@ -7372,17 +5342,13 @@ Args:
 
 Remove file from project and delete it
 
-Args:
-    file_path: File path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -7392,7 +5358,6 @@ Args:
 List all files in the project
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7405,64 +5370,47 @@ No parameters.
 
 Read file content
 
-Args:
-    file_path: File path
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
 <details id="read_file_lines">
-<summary><code>read_file_lines</code> — Read specific line range from a file. Saves context window for large files. <strong>Free</strong></summary>
+<summary><code>read_file_lines</code> — Read specific line range from a file. <strong>Free</strong></summary>
 
-Read specific line range from a file. Saves context window for large files.
-
-Args:
-    file_path: File path (absolute or project-relative)
-    start_line: First line to read (1-based, default: 1)
-    end_line: Last line to read (0 = read to end, default: 0)
+Read specific line range from a file.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `start_line` | `integer` | No | `1` | Start Line |
-| `end_line` | `integer` | No | `0` | End Line |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `start_line` | `integer` | No |
+| `end_line` | `integer` | No |
 
 </details>
 
 <details id="replace_in_file">
-<summary><code>replace_in_file</code> — Replace all occurrences of old_text with new_text in a file. Useful for modifying constraint values (clock periods, delay values) without full file rewrite. <strong>Pro</strong></summary>
+<summary><code>replace_in_file</code> — Replace all occurrences of old_text with new_text in a file. <strong>Pro</strong></summary>
 
 Replace all occurrences of old_text with new_text in a file.
-Useful for modifying constraint values (clock periods, delay values) without full file rewrite.
-
-Args:
-    file_path: File path (absolute or project-relative)
-    old_text: Text to find (all occurrences will be replaced)
-    new_text: Replacement text
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `old_text` | `string` | Yes | `—` | Old Text |
-| `new_text` | `string` | Yes | `—` | New Text |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `old_text` | `string` | Yes |
+| `new_text` | `string` | Yes |
 
 </details>
 
@@ -7471,19 +5419,14 @@ Args:
 
 Update file content
 
-Args:
-    file_path: File path
-    content: New content
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `content` | `string` | Yes | `—` | Content |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `content` | `string` | Yes |
 
 </details>
 
@@ -7495,28 +5438,16 @@ Args:
 
 Burst read consecutive AXI addresses via JTAG-to-AXI Master (AXI4 only).
 
-Prerequisites: Hardware target open + device programmed with jtag_axi IP configured for AXI4 protocol.
-
-Args:
-    address: Starting AXI address in hex (e.g. &quot;0x40000000&quot;)
-    length: Number of beats to read (1-256)
-    core: JTAG-AXI core name (leave empty to auto-select first core)
-    size: Transaction size in bits (32 or 64)
-
-Returns:
-    Starting address and burst data (each word on a separate line)
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `length` | `integer` | Yes | `—` | Length |
-| `core` | `string` | No | `""` | Core |
-| `size` | `integer` | No | `32` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `length` | `integer` | Yes |
+| `core` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -7525,28 +5456,16 @@ Returns:
 
 Burst write consecutive AXI addresses via JTAG-to-AXI Master (AXI4 only).
 
-Prerequisites: Hardware target open + device programmed with jtag_axi IP configured for AXI4 protocol.
-
-Args:
-    address: Starting AXI address in hex (e.g. &quot;0x40000000&quot;)
-    data: Data words in hex, separated by underscores (e.g. &quot;11111111_22222222_33333333&quot;). Number of words determines burst length.
-    core: JTAG-AXI core name (leave empty to auto-select first core)
-    size: Transaction size in bits (32 or 64)
-
-Returns:
-    Write confirmation with address and beat count
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `data` | `string` | Yes | `—` | Data |
-| `core` | `string` | No | `""` | Core |
-| `size` | `integer` | No | `32` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `data` | `string` | Yes |
+| `core` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -7555,13 +5474,7 @@ Returns:
 
 List available JTAG-to-AXI Master cores on the current hardware target.
 
-Prerequisites: open_hardware_manager + connect_hardware_server + open_hardware_target + device programmed with a design containing jtag_axi IP.
-
-Returns:
-    List of hw_axi core names, or error if prerequisites not met
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7574,26 +5487,15 @@ No parameters.
 
 Read a single AXI address via JTAG-to-AXI Master.
 
-Prerequisites: Hardware target open + device programmed with jtag_axi IP.
-
-Args:
-    address: AXI address in hex (e.g. &quot;0x40000000&quot; or &quot;40000000&quot;)
-    core: JTAG-AXI core name (leave empty to auto-select first core)
-    size: Transaction size in bits (32 or 64)
-
-Returns:
-    Address and read data in hex
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `core` | `string` | No | `""` | Core |
-| `size` | `integer` | No | `32` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `core` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -7602,28 +5504,16 @@ Returns:
 
 Write to a single AXI address via JTAG-to-AXI Master.
 
-Prerequisites: Hardware target open + device programmed with jtag_axi IP.
-
-Args:
-    address: AXI address in hex (e.g. &quot;0x40000000&quot; or &quot;40000000&quot;)
-    data: Data to write in hex (e.g. &quot;ABCD1234&quot;), no 0x prefix needed
-    core: JTAG-AXI core name (leave empty to auto-select first core)
-    size: Transaction size in bits (32 or 64)
-
-Returns:
-    Write confirmation with address and data
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `address` | `string` | Yes | `—` | Address |
-| `data` | `string` | Yes | `—` | Data |
-| `core` | `string` | No | `""` | Core |
-| `size` | `integer` | No | `32` | Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `address` | `string` | Yes |
+| `data` | `string` | Yes |
+| `core` | `string` | No |
+| `size` | `integer` | No |
 
 </details>
 
@@ -7632,25 +5522,14 @@ Returns:
 
 Clear trigger condition on one or all ILA probes.
 
-        Resets the compare value to all-X (don&#x27;t care) so the probe no longer
-        participates in triggering. If no probe is specified, clears ALL probes.
-
-        Args:
-            probe: Probe name to clear (leave empty to clear ALL probes)
-            ila: ILA core name (leave empty to auto-select first)
-
-        Returns:
-            Confirmation of cleared probes
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `probe` | `string` | No | `""` | Probe |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `probe` | `string` | No |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7659,25 +5538,13 @@ Clear trigger condition on one or all ILA probes.
 
 Get comprehensive ILA status including trigger setup and all probe details.
 
-        Shows core status, capture settings, trigger condition logic (AND/OR),
-        and per-probe trigger compare values. Use this to verify trigger setup
-        before running ILA capture.
-
-        Args:
-            ila: ILA core name (leave empty to auto-select first)
-
-        Returns:
-            ILA status, data depth, trigger position, trigger condition (AND/OR),
-            and per-probe width + compare value (X = don&#x27;t care / not triggered)
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7686,15 +5553,7 @@ Get comprehensive ILA status including trigger setup and all probe details.
 
 List ILA (Integrated Logic Analyzer) cores on the current hardware target.
 
-Returns each ILA core&#x27;s name, status, data depth, and number of probes.
-
-Prerequisites: open_hardware_manager + connect_hardware_server + open_hardware_target + device programmed with ILA debug cores.
-
-Returns:
-    List of ILA cores with status and probe count
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7703,52 +5562,35 @@ No parameters.
 </details>
 
 <details id="hw_ila_read_data">
-<summary><code>hw_ila_read_data</code> — Upload captured ILA data from device. Optionally save to CSV file. <strong>Max</strong></summary>
+<summary><code>hw_ila_read_data</code> — Upload captured ILA data from device. <strong>Max</strong></summary>
 
-Upload captured ILA data from device. Optionally save to CSV file.
-
-Args:
-    file_path: Optional CSV file path to save data (e.g. &quot;C:/capture.csv&quot;). Leave empty to just upload.
-    ila: ILA core name (leave empty to auto-select first)
-
-Returns:
-    Upload confirmation with sample count, and CSV path if saved
+Upload captured ILA data from device.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | No | `""` | File Path |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | No |
+| `ila` | `string` | No |
 
 </details>
 
 <details id="hw_ila_run">
-<summary><code>hw_ila_run</code> — Start ILA capture. By default waits for trigger condition; use trigger_now=True for immediate capture. <strong>Max</strong></summary>
+<summary><code>hw_ila_run</code> — Start ILA capture. <strong>Max</strong></summary>
 
-Start ILA capture. By default waits for trigger condition; use trigger_now=True for immediate capture.
-
-Args:
-    trigger_now: If True, capture immediately without waiting for trigger
-    trigger_position: Trigger position in capture window (0 to depth-1, -1 to keep current)
-    ila: ILA core name (leave empty to auto-select first)
-
-Returns:
-    ILA status after starting capture (typically ARMED or TRIGGERED)
+Start ILA capture.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `trigger_now` | `boolean` | No | `false` | Trigger Now |
-| `trigger_position` | `integer` | No | `-1` | Trigger Position |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `trigger_now` | `boolean` | No |
+| `trigger_position` | `integer` | No |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7757,59 +5599,17 @@ Returns:
 
 Set trigger condition on an ILA probe.
 
-        Supports hex, binary (with don&#x27;t-care X bits), and decimal values.
-        Use hw_ila_set_trigger_condition() to set AND/OR logic between
-        multiple probe triggers. Use hw_ila_get_status() to verify setup.
-
-        Args:
-            probe: Probe name (e.g. &quot;counter[7:0]&quot; or full path from hw_ila_get_status)
-            value: Trigger value. Format depends on radix:
-                hex: &quot;FF&quot;, &quot;0xFF&quot;, &quot;1A2B&quot;
-                bin: &quot;11110000&quot;, &quot;XXXX1111&quot; (X = don&#x27;t care, matches any bit)
-                     Underscores allowed for readability: &quot;1111_0000&quot;
-                dec: &quot;255&quot;, &quot;1024&quot; (converted to hex internally)
-            operator: Compare operator:
-                &quot;eq&quot;  - equal (default)
-                &quot;neq&quot; - not equal
-                &quot;gt&quot;  - greater than (unsigned)
-                &quot;lt&quot;  - less than (unsigned)
-            radix: Value format - &quot;hex&quot; (default), &quot;bin&quot;, &quot;dec&quot;
-            ila: ILA core name (leave empty to auto-select first)
-
-        Examples:
-            # Trigger when counter equals 0xFF
-            hw_ila_set_trigger(probe=&quot;counter[7:0]&quot;, value=&quot;FF&quot;)
-
-            # Trigger when state machine is NOT in state 3
-            hw_ila_set_trigger(probe=&quot;state[1:0]&quot;, value=&quot;3&quot;, operator=&quot;neq&quot;, radix=&quot;dec&quot;)
-
-            # Trigger when upper nibble is 0xA, lower nibble is don&#x27;t-care
-            hw_ila_set_trigger(probe=&quot;data[7:0]&quot;, value=&quot;1010XXXX&quot;, radix=&quot;bin&quot;)
-
-            # Trigger when bit 3 is high, all other bits don&#x27;t care
-            hw_ila_set_trigger(probe=&quot;flags[7:0]&quot;, value=&quot;XXXX1XXX&quot;, radix=&quot;bin&quot;)
-
-            # Trigger when enable is non-zero (any bit set)
-            hw_ila_set_trigger(probe=&quot;enable[3:0]&quot;, value=&quot;0000&quot;, operator=&quot;neq&quot;, radix=&quot;bin&quot;)
-
-            # Trigger when address &gt;= 0x1000
-            hw_ila_set_trigger(probe=&quot;addr[15:0]&quot;, value=&quot;1000&quot;, operator=&quot;gt&quot;)
-
-        Returns:
-            Confirmation with the applied compare value
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `probe` | `string` | Yes | `—` | Probe |
-| `value` | `string` | Yes | `—` | Value |
-| `operator` | `string` | No | `"eq"` | Operator |
-| `radix` | `string` | No | `"hex"` | Radix |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `probe` | `string` | Yes |
+| `value` | `string` | Yes |
+| `operator` | `string` | No |
+| `radix` | `string` | No |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7818,39 +5618,14 @@ Set trigger condition on an ILA probe.
 
 Set how multiple probe trigger conditions are combined.
 
-        When multiple probes have trigger values set via hw_ila_set_trigger(),
-        this controls whether ALL conditions must match (AND) or ANY single
-        condition is enough to trigger (OR).
-
-        Default is AND (all conditions must be true simultaneously).
-
-        Args:
-            condition: &quot;AND&quot; (all probes must match) or &quot;OR&quot; (any probe match triggers)
-            ila: ILA core name (leave empty to auto-select first)
-
-        Examples:
-            # Trigger only when BOTH state==IDLE AND enable==1
-            hw_ila_set_trigger(probe=&quot;state[1:0]&quot;, value=&quot;00&quot;, radix=&quot;bin&quot;)
-            hw_ila_set_trigger(probe=&quot;enable&quot;, value=&quot;1&quot;, radix=&quot;bin&quot;)
-            hw_ila_set_trigger_condition(condition=&quot;AND&quot;)
-
-            # Trigger when EITHER error OR overflow is high
-            hw_ila_set_trigger(probe=&quot;error&quot;, value=&quot;1&quot;, radix=&quot;bin&quot;)
-            hw_ila_set_trigger(probe=&quot;overflow&quot;, value=&quot;1&quot;, radix=&quot;bin&quot;)
-            hw_ila_set_trigger_condition(condition=&quot;OR&quot;)
-
-        Returns:
-            Confirmation of the trigger condition mode
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `condition` | `string` | No | `"AND"` | Condition |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `condition` | `string` | No |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7859,22 +5634,14 @@ Set how multiple probe trigger conditions are combined.
 
 Wait for ILA capture to complete (trigger hit + buffer full).
 
-Args:
-    timeout: Maximum wait time in seconds (default 30)
-    ila: ILA core name (leave empty to auto-select first)
-
-Returns:
-    Final ILA status (IDLE = capture complete, ARMED = still waiting for trigger)
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `timeout` | `integer` | No | `30` | Timeout |
-| `ila` | `string` | No | `""` | Ila |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `timeout` | `integer` | No |
+| `ila` | `string` | No |
 
 </details>
 
@@ -7883,22 +5650,13 @@ Returns:
 
 List all probes on a VIO core with direction, width, and current values.
 
-Refreshes VIO before reading to ensure current values.
-
-Args:
-    vio: VIO core name (leave empty to auto-select first)
-
-Returns:
-    All probes with direction (input/output), width, and current value
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `vio` | `string` | No | `""` | Vio |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `vio` | `string` | No |
 
 </details>
 
@@ -7907,15 +5665,7 @@ Returns:
 
 List VIO (Virtual I/O) cores on the current hardware target.
 
-Returns each VIO core&#x27;s name and number of probes.
-
-Prerequisites: open_hardware_manager + connect_hardware_server + open_hardware_target + device programmed with VIO debug cores.
-
-Returns:
-    List of VIO cores with probe count
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -7924,52 +5674,35 @@ No parameters.
 </details>
 
 <details id="hw_vio_read">
-<summary><code>hw_vio_read</code> — Read VIO input probe values. Automatically refreshes before reading. <strong>Max</strong></summary>
+<summary><code>hw_vio_read</code> — Read VIO input probe values. <strong>Max</strong></summary>
 
-Read VIO input probe values. Automatically refreshes before reading.
-
-Args:
-    probe: Specific probe name to read (leave empty to read all input probes)
-    vio: VIO core name (leave empty to auto-select first)
-
-Returns:
-    Probe name(s) and current input value(s)
+Read VIO input probe values.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `probe` | `string` | No | `""` | Probe |
-| `vio` | `string` | No | `""` | Vio |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `probe` | `string` | No |
+| `vio` | `string` | No |
 
 </details>
 
 <details id="hw_vio_write">
-<summary><code>hw_vio_write</code> — Write a value to a VIO output probe. Automatically commits after writing. <strong>Max</strong></summary>
+<summary><code>hw_vio_write</code> — Write a value to a VIO output probe. <strong>Max</strong></summary>
 
-Write a value to a VIO output probe. Automatically commits after writing.
-
-Args:
-    probe: Output probe name to write
-    value: Value in hex (e.g. &quot;0xFF&quot; or &quot;AB&quot;)
-    vio: VIO core name (leave empty to auto-select first)
-
-Returns:
-    Write confirmation with probe name and value
+Write a value to a VIO output probe.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `probe` | `string` | Yes | `—` | Probe |
-| `value` | `string` | Yes | `—` | Value |
-| `vio` | `string` | No | `""` | Vio |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `probe` | `string` | Yes |
+| `value` | `string` | Yes |
+| `vio` | `string` | No |
 
 </details>
 
@@ -7981,31 +5714,15 @@ Returns:
 
 Configure an existing Clocking Wizard IP property
 
-Args:
-    ip_name: IP instance name
-    property_name: Property name (without CONFIG. prefix), e.g. CLKOUT1_REQUESTED_OUT_FREQ
-    value: Property value
-
-Common properties:
-    - PRIM_IN_FREQ: Input frequency (MHz)
-    - CLKOUTn_REQUESTED_OUT_FREQ: nth output frequency
-    - CLKOUTn_REQUESTED_PHASE: nth output phase
-    - CLKOUTn_USED: Whether to enable nth output (true/false)
-    - NUM_OUT_CLKS: Number of output clocks
-    - RESET_TYPE: ACTIVE_HIGH or ACTIVE_LOW
-    - USE_LOCKED: Whether to use locked signal
-    - PRIMITIVE: MMCM or PLL
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -8014,30 +5731,15 @@ Common properties:
 
 Configure an existing FIFO IP property
 
-Args:
-    ip_name: IP instance name
-    property_name: Property name (without CONFIG. prefix)
-    value: Property value
-
-Common properties:
-    - Fifo_Implementation: FIFO implementation type
-    - Input_Data_Width / Output_Data_Width: Data width
-    - Input_Depth: FIFO depth
-    - Performance_Options: Standard_FIFO or First_Word_Fall_Through
-    - Read_Data_Count / Write_Data_Count: Counters
-    - Almost_Full_Flag / Almost_Empty_Flag: Status flags
-    - Reset_Type: Synchronous_Reset or Asynchronous_Reset
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -8046,35 +5748,15 @@ Common properties:
 
 Configure an existing Memory IP property
 
-Args:
-    ip_name: IP instance name
-    property_name: Property name (without CONFIG. prefix)
-    value: Property value
-
-Block Memory common properties:
-    - Memory_Type: Single_Port_RAM / Simple_Dual_Port_RAM / True_Dual_Port_RAM
-    - Write_Width_A / Write_Depth_A: Port A width/depth
-    - Write_Width_B / Read_Width_B: Port B width
-    - Use_Byte_Write_Enable: true/false
-    - Register_PortA_Output_of_Memory_Primitives: true/false
-    - Load_Init_File: true/false
-    - Coe_File: COE file path
-
-Distributed Memory common properties:
-    - memory_type: rom / single_port_ram / simple_dual_port_ram
-    - data_width / depth: Width/depth
-    - input_options / output_options: registered / non_registered
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -8083,27 +5765,18 @@ Distributed Memory common properties:
 
 Create AXI Stream FIFO
 
-Args:
-    ip_name: IP instance name
-    width: Data width (TDATA width)
-    depth: FIFO depth
-    async_fifo: Whether asynchronous FIFO, default False
-    packet_mode: Whether to enable Packet mode (using TLAST), default False
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `async_fifo` | `boolean` | No | `false` | Async Fifo |
-| `packet_mode` | `boolean` | No | `false` | Packet Mode |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `async_fifo` | `boolean` | No |
+| `packet_mode` | `boolean` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8112,30 +5785,17 @@ Args:
 
 Create Block Memory IP (basic)
 
-Args:
-    ip_name: IP instance name
-    width: Data width
-    depth: Storage depth
-    mem_type: Memory type, options:
-        - sp_ram: Single Port RAM (default)
-        - sdp_ram: Simple Dual Port RAM
-        - tdp_ram: True Dual Port RAM
-        - sp_rom: Single Port ROM
-        - dp_rom: Dual Port ROM
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `mem_type` | `string` | No | `"sp_ram"` | Mem Type |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `mem_type` | `string` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8144,35 +5804,22 @@ Args:
 
 Create Block Memory IP (advanced configuration)
 
-Args:
-    ip_name: IP instance name
-    width_a: Port A data width
-    depth_a: Port A storage depth
-    mem_type: Memory type (sp_ram/sdp_ram/tdp_ram/sp_rom/dp_rom)
-    width_b: Port B data width (0 means same as Port A, only for dual port)
-    byte_write_enable: Whether to enable byte write enable, default False
-    byte_size: Byte size (8 or 9), default 8
-    output_register: Whether to enable output register, default True
-    init_file: Initialization file path (COE file), empty for no initialization
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width_a` | `integer` | Yes | `—` | Width A |
-| `depth_a` | `integer` | Yes | `—` | Depth A |
-| `mem_type` | `string` | No | `"sp_ram"` | Mem Type |
-| `width_b` | `integer` | No | `0` | Width B |
-| `byte_write_enable` | `boolean` | No | `false` | Byte Write Enable |
-| `byte_size` | `integer` | No | `8` | Byte Size |
-| `output_register` | `boolean` | No | `true` | Output Register |
-| `init_file` | `string` | No | `""` | Init File |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width_a` | `integer` | Yes |
+| `depth_a` | `integer` | Yes |
+| `mem_type` | `string` | No |
+| `width_b` | `integer` | No |
+| `byte_write_enable` | `boolean` | No |
+| `byte_size` | `integer` | No |
+| `output_register` | `boolean` | No |
+| `init_file` | `string` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8181,29 +5828,19 @@ Args:
 
 Create Clocking Wizard IP (single output)
 
-Args:
-    ip_name: IP instance name
-    input_freq_mhz: Input clock frequency (MHz)
-    output_freq_mhz: Output clock frequency (MHz)
-    use_reset: Whether to use reset signal, default True
-    reset_active_low: Whether reset is active low, default True
-    use_locked: Whether to output locked signal, default True
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `input_freq_mhz` | `number` | Yes | `—` | Input Freq Mhz |
-| `output_freq_mhz` | `number` | Yes | `—` | Output Freq Mhz |
-| `use_reset` | `boolean` | No | `true` | Use Reset |
-| `reset_active_low` | `boolean` | No | `true` | Reset Active Low |
-| `use_locked` | `boolean` | No | `true` | Use Locked |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `input_freq_mhz` | `number` | Yes |
+| `output_freq_mhz` | `number` | Yes |
+| `use_reset` | `boolean` | No |
+| `reset_active_low` | `boolean` | No |
+| `use_locked` | `boolean` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8212,35 +5849,22 @@ Args:
 
 Create Clocking Wizard IP (advanced configuration)
 
-Args:
-    ip_name: IP instance name
-    input_freq_mhz: Input clock frequency (MHz)
-    output_freqs_mhz: Output clock frequencies, comma-separated, e.g. &quot;100,50,25&quot;
-    output_phases_deg: Output phases, comma-separated, e.g. &quot;0,90,180&quot; (empty for all 0)
-    input_differential: Whether input is differential clock, default False
-    use_reset: Whether to use reset signal, default True
-    reset_active_low: Whether reset is active low, default True
-    use_locked: Whether to output locked signal, default True
-    primitive: Clock primitive type, MMCM or PLL, default MMCM
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `input_freq_mhz` | `number` | Yes | `—` | Input Freq Mhz |
-| `output_freqs_mhz` | `string` | Yes | `—` | Output Freqs Mhz |
-| `output_phases_deg` | `string` | No | `""` | Output Phases Deg |
-| `input_differential` | `boolean` | No | `false` | Input Differential |
-| `use_reset` | `boolean` | No | `true` | Use Reset |
-| `reset_active_low` | `boolean` | No | `true` | Reset Active Low |
-| `use_locked` | `boolean` | No | `true` | Use Locked |
-| `primitive` | `string` | No | `"MMCM"` | Primitive |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `input_freq_mhz` | `number` | Yes |
+| `output_freqs_mhz` | `string` | Yes |
+| `output_phases_deg` | `string` | No |
+| `input_differential` | `boolean` | No |
+| `use_reset` | `boolean` | No |
+| `reset_active_low` | `boolean` | No |
+| `use_locked` | `boolean` | No |
+| `primitive` | `string` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8249,29 +5873,19 @@ Args:
 
 Create Clocking Wizard IP (multiple outputs)
 
-Args:
-    ip_name: IP instance name
-    input_freq_mhz: Input clock frequency (MHz)
-    output_freqs_mhz: Output clock frequencies, comma-separated, e.g. &quot;100,50,25&quot; (up to 7)
-    use_reset: Whether to use reset signal, default True
-    reset_active_low: Whether reset is active low, default True
-    use_locked: Whether to output locked signal, default True
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `input_freq_mhz` | `number` | Yes | `—` | Input Freq Mhz |
-| `output_freqs_mhz` | `string` | Yes | `—` | Output Freqs Mhz |
-| `use_reset` | `boolean` | No | `true` | Use Reset |
-| `reset_active_low` | `boolean` | No | `true` | Reset Active Low |
-| `use_locked` | `boolean` | No | `true` | Use Locked |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `input_freq_mhz` | `number` | Yes |
+| `output_freqs_mhz` | `string` | Yes |
+| `use_reset` | `boolean` | No |
+| `reset_active_low` | `boolean` | No |
+| `use_locked` | `boolean` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8280,29 +5894,17 @@ Args:
 
 Create Distributed Memory IP (basic, LUT-based implementation)
 
-Args:
-    ip_name: IP instance name
-    width: Data width
-    depth: Storage depth
-    mem_type: Memory type, options:
-        - rom: ROM
-        - sp_ram: Single Port RAM (default)
-        - sdp_ram: Simple Dual Port RAM
-        - dp_ram: Dual Port RAM
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `mem_type` | `string` | No | `"sp_ram"` | Mem Type |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `mem_type` | `string` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8311,31 +5913,20 @@ Args:
 
 Create Distributed Memory IP (advanced configuration)
 
-Args:
-    ip_name: IP instance name
-    width: Data width
-    depth: Storage depth
-    mem_type: Memory type (rom/sp_ram/sdp_ram/dp_ram)
-    input_registered: Whether input is registered, default False
-    output_registered: Whether output is registered, default False
-    init_file: Initialization file path (COE file)
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `mem_type` | `string` | No | `"sp_ram"` | Mem Type |
-| `input_registered` | `boolean` | No | `false` | Input Registered |
-| `output_registered` | `boolean` | No | `false` | Output Registered |
-| `init_file` | `string` | No | `""` | Init File |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `mem_type` | `string` | No |
+| `input_registered` | `boolean` | No |
+| `output_registered` | `boolean` | No |
+| `init_file` | `string` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8344,27 +5935,18 @@ Args:
 
 Create FIFO IP (basic)
 
-Args:
-    ip_name: IP instance name
-    width: Data width
-    depth: FIFO depth
-    async_fifo: Whether asynchronous FIFO (dual clock domain), default False
-    use_bram: Whether to use Block RAM, default True (otherwise Distributed RAM)
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `async_fifo` | `boolean` | No | `false` | Async Fifo |
-| `use_bram` | `boolean` | No | `true` | Use Bram |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `async_fifo` | `boolean` | No |
+| `use_bram` | `boolean` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8373,43 +5955,23 @@ Args:
 
 Create FIFO IP (advanced configuration)
 
-Args:
-    ip_name: IP instance name
-    width: Input data width
-    depth: FIFO depth
-    impl_type: Implementation type, options:
-        - sync_bram: Synchronous Block RAM (default)
-        - sync_dram: Synchronous Distributed RAM
-        - sync_builtin: Synchronous Built-in FIFO
-        - async_bram: Asynchronous Block RAM
-        - async_dram: Asynchronous Distributed RAM
-        - async_builtin: Asynchronous Built-in FIFO
-    fwft: Whether to enable First Word Fall Through, default False
-    read_count: Whether to output read data count, default False
-    write_count: Whether to output write data count, default False
-    almost_full: Whether to output Almost Full flag, default False
-    almost_empty: Whether to output Almost Empty flag, default False
-    output_width: Output data width (0 means same as input, for width conversion)
-    ip_dir: Custom output directory for IP files (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `width` | `integer` | Yes | `—` | Width |
-| `depth` | `integer` | Yes | `—` | Depth |
-| `impl_type` | `string` | No | `"sync_bram"` | Impl Type |
-| `fwft` | `boolean` | No | `false` | Fwft |
-| `read_count` | `boolean` | No | `false` | Read Count |
-| `write_count` | `boolean` | No | `false` | Write Count |
-| `almost_full` | `boolean` | No | `false` | Almost Full |
-| `almost_empty` | `boolean` | No | `false` | Almost Empty |
-| `output_width` | `integer` | No | `0` | Output Width |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `width` | `integer` | Yes |
+| `depth` | `integer` | Yes |
+| `impl_type` | `string` | No |
+| `fwft` | `boolean` | No |
+| `read_count` | `boolean` | No |
+| `write_count` | `boolean` | No |
+| `almost_full` | `boolean` | No |
+| `almost_empty` | `boolean` | No |
+| `output_width` | `integer` | No |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8418,21 +5980,15 @@ Args:
 
 Create an IP core instance
 
-Args:
-    ip_vlnv: IP VLNV identifier, e.g. xilinx.com:ip:clk_wiz:6.0
-    ip_name: Instance name
-    ip_dir: Custom output directory for IP files (optional, uses project default if empty)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_vlnv` | `string` | Yes | `—` | Ip Vlnv |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `ip_dir` | `string` | No | `""` | Ip Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_vlnv` | `string` | Yes |
+| `ip_name` | `string` | Yes |
+| `ip_dir` | `string` | No |
 
 </details>
 
@@ -8441,17 +5997,13 @@ Args:
 
 Delete an IP core instance
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8460,23 +6012,15 @@ Args:
 
 Generate IP output products
 
-Args:
-    ip_name: IP instance name
-    synth_mode: Synthesis mode:
-        - &quot;ooc&quot; (default): Out-of-Context synthesis, generates a separate synthesis run for the IP
-        - &quot;global&quot;: Generate targets only, IP synthesized with top-level design
-    jobs: Number of parallel jobs for OOC synthesis (default 4)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `synth_mode` | `string` | No | `"ooc"` | Synth Mode |
-| `jobs` | `integer` | No | `4` | Jobs |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `synth_mode` | `string` | No |
+| `jobs` | `integer` | No |
 
 </details>
 
@@ -8485,17 +6029,13 @@ Args:
 
 Get current configuration of Clocking Wizard IP
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8504,17 +6044,13 @@ Args:
 
 Get current configuration of FIFO IP
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8523,17 +6059,13 @@ Args:
 
 Get IP CONFIG.* properties (common configuration items)
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8542,17 +6074,13 @@ Args:
 
 Get IP configuration properties
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8561,17 +6089,13 @@ Args:
 
 Get current configuration of Memory IP
 
-Args:
-    ip_name: IP instance name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
 
 </details>
 
@@ -8580,17 +6104,13 @@ Args:
 
 List available IP cores
 
-Args:
-    filter_keyword: Filter keyword (optional)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `filter_keyword` | `string` | No | `""` | Filter Keyword |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `filter_keyword` | `string` | No |
 
 </details>
 
@@ -8600,7 +6120,6 @@ Args:
 List all IPs added to the project
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8614,7 +6133,6 @@ No parameters.
 Report status of all IPs
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8627,17 +6145,13 @@ No parameters.
 
 Search for IP cores
 
-Args:
-    keyword: Search keyword, e.g. &quot;fifo&quot;, &quot;axi&quot;, &quot;clk&quot;
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `keyword` | `string` | Yes | `—` | Keyword |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `keyword` | `string` | Yes |
 
 </details>
 
@@ -8646,21 +6160,15 @@ Args:
 
 Set IP property
 
-Args:
-    ip_name: IP instance name
-    property_name: Property name, e.g. CONFIG.CLKOUT1_REQUESTED_OUT_FREQ
-    value: Property value
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip_name` | `string` | Yes | `—` | Ip Name |
-| `property_name` | `string` | Yes | `—` | Property Name |
-| `value` | `string` | Yes | `—` | Value |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip_name` | `string` | Yes |
+| `property_name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 </details>
 
@@ -8670,7 +6178,6 @@ Args:
 Upgrade all IPs in the project that need upgrading
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8686,36 +6193,23 @@ No parameters.
 
 Export hardware platform (XSA file) for Vitis / embedded software development.
 
-This is the bridge between Vivado and Vitis: after generating a bitstream,
-export the XSA so that emb_create_platform can consume it.
-
-Args:
-    include_bitstream: Include bitstream in XSA (default True, required for FPGA programming from Vitis)
-    output_file: Output .xsa file path. If empty, defaults to &lt;project_dir&gt;/&lt;project_name&gt;.xsa
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `include_bitstream` | `boolean` | No | `true` | Include Bitstream |
-| `output_file` | `string` | No | `""` | Output File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `include_bitstream` | `boolean` | No |
+| `output_file` | `string` | No |
 
 </details>
 
 <details id="get_implementation_warnings">
-<summary><code>get_implementation_warnings</code> — Extract errors, warnings and critical warnings from implementation log (impl_1/runme.log). Reads the actual implementation log file for post-mortem diagnosis. <strong>Pro</strong></summary>
+<summary><code>get_implementation_warnings</code> — Extract errors, warnings and critical warnings from implementation log (impl_1/runme.log). <strong>Pro</strong></summary>
 
 Extract errors, warnings and critical warnings from implementation log (impl_1/runme.log).
-Reads the actual implementation log file for post-mortem diagnosis.
-
-Returns:
-    Summary count (errors/critical warnings/warnings) and up to 200 matching lines
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8729,7 +6223,6 @@ No parameters.
 Open implemented design (for viewing layout, timing, etc.)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8743,7 +6236,6 @@ No parameters.
 Get routing congestion report
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8757,7 +6249,6 @@ No parameters.
 Get routing status report
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8770,48 +6261,29 @@ No parameters.
 
 Run full flow: Synthesis -&gt; Implementation -&gt; Bitstream with per-stage timing and early-stop on failure.
 
-Each stage reports status and elapsed time. If any stage fails, stops immediately
-with error summary from the log and hints for diagnosis tools.
-
-Args:
-    jobs: Number of parallel jobs, default 4
-
-Returns:
-    Staged progress report with timing summary; stops early on failure
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
 
 </details>
 
 <details id="run_implementation">
-<summary><code>run_implementation</code> — Run implementation/place &amp; route (synchronous, waits for completion). On failure, automatically extracts error summary from the log. <strong>Free</strong></summary>
+<summary><code>run_implementation</code> — Run implementation/place &amp; route (synchronous, waits for completion). <strong>Free</strong></summary>
 
 Run implementation/place &amp; route (synchronous, waits for completion).
-On failure, automatically extracts error summary from the log.
-
-Args:
-    jobs: Number of parallel jobs, default 4
-    run_name: Implementation run name (default &quot;impl_1&quot;)
-
-Returns:
-    Implementation status with timing summary; error details on failure
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
-| `run_name` | `string` | No | `"impl_1"` | Run Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
+| `run_name` | `string` | No |
 
 </details>
 
@@ -8820,19 +6292,14 @@ Returns:
 
 Start implementation asynchronously (does not wait for completion)
 
-Args:
-    jobs: Number of parallel jobs, default 4
-    run_name: Implementation run name (default &quot;impl_1&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
-| `run_name` | `string` | No | `"impl_1"` | Run Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
+| `run_name` | `string` | No |
 
 </details>
 
@@ -8841,23 +6308,13 @@ Args:
 
 Set implementation strategy
 
-Args:
-    strategy: Strategy name, options:
-        - Default: Default balanced strategy
-        - Performance_Explore: Performance exploration
-        - Performance_ExplorePostRoutePhysOpt: Post-route physical optimization
-        - Area_Explore: Area exploration
-        - Flow_RuntimeOptimized: Runtime optimization
-        - Flow_Quick: Quick implementation
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `strategy` | `string` | Yes | `—` | Strategy |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `strategy` | `string` | Yes |
 
 </details>
 
@@ -8870,7 +6327,6 @@ Args:
 Get current license status and usage statistics
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8887,7 +6343,6 @@ No parameters.
 Check timing-related issues (including reset paths)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8901,7 +6356,6 @@ No parameters.
 Check black box modules (undefined modules)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8915,7 +6369,6 @@ No parameters.
 Check clock domain crossing related issues
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8928,11 +6381,7 @@ No parameters.
 
 Check synthesis-related code issues.
 
-        Prerequisite: Requires an open synthesized design (open_synthesized_design)
-        or implemented design (open_implemented_design) before running.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8946,7 +6395,6 @@ No parameters.
 Check file compile order
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8960,7 +6408,6 @@ No parameters.
 Check FSM information after synthesis
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8974,7 +6421,6 @@ No parameters.
 Check for latches in design (usually RTL errors)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -8988,7 +6434,6 @@ No parameters.
 Check synthesis-related issues (including port width)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9001,11 +6446,7 @@ No parameters.
 
 Check timing-related issues (may cause simulation-implementation mismatch).
 
-        Prerequisite: Requires an open synthesized design (open_synthesized_design)
-        or implemented design (open_implemented_design) before running.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9019,7 +6460,6 @@ No parameters.
 Check all source files for syntax errors
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9032,22 +6472,13 @@ No parameters.
 
 Check syntax of a specific file using xvlog.
 
-Runs xvlog in syntax-only mode (--nolog) on a single file.
-Automatically detects SystemVerilog vs Verilog by file extension.
-Resolves relative paths against the project directory and auto-discovers
-include directories from Verilog Header files in the project.
-
-Args:
-    file_path: Source file path (project-relative or absolute)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -9056,11 +6487,7 @@ Args:
 
 Check code that may cause synthesis issues.
 
-        Prerequisite: Requires an open synthesized design (open_synthesized_design)
-        or implemented design (open_implemented_design) before running.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9074,7 +6501,6 @@ No parameters.
 Check synthesis settings
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9088,7 +6514,6 @@ No parameters.
 Check synthesis-related issues (including unconnected ports)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9101,17 +6526,13 @@ No parameters.
 
 Disable a specific methodology check rule
 
-Args:
-    rule_name: Rule name (e.g., TIMING-1, SYNTH-1, etc.)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `rule_name` | `string` | Yes | `—` | Rule Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `rule_name` | `string` | Yes |
 
 </details>
 
@@ -9120,17 +6541,13 @@ Args:
 
 Enable a specific methodology check rule
 
-Args:
-    rule_name: Rule name (e.g., TIMING-1, SYNTH-1, etc.)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `rule_name` | `string` | Yes | `—` | Rule Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `rule_name` | `string` | Yes |
 
 </details>
 
@@ -9139,17 +6556,13 @@ Args:
 
 Export methodology check configuration to file
 
-Args:
-    file_name: Output file name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | No | `"methodology_config.tcl"` | File Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | No |
 
 </details>
 
@@ -9158,10 +6571,7 @@ Args:
 
 Get available methodology check rule categories
 
-Returns a list of check categories supported by Vivado.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9175,7 +6585,6 @@ No parameters.
 Get current methodology check violation list
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9188,17 +6597,13 @@ No parameters.
 
 Import methodology check configuration
 
-Args:
-    file_name: Configuration file path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_name` | `string` | Yes | `—` | File Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_name` | `string` | Yes |
 
 </details>
 
@@ -9208,7 +6613,6 @@ Args:
 List all waiver rules
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9221,17 +6625,13 @@ No parameters.
 
 Remove a waiver rule
 
-Args:
-    waiver_name: Waiver name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `waiver_name` | `string` | Yes | `—` | Waiver Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `waiver_name` | `string` | Yes |
 
 </details>
 
@@ -9241,7 +6641,6 @@ Args:
 Automatically reorder file compile order
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9254,17 +6653,13 @@ No parameters.
 
 Get detailed information for a specific methodology violation
 
-Args:
-    violation_id: Violation ID
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `violation_id` | `string` | Yes | `—` | Violation Id |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `violation_id` | `string` | Yes |
 
 </details>
 
@@ -9273,12 +6668,7 @@ Args:
 
 Run full code check (syntax + methodology).
 
-        Prerequisite: The methodology part requires an open synthesized design
-        (open_synthesized_design) or implemented design (open_implemented_design).
-        Syntax check works without this prerequisite.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9291,10 +6681,7 @@ No parameters.
 
 Run methodology checks (Vivado&#x27;s code analysis tool)
 
-Requires opening synthesized or implemented design first.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9307,17 +6694,13 @@ No parameters.
 
 Run methodology checks and save report to file
 
-Args:
-    output_file: Output file name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `output_file` | `string` | No | `"methodology_report.rpt"` | Output File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `output_file` | `string` | No |
 
 </details>
 
@@ -9326,12 +6709,7 @@ Args:
 
 Quick code check (syntax + critical methodology).
 
-        Prerequisite: The methodology part requires an open synthesized design
-        (open_synthesized_design) or implemented design (open_implemented_design).
-        Syntax check works without this prerequisite.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9344,19 +6722,14 @@ No parameters.
 
 Set severity level for a methodology check
 
-Args:
-    check_name: Check name (e.g., TIMING-1)
-    severity: Severity level, Error / Warning / Info / Advisory
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `check_name` | `string` | Yes | `—` | Check Name |
-| `severity` | `string` | Yes | `—` | Severity |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `check_name` | `string` | Yes |
+| `severity` | `string` | Yes |
 
 </details>
 
@@ -9365,21 +6738,15 @@ Args:
 
 Waive a specific methodology check violation
 
-Args:
-    check_name: Check name (e.g., TIMING-1)
-    reason: Waiver reason
-    objects: Optional, specify objects (e.g., cell or net)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `check_name` | `string` | Yes | `—` | Check Name |
-| `reason` | `string` | Yes | `—` | Reason |
-| `objects` | `string` | No | `""` | Objects |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `check_name` | `string` | Yes |
+| `reason` | `string` | Yes |
+| `objects` | `string` | No |
 
 </details>
 
@@ -9387,102 +6754,62 @@ Args:
 ## Non-Project Flow
 
 <details id="np_open_checkpoint">
-<summary><code>np_open_checkpoint</code> — Open a design checkpoint (.dcp) file, restoring design state into memory. After opening, all report/constraint tools work on this design. <strong>Max</strong></summary>
+<summary><code>np_open_checkpoint</code> — Open a design checkpoint (.dcp) file, restoring design state into memory. <strong>Max</strong></summary>
 
 Open a design checkpoint (.dcp) file, restoring design state into memory.
-After opening, all report/constraint tools work on this design.
-
-Args:
-    file_path: Path to .dcp file
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
 <details id="np_opt_design">
-<summary><code>np_opt_design</code> — Run logic optimization on the in-memory design (non-project mode). Typically run after synth_design and before place_design. <strong>Max</strong></summary>
+<summary><code>np_opt_design</code> — Run logic optimization on the in-memory design (non-project mode). <strong>Max</strong></summary>
 
 Run logic optimization on the in-memory design (non-project mode).
-Typically run after synth_design and before place_design.
-
-Args:
-    directive: Optimization directive. Options:
-        - Default (default if omitted)
-        - Explore
-        - ExploreArea
-        - ExploreSequentialArea
-        - AddRemap
-        - RuntimeOptimized
-        - NoBramPowerOpt
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `directive` | `string` | No | `""` | Directive |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `directive` | `string` | No |
 
 </details>
 
 <details id="np_phys_opt_design">
-<summary><code>np_phys_opt_design</code> — Run physical optimization on the in-memory design (non-project mode). Critical for timing closure. Typically run after place_design, before route_design. <strong>Max</strong></summary>
+<summary><code>np_phys_opt_design</code> — Run physical optimization on the in-memory design (non-project mode). <strong>Max</strong></summary>
 
 Run physical optimization on the in-memory design (non-project mode).
-Critical for timing closure. Typically run after place_design, before route_design.
-
-Args:
-    directive: Physical optimization directive. Options:
-        - Default (default if omitted)
-        - Explore
-        - ExploreWithHoldFix
-        - AggressiveExplore
-        - AlternateReplication
-        - AggressiveFanoutOpt
-        - AlternateFlowWithRetiming
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `directive` | `string` | No | `""` | Directive |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `directive` | `string` | No |
 
 </details>
 
 <details id="np_place_design">
-<summary><code>np_place_design</code> — Run placement on the in-memory design (non-project mode). Typically run after opt_design and before phys_opt_design or route_design. <strong>Max</strong></summary>
+<summary><code>np_place_design</code> — Run placement on the in-memory design (non-project mode). <strong>Max</strong></summary>
 
 Run placement on the in-memory design (non-project mode).
-Typically run after opt_design and before phys_opt_design or route_design.
-
-Args:
-    directive: Placement directive. Options:
-        - Default (default if omitted)
-        - Explore
-        - ExtraNetDelay_high
-        - ExtraNetDelay_low
-        - SpreadLogic_high
-        - WLDrivenBlockPlacement
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `directive` | `string` | No | `""` | Directive |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `directive` | `string` | No |
 
 </details>
 
@@ -9491,17 +6818,13 @@ Args:
 
 Read IP core (.xci) file into memory (non-project mode).
 
-Args:
-    file_path: Path to .xci file
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -9510,21 +6833,15 @@ Args:
 
 Read Verilog/SystemVerilog source file into memory (non-project mode).
 
-Args:
-    file_path: Path to .v or .sv file
-    sv: Set True for SystemVerilog (.sv) files
-    library: Optional library name for the source file
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `sv` | `boolean` | No | `false` | Sv |
-| `library` | `string` | No | `""` | Library |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `sv` | `boolean` | No |
+| `library` | `string` | No |
 
 </details>
 
@@ -9533,21 +6850,15 @@ Args:
 
 Read VHDL source file into memory (non-project mode).
 
-Args:
-    file_path: Path to .vhd or .vhdl file
-    vhdl2008: Set True for VHDL-2008 syntax
-    library: Optional library name for the source file
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `vhdl2008` | `boolean` | No | `false` | Vhdl2008 |
-| `library` | `string` | No | `""` | Library |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `vhdl2008` | `boolean` | No |
+| `library` | `string` | No |
 
 </details>
 
@@ -9556,82 +6867,49 @@ Args:
 
 Read XDC constraint file into memory (non-project mode).
 
-Args:
-    file_path: Path to .xdc file
-    unmanaged: If True, Vivado will not modify this constraint file on write-back
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
-| `unmanaged` | `boolean` | No | `false` | Unmanaged |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
+| `unmanaged` | `boolean` | No |
 
 </details>
 
 <details id="np_route_design">
-<summary><code>np_route_design</code> — Run routing on the in-memory design (non-project mode). Reports elapsed time, setup WNS, and hold WHS on success. <strong>Max</strong></summary>
+<summary><code>np_route_design</code> — Run routing on the in-memory design (non-project mode). <strong>Max</strong></summary>
 
 Run routing on the in-memory design (non-project mode).
-Reports elapsed time, setup WNS, and hold WHS on success.
-
-Args:
-    directive: Routing directive. Options:
-        - Default (default if omitted)
-        - Explore
-        - NoTimingRelaxation
-        - MoreGlobalIterations
-        - HigherDelayCost
-        - AggressiveExplore
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `directive` | `string` | No | `""` | Directive |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `directive` | `string` | No |
 
 </details>
 
 <details id="np_synth_design">
-<summary><code>np_synth_design</code> — Run in-memory synthesis (non-project mode). Reports elapsed time and setup WNS on success; error message on failure. <strong>Max</strong></summary>
+<summary><code>np_synth_design</code> — Run in-memory synthesis (non-project mode). <strong>Max</strong></summary>
 
 Run in-memory synthesis (non-project mode).
-Reports elapsed time and setup WNS on success; error message on failure.
-
-Args:
-    top: Top module name
-    part: Target FPGA part (e.g. xc7z020clg400-2, xczu9eg-ffvb1156-2-e)
-    directive: Synthesis directive. Options:
-        - Default (default if omitted)
-        - RuntimeOptimized
-        - AreaOptimized_high
-        - AreaOptimized_medium
-        - PerformanceOptimized
-        - FewerCarryChains
-        - AlternateRoutability
-    flatten_hierarchy: Hierarchy flattening. Options: rebuilt (default), full, none
-    max_bram: Max BRAM tile usage (-1 = unlimited)
-    max_dsp: Max DSP slice usage (-1 = unlimited)
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `top` | `string` | Yes | `—` | Top |
-| `part` | `string` | Yes | `—` | Part |
-| `directive` | `string` | No | `""` | Directive |
-| `flatten_hierarchy` | `string` | No | `""` | Flatten Hierarchy |
-| `max_bram` | `integer` | No | `-1` | Max Bram |
-| `max_dsp` | `integer` | No | `-1` | Max Dsp |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `top` | `string` | Yes |
+| `part` | `string` | Yes |
+| `directive` | `string` | No |
+| `flatten_hierarchy` | `string` | No |
+| `max_bram` | `integer` | No |
+| `max_dsp` | `integer` | No |
 
 </details>
 
@@ -9640,37 +6918,28 @@ Args:
 
 Generate bitstream file from routed design (non-project mode).
 
-Args:
-    file_path: Output .bit file path (e.g. C:/output/design.bit)
-
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
 <details id="np_write_checkpoint">
-<summary><code>np_write_checkpoint</code> — Save current in-memory design to a checkpoint (.dcp) file. Use after any design stage to save state for later resumption. <strong>Max</strong></summary>
+<summary><code>np_write_checkpoint</code> — Save current in-memory design to a checkpoint (.dcp) file. <strong>Max</strong></summary>
 
 Save current in-memory design to a checkpoint (.dcp) file.
-Use after any design stage to save state for later resumption.
-
-Args:
-    file_path: Output .dcp file path (e.g. C:/output/post_synth.dcp)
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -9682,17 +6951,13 @@ Args:
 
 Configure Flash programming settings
 
-Args:
-    flash_type: Flash part number
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `flash_type` | `string` | No | `"s25fl128sxxxxxx0-spi-x1_x2_x4"` | Flash Type |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `flash_type` | `string` | No |
 
 </details>
 
@@ -9701,17 +6966,13 @@ Args:
 
 Connect to hardware server
 
-Args:
-    url: Hardware server address, default localhost:3121
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `url` | `string` | No | `"localhost:3121"` | Url |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `url` | `string` | No |
 
 </details>
 
@@ -9721,7 +6982,6 @@ Args:
 Disconnect hardware connection
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9734,20 +6994,13 @@ No parameters.
 
 Generate bitstream file (synchronous, waits for completion)
 
-Args:
-    jobs: Number of parallel jobs, default 4
-
-Returns:
-    Bitstream generation result and file path
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
 
 </details>
 
@@ -9756,21 +7009,15 @@ Returns:
 
 Generate MCS file from bitstream (for Flash programming)
 
-Args:
-    bitstream_path: Input bitstream file path
-    mcs_path: Output MCS file path
-    flash_size: Flash size (MB), default 128
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bitstream_path` | `string` | Yes | `—` | Bitstream Path |
-| `mcs_path` | `string` | Yes | `—` | Mcs Path |
-| `flash_size` | `integer` | No | `128` | Flash Size |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bitstream_path` | `string` | Yes |
+| `mcs_path` | `string` | Yes |
+| `flash_size` | `integer` | No |
 
 </details>
 
@@ -9780,7 +7027,6 @@ Args:
 List all devices on hardware target
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9794,7 +7040,6 @@ No parameters.
 List available hardware targets (devices on JTAG chain)
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9808,7 +7053,6 @@ No parameters.
 Open Hardware Manager
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9821,39 +7065,29 @@ No parameters.
 
 Open hardware target
 
-Args:
-    target: Target name (leave empty to auto-select first)
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target` | `string` | No | `""` | Target |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target` | `string` | No |
 
 </details>
 
 <details id="program_device">
-<summary><code>program_device</code> — Download bitstream to FPGA. Automatically associates probes file (.ltx) if found next to bitstream, and refreshes device after programming. <strong>Free</strong></summary>
+<summary><code>program_device</code> — Download bitstream to FPGA. <strong>Free</strong></summary>
 
-Download bitstream to FPGA. Automatically associates probes file (.ltx)
-if found next to bitstream, and refreshes device after programming.
-
-Args:
-    bitstream_path: Bitstream file path (leave empty for project default)
-    probes_file: Debug probes file (.ltx) path. Leave empty to auto-detect from bitstream directory.
+Download bitstream to FPGA.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bitstream_path` | `string` | No | `""` | Bitstream Path |
-| `probes_file` | `string` | No | `""` | Probes File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bitstream_path` | `string` | No |
+| `probes_file` | `string` | No |
 
 </details>
 
@@ -9862,28 +7096,22 @@ Args:
 
 Program Flash
 
-Args:
-    mcs_file: MCS file path
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mcs_file` | `string` | Yes | `—` | Mcs File |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mcs_file` | `string` | Yes |
 
 </details>
 
 <details id="quick_program">
-<summary><code>quick_program</code> — Quick program: auto connect hardware and download current project bitstream. Automatically skips arm_* debug devices on Zynq boards. <strong>Pro</strong></summary>
+<summary><code>quick_program</code> — Quick program: auto connect hardware and download current project bitstream. <strong>Pro</strong></summary>
 
 Quick program: auto connect hardware and download current project bitstream.
-        Automatically skips arm_* debug devices on Zynq boards.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9897,7 +7125,6 @@ No parameters.
 Refresh hardware device status
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9913,17 +7140,13 @@ No parameters.
 
 Add constraint file (XDC) to project
 
-Args:
-    xdc_path: Full path to the XDC file
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `xdc_path` | `string` | Yes | `—` | Xdc Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `xdc_path` | `string` | Yes |
 
 </details>
 
@@ -9932,17 +7155,13 @@ Args:
 
 Add source file to project (Verilog/VHDL/SystemVerilog)
 
-Args:
-    file_path: Full path to the source file
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -9951,22 +7170,14 @@ Args:
 
 Add a Verilog preprocessor define without removing existing ones.
 
-Args:
-    define: Define to add (e.g. &quot;LOOPBACK_MODE&quot; or &quot;WIDTH=32&quot;)
-    fileset: Fileset name (default &quot;sources_1&quot;, use &quot;sim_1&quot; for simulation)
-
-Returns:
-    Confirmation with the updated define list
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `define` | `string` | Yes | `—` | Define |
-| `fileset` | `string` | No | `"sources_1"` | Fileset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `define` | `string` | Yes |
+| `fileset` | `string` | No |
 
 </details>
 
@@ -9976,7 +7187,6 @@ Returns:
 Close the current project
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -9989,21 +7199,15 @@ No parameters.
 
 Create a new Vivado project
 
-Args:
-    project_name: Project name
-    project_dir: Directory to save the project
-    part: Target device, e.g., xc7z020clg400-2
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `project_name` | `string` | Yes | `—` | Project Name |
-| `project_dir` | `string` | Yes | `—` | Project Dir |
-| `part` | `string` | Yes | `—` | Part |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `project_name` | `string` | Yes |
+| `project_dir` | `string` | Yes |
+| `part` | `string` | Yes |
 
 </details>
 
@@ -10013,7 +7217,6 @@ Args:
 Get detailed information about the current project
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10026,20 +7229,13 @@ No parameters.
 
 Get Verilog preprocessor defines (`define) on a fileset.
 
-Args:
-    fileset: Fileset name (default &quot;sources_1&quot;, use &quot;sim_1&quot; for simulation)
-
-Returns:
-    Space-separated list of defines, or empty if none set
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `fileset` | `string` | No | `"sources_1"` | Fileset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `fileset` | `string` | No |
 
 </details>
 
@@ -10049,7 +7245,6 @@ Returns:
 List all constraint files in the project
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10063,7 +7258,6 @@ No parameters.
 List all source files in the project
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10076,17 +7270,13 @@ No parameters.
 
 Open a Vivado project
 
-Args:
-    project_path: Full path to the .xpr project file
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `project_path` | `string` | Yes | `—` | Project Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `project_path` | `string` | Yes |
 
 </details>
 
@@ -10095,20 +7285,13 @@ Args:
 
 Remove a file from the project.
 
-Automatically detects which fileset the file belongs to and performs
-the full Vivado removal sequence including IP user files cleanup.
-
-Args:
-    file_path: Path to the file to remove
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -10117,17 +7300,13 @@ Args:
 
 Set the top module
 
-Args:
-    module_name: Name of the top module
-
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `module_name` | `string` | Yes | `—` | Module Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `module_name` | `string` | Yes |
 
 </details>
 
@@ -10136,22 +7315,14 @@ Args:
 
 Set Verilog preprocessor defines on a fileset, replacing any existing defines.
 
-Args:
-    defines: Space-separated defines (e.g. &quot;LOOPBACK_MODE DEBUG_EN=1&quot;). Use empty string to clear all.
-    fileset: Fileset name (default &quot;sources_1&quot;, use &quot;sim_1&quot; for simulation)
-
-Returns:
-    Confirmation with the new define list
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `defines` | `string` | Yes | `—` | Defines |
-| `fileset` | `string` | No | `"sources_1"` | Fileset |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `defines` | `string` | Yes |
+| `fileset` | `string` | No |
 
 </details>
 
@@ -10159,73 +7330,47 @@ Returns:
 ## Reports
 
 <details id="analyze_clock_domain_timing">
-<summary><code>analyze_clock_domain_timing</code> — Analyze timing across all clock domain pairs. Returns a matrix of worst slack for each source-&gt;destination clock pair. <strong>Pro</strong></summary>
+<summary><code>analyze_clock_domain_timing</code> — Analyze timing across all clock domain pairs. <strong>Pro</strong></summary>
 
 Analyze timing across all clock domain pairs.
-Returns a matrix of worst slack for each source-&gt;destination clock pair.
-
-Args:
-    count_endpoints: If True (default), count endpoints per clock pair (slower, queries 1000 paths each).
-                     If False, only report WNS per clock pair (much faster for large designs).
-
-Returns:
-    Clock domain crossing timing matrix with WNS per clock pair
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `count_endpoints` | `boolean` | No | `true` | Count Endpoints |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `count_endpoints` | `boolean` | No |
 
 </details>
 
 <details id="analyze_critical_paths">
-<summary><code>analyze_critical_paths</code> — Analyze critical timing paths with structured data extraction. Returns per-path: slack, path type (reg2reg/in2reg/reg2out/in2out), source/dest clock, logic levels, start/end pins, requirement, datapath delay, and optional delay breakdown. <strong>Pro</strong></summary>
+<summary><code>analyze_critical_paths</code> — Analyze critical timing paths with structured data extraction. <strong>Pro</strong></summary>
 
 Analyze critical timing paths with structured data extraction.
-Returns per-path: slack, path type (reg2reg/in2reg/reg2out/in2out), source/dest clock,
-logic levels, start/end pins, requirement, datapath delay, and optional delay breakdown.
-
-Args:
-    num_paths: Number of critical paths to analyze (default 10)
-    setup: Analyze setup paths (default True)
-    hold: Analyze hold paths (default False, overrides setup if True)
-    from_clock: Filter by source clock name (optional)
-    to_clock: Filter by destination clock name (optional)
-    delay_breakdown: Include logic/route delay breakdown per path (default True, disable to speed up)
-    timeout_sec: Timeout in seconds (default 300)
-
-Returns:
-    Structured per-path timing data with path classification for AI analysis
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `num_paths` | `integer` | No | `10` | Num Paths |
-| `setup` | `boolean` | No | `true` | Setup |
-| `hold` | `boolean` | No | `false` | Hold |
-| `from_clock` | `string` | No | `""` | From Clock |
-| `to_clock` | `string` | No | `""` | To Clock |
-| `delay_breakdown` | `boolean` | No | `true` | Delay Breakdown |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `num_paths` | `integer` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `from_clock` | `string` | No |
+| `to_clock` | `string` | No |
+| `delay_breakdown` | `boolean` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
 <details id="check_timing">
-<summary><code>check_timing</code> — Check if timing constraints are complete, with port inventory for cross-reference. Appends a list of all input/output ports so AI can identify which ports lack constraints. <strong>Pro</strong></summary>
+<summary><code>check_timing</code> — Check if timing constraints are complete, with port inventory for cross-reference. <strong>Pro</strong></summary>
 
 Check if timing constraints are complete, with port inventory for cross-reference.
-Appends a list of all input/output ports so AI can identify which ports lack constraints.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10234,32 +7379,18 @@ No parameters.
 </details>
 
 <details id="extract_timing_metrics">
-<summary><code>extract_timing_metrics</code> — Extract structured timing metrics with path type classification and environment detection. Uses get_timing_paths object API for precise data extraction. <strong>Pro</strong></summary>
+<summary><code>extract_timing_metrics</code> — Extract structured timing metrics with path type classification and environment detection. <strong>Pro</strong></summary>
 
 Extract structured timing metrics with path type classification and environment detection.
-Uses get_timing_paths object API for precise data extraction.
-
-Returns three sections:
-- Timing Metrics: overall WNS/TNS/failing count for setup, hold, and pulse width
-- Setup Timing by Path Type: WNS and failing count per path type (reg2reg/in2reg/reg2out/in2out)
-- Design Environment: pin assignment status to help judge I/O path timing realism
-
-Args:
-    max_paths_to_scan: Max paths to scan for TNS calculation (default 100, higher = more accurate but slower)
-    timeout_sec: Timeout in seconds (default 600)
-
-Returns:
-    Structured timing metrics with path classification suitable for AI reasoning
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `max_paths_to_scan` | `integer` | No | `100` | Max Paths To Scan |
-| `timeout_sec` | `integer` | No | `600` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `max_paths_to_scan` | `integer` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -10269,7 +7400,6 @@ Returns:
 Get Clock Domain Crossing (CDC) report
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10278,13 +7408,11 @@ No parameters.
 </details>
 
 <details id="report_cdc_details">
-<summary><code>report_cdc_details</code> — Detailed CDC report with synchronizer type identification. Shows each CDC crossing with its synchronizer structure, depth, and exception status. <strong>Pro</strong></summary>
+<summary><code>report_cdc_details</code> — Detailed CDC report with synchronizer type identification. <strong>Pro</strong></summary>
 
 Detailed CDC report with synchronizer type identification.
-Shows each CDC crossing with its synchronizer structure, depth, and exception status.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10297,37 +7425,24 @@ No parameters.
 
 Filtered CDC report by clock pair or severity.
 
-Args:
-    from_clock: Source clock name (optional)
-    to_clock: Destination clock name (optional)
-    severity: Filter by severity - &quot;Critical&quot;, &quot;Warning&quot;, &quot;Info&quot; (optional)
-
-Examples:
-    report_cdc_filtered(from_clock=&quot;clk_100&quot;, to_clock=&quot;clk_200&quot;)
-    report_cdc_filtered(severity=&quot;Warning&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_clock` | `string` | No | `""` | From Clock |
-| `to_clock` | `string` | No | `""` | To Clock |
-| `severity` | `string` | No | `""` | Severity |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_clock` | `string` | No |
+| `to_clock` | `string` | No |
+| `severity` | `string` | No |
 
 </details>
 
 <details id="report_clock_interaction">
-<summary><code>report_clock_interaction</code> — Clock domain interaction matrix. Shows WNS/TNS between all clock pairs, constraint classification (Timed/Ignored/Partial), and inter-clock relationship. Essential for CDC and multi-clock design analysis. <strong>Pro</strong></summary>
+<summary><code>report_clock_interaction</code> — Clock domain interaction matrix. <strong>Pro</strong></summary>
 
 Clock domain interaction matrix.
-Shows WNS/TNS between all clock pairs, constraint classification (Timed/Ignored/Partial),
-and inter-clock relationship. Essential for CDC and multi-clock design analysis.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10341,7 +7456,6 @@ No parameters.
 Get clock networks report (requires open synthesized or implemented design)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10355,7 +7469,6 @@ No parameters.
 Get clock resource utilization
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10368,58 +7481,32 @@ No parameters.
 
 Get pure datapath delay (excluding clock path)
 
-Args:
-    from_pin: Start pin
-    to_pin: End pin
-    through_pin: Through pin (optional)
-
-Returns:
-    Datapath delay value and detailed breakdown
-
-Examples:
-    # Get combinational logic delay
-    report_datapath_delay(&quot;input_reg/Q&quot;, &quot;output_reg/D&quot;)
-
-    # Through specific cell
-    report_datapath_delay(&quot;reg_a/Q&quot;, &quot;reg_b/D&quot;, through_pin=&quot;adder/S&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_pin` | `string` | Yes | `—` | From Pin |
-| `to_pin` | `string` | Yes | `—` | To Pin |
-| `through_pin` | `string` | No | `""` | Through Pin |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_pin` | `string` | Yes |
+| `to_pin` | `string` | Yes |
+| `through_pin` | `string` | No |
 
 </details>
 
 <details id="report_design_analysis">
-<summary><code>report_design_analysis</code> — Design complexity and quality analysis. Shows logic level distribution, congestion analysis, and critical path characteristics. <strong>Pro</strong></summary>
+<summary><code>report_design_analysis</code> — Design complexity and quality analysis. <strong>Pro</strong></summary>
 
 Design complexity and quality analysis.
-Shows logic level distribution, congestion analysis, and critical path characteristics.
-
-Args:
-    timing_paths: Number of critical paths to characterize (default 1)
-    congestion: Include congestion analysis (default True)
-    logic_level_distribution: Include logic level distribution (default True)
-
-Returns:
-    Design analysis with complexity metrics and congestion data
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `timing_paths` | `integer` | No | `1` | Timing Paths |
-| `congestion` | `boolean` | No | `true` | Congestion |
-| `logic_level_distribution` | `boolean` | No | `true` | Logic Level Distribution |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `timing_paths` | `integer` | No |
+| `congestion` | `boolean` | No |
+| `logic_level_distribution` | `boolean` | No |
 
 </details>
 
@@ -10429,7 +7516,6 @@ Returns:
 Run Design Rule Check (DRC)
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10438,26 +7524,19 @@ No parameters.
 </details>
 
 <details id="report_high_fanout_nets">
-<summary><code>report_high_fanout_nets</code> — Report high fan-out nets that may cause timing degradation. High fan-out nets are a common root cause of timing violations. <strong>Pro</strong></summary>
+<summary><code>report_high_fanout_nets</code> — Report high fan-out nets that may cause timing degradation. <strong>Pro</strong></summary>
 
 Report high fan-out nets that may cause timing degradation.
-High fan-out nets are a common root cause of timing violations.
-
-Args:
-    fanout_threshold: Minimum fanout to report (default 100)
-    max_nets: Maximum number of nets to report (default 20)
-    timeout_sec: Timeout in seconds (default 300)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `fanout_threshold` | `integer` | No | `100` | Fanout Threshold |
-| `max_nets` | `integer` | No | `20` | Max Nets |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `fanout_threshold` | `integer` | No |
+| `max_nets` | `integer` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -10466,18 +7545,13 @@ Args:
 
 Get IO port report.
 
-Args:
-    used_only: If True (default), show only ports with pin assignments (compact).
-               If False, show full Vivado report (all device pins, can be very large).
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `used_only` | `boolean` | No | `true` | Used Only |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `used_only` | `boolean` | No |
 
 </details>
 
@@ -10487,7 +7561,6 @@ Args:
 Run design methodology check
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10501,7 +7574,6 @@ No parameters.
 Get power estimation report
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10510,41 +7582,28 @@ No parameters.
 </details>
 
 <details id="report_pulse_width">
-<summary><code>report_pulse_width</code> — Report pulse width checks (min period, low/high pulse width). Identifies minimum achievable clock period for the design. <strong>Pro</strong></summary>
+<summary><code>report_pulse_width</code> — Report pulse width checks (min period, low/high pulse width). <strong>Pro</strong></summary>
 
 Report pulse width checks (min period, low/high pulse width).
-Identifies minimum achievable clock period for the design.
-
-Args:
-    limit_per_clock: Number of checks per type per clock (default 1)
-    all_violators: Only show violating pins (default False)
-    clocks: Space-separated clock names to check (optional, default all clocks)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `limit_per_clock` | `integer` | No | `1` | Limit Per Clock |
-| `all_violators` | `boolean` | No | `false` | All Violators |
-| `clocks` | `string` | No | `""` | Clocks |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `limit_per_clock` | `integer` | No |
+| `all_violators` | `boolean` | No |
+| `clocks` | `string` | No |
 
 </details>
 
 <details id="report_qor_suggestions">
-<summary><code>report_qor_suggestions</code> — Get Vivado QoR (Quality of Results) optimization suggestions. Vivado analyzes the design and suggests synthesis/implementation strategies, constraint changes, or design modifications to improve timing. <strong>Pro</strong></summary>
+<summary><code>report_qor_suggestions</code> — Get Vivado QoR (Quality of Results) optimization suggestions. <strong>Pro</strong></summary>
 
 Get Vivado QoR (Quality of Results) optimization suggestions.
-Vivado analyzes the design and suggests synthesis/implementation strategies,
-constraint changes, or design modifications to improve timing.
-
-Note: May return empty suggestions if design easily meets timing.
-Requires Vivado 2020.1+.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10557,17 +7616,13 @@ No parameters.
 
 Get detailed timing report
 
-Args:
-    num_paths: Number of paths to report, default 10
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `num_paths` | `integer` | No | `10` | Num Paths |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `num_paths` | `integer` | No |
 
 </details>
 
@@ -10576,59 +7631,26 @@ Args:
 
 Filtered timing report (enhanced report_timing)
 
-Args:
-    from_clock: Source clock name (filter paths from this clock domain)
-    to_clock: Target clock name (filter paths to this clock domain)
-    from_node: Start node (pin path like &quot;inst/Q&quot; or port name)
-    to_node: End node (pin path like &quot;inst/D&quot; or port name)
-    through_node: Through node (pin or cell, supports hierarchical paths like &quot;u_mvm/fpmac_inst&quot;)
-    delay_type: Delay type - &quot;max&quot;(setup), &quot;min&quot;(hold), &quot;max_rise&quot;, &quot;max_fall&quot;, &quot;min_rise&quot;, &quot;min_fall&quot;
-    max_paths: Maximum number of paths to report, default 10
-    nworst: Number of worst paths per endpoint, default 1
-    slack_lesser_than: Only show paths with slack less than this value (for finding violations)
-    slack_greater_than: Only show paths with slack greater than this value
-    setup: Only report setup paths (equivalent to delay_type=&quot;max&quot;)
-    hold: Only report hold paths (equivalent to delay_type=&quot;min&quot;)
-    path_type: Path display format - &quot;full&quot;, &quot;full_clock&quot;, &quot;full_clock_expanded&quot;(default), &quot;short&quot;
-    timeout_sec: Timeout in seconds (default 300, increase for large designs)
-
-Examples:
-    # View all violation paths (slack &lt; 0)
-    report_timing_filtered(slack_lesser_than=0.001, max_paths=20)
-
-    # View paths between specific clock domains
-    report_timing_filtered(from_clock=&quot;clk_100&quot;, to_clock=&quot;clk_200&quot;, max_paths=5)
-
-    # View hold violations
-    report_timing_filtered(hold=True, slack_lesser_than=0.001)
-
-    # View paths through specific module
-    report_timing_filtered(through_node=&quot;uart_inst&quot;, max_paths=10)
-
-    # View timing-critical paths (slack &lt; 1ns)
-    report_timing_filtered(slack_lesser_than=1.0, max_paths=20)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_clock` | `string` | No | `""` | From Clock |
-| `to_clock` | `string` | No | `""` | To Clock |
-| `from_node` | `string` | No | `""` | From Node |
-| `to_node` | `string` | No | `""` | To Node |
-| `through_node` | `string` | No | `""` | Through Node |
-| `delay_type` | `string` | No | `"max"` | Delay Type |
-| `max_paths` | `integer` | No | `10` | Max Paths |
-| `nworst` | `integer` | No | `1` | Nworst |
-| `slack_lesser_than` | `number` | No | `0.0` | Slack Lesser Than |
-| `slack_greater_than` | `number` | No | `0.0` | Slack Greater Than |
-| `setup` | `boolean` | No | `false` | Setup |
-| `hold` | `boolean` | No | `false` | Hold |
-| `path_type` | `string` | No | `"full_clock_expanded"` | Path Type |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_clock` | `string` | No |
+| `to_clock` | `string` | No |
+| `from_node` | `string` | No |
+| `to_node` | `string` | No |
+| `through_node` | `string` | No |
+| `delay_type` | `string` | No |
+| `max_paths` | `integer` | No |
+| `nworst` | `integer` | No |
+| `slack_lesser_than` | `number` | No |
+| `slack_greater_than` | `number` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `path_type` | `string` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -10637,70 +7659,38 @@ Examples:
 
 Detailed path analysis (shows delay breakdown for each cell and net)
 
-Args:
-    from_pin: Start pin (e.g., &quot;reg_a/C&quot; or &quot;reg_a/Q&quot;)
-    to_pin: End pin (e.g., &quot;reg_b/D&quot;)
-    through_pins: Through pins, space-separated (e.g., &quot;mux/I0 buf/I&quot;)
-    from_clock: Source clock (mutually exclusive with from_pin)
-    to_clock: Target clock (mutually exclusive with to_pin)
-    max_paths: Maximum paths to analyze, default 1
-    nworst: Worst paths per endpoint, default 1
-    delay_type: &quot;max&quot;(setup) or &quot;min&quot;(hold)
-    show_input_pins: Show input pin delays, default True
-    significant_digits: Significant digits for delay values, default 3
-
-Examples:
-    # Analyze path between specific registers
-    report_timing_path(from_pin=&quot;src_reg/C&quot;, to_pin=&quot;dst_reg/D&quot;)
-
-    # Analyze path through specific logic
-    report_timing_path(from_pin=&quot;data_reg/Q&quot;, to_pin=&quot;result_reg/D&quot;, through_pins=&quot;alu/O&quot;)
-
-    # Analyze worst 3 paths between clock domains
-    report_timing_path(from_clock=&quot;clk_fast&quot;, to_clock=&quot;clk_slow&quot;, max_paths=3)
-
-    # Hold time analysis
-    report_timing_path(from_pin=&quot;reg_a/C&quot;, to_pin=&quot;reg_b/D&quot;, delay_type=&quot;min&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from_pin` | `string` | No | `""` | From Pin |
-| `to_pin` | `string` | No | `""` | To Pin |
-| `through_pins` | `string` | No | `""` | Through Pins |
-| `from_clock` | `string` | No | `""` | From Clock |
-| `to_clock` | `string` | No | `""` | To Clock |
-| `max_paths` | `integer` | No | `1` | Max Paths |
-| `nworst` | `integer` | No | `1` | Nworst |
-| `delay_type` | `string` | No | `"max"` | Delay Type |
-| `show_input_pins` | `boolean` | No | `true` | Show Input Pins |
-| `significant_digits` | `integer` | No | `3` | Significant Digits |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from_pin` | `string` | No |
+| `to_pin` | `string` | No |
+| `through_pins` | `string` | No |
+| `from_clock` | `string` | No |
+| `to_clock` | `string` | No |
+| `max_paths` | `integer` | No |
+| `nworst` | `integer` | No |
+| `delay_type` | `string` | No |
+| `show_input_pins` | `boolean` | No |
+| `significant_digits` | `integer` | No |
 
 </details>
 
 <details id="report_timing_summary">
-<summary><code>report_timing_summary</code> — Get timing analysis summary (check_timing + WNS/TNS tables + clock summary). By default returns only summary tables without per-clock-pair path details. <strong>Free</strong></summary>
+<summary><code>report_timing_summary</code> — Get timing analysis summary (check_timing + WNS/TNS tables + clock summary). <strong>Free</strong></summary>
 
 Get timing analysis summary (check_timing + WNS/TNS tables + clock summary).
-By default returns only summary tables without per-clock-pair path details.
-
-Args:
-    detailed_paths: Include full path details per clock pair (default False, can be very large for complex designs)
-    timeout_sec: Timeout in seconds (default 300, increase for large designs)
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `detailed_paths` | `boolean` | No | `false` | Detailed Paths |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `detailed_paths` | `boolean` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -10710,7 +7700,6 @@ Args:
 Get resource utilization report (LUT, FF, BRAM, DSP, etc.)
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10723,17 +7712,13 @@ No parameters.
 
 Get hierarchical resource utilization report
 
-Args:
-    depth: Hierarchy depth limit (0 = unlimited, 1 = top-level only, 2 = one level down, etc.)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `depth` | `integer` | No | `0` | Depth |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `depth` | `integer` | No |
 
 </details>
 
@@ -10742,17 +7727,13 @@ Args:
 
 Get worst timing paths
 
-Args:
-    num_paths: Number of paths, default 5
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `num_paths` | `integer` | No | `5` | Num Paths |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `num_paths` | `integer` | No |
 
 </details>
 
@@ -10764,17 +7745,13 @@ Args:
 
 Add simulation file (testbench) to project
 
-Args:
-    file_path: Full path to simulation file
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file_path` | `string` | Yes | `—` | File Path |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file_path` | `string` | Yes |
 
 </details>
 
@@ -10784,7 +7761,6 @@ Args:
 List all files in simulation fileset
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -10797,17 +7773,13 @@ No parameters.
 
 Set simulation top module
 
-Args:
-    module_name: Testbench module name
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `module_name` | `string` | Yes | `—` | Module Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `module_name` | `string` | Yes |
 
 </details>
 
@@ -10819,48 +7791,18 @@ Args:
 
 Compile RTL + testbench for simulation (Verilog/SystemVerilog/VHDL).
 
-        This is the standard simulation entry point. Recommended workflow:
-          1. sim_compile(top_module=&quot;tb_xxx&quot;)  &lt;- you are here
-          2. sim_run() -&gt; returns ALL $display output + structured test results
-          3. sim_probe() -&gt; sample signal waveforms over time
-          4. sim_list_signals() -&gt; discover available signal paths
-
-        Supports mixed-language projects: VHDL files are compiled with xvhdl,
-        Verilog/SV files with xvlog, then xelab elaborates the unified work library.
-
-        Uses Vivado&#x27;s dependency-chain resolution (get_files -compile_order sources
-        -used_in simulation) to auto-discover ALL required files including IP
-        behavioral models, RFS wrappers, and MIF/COE initialization files.
-        Automatically deploys mcp_report.vh and defines MCP_SIM_REPORT macro.
-
-        Args:
-            top_module: Testbench top module name (e.g., &quot;tb_counter&quot;)
-            extra_args: Additional xvlog arguments (e.g., &quot;-d MY_DEFINE --sv&quot;)
-            extra_elab_args: Additional xelab arguments (e.g., &quot;-L mylib&quot;)
-            exclude_patterns: Comma-separated glob patterns to exclude files
-                (e.g., &quot;*/ddr_*,*/xdma_*&quot;)
-            coverage_types: Enable code coverage instrumentation. Empty = off (default).
-                Any combination of the letters s/b/c/t:
-                  s=statement, b=branch, c=condition, t=toggle (e.g., &quot;sbc&quot;).
-                When set, the simulation records coverage; call sim_get_coverage()
-                after sim_run() to retrieve structured results.
-                Note: xsim code coverage has NO FSM dimension, and inline
-                (* coverage_off *) pragmas are ignored by xsim.
-            timeout_sec: Compile/elaborate timeout in seconds (default 600, increase for large designs)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `top_module` | `string` | Yes | `—` | Top Module |
-| `extra_args` | `string` | No | `""` | Extra Args |
-| `extra_elab_args` | `string` | No | `""` | Extra Elab Args |
-| `exclude_patterns` | `string` | No | `""` | Exclude Patterns |
-| `coverage_types` | `string` | No | `""` | Coverage Types |
-| `timeout_sec` | `integer` | No | `600` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `top_module` | `string` | Yes |
+| `extra_args` | `string` | No |
+| `extra_elab_args` | `string` | No |
+| `exclude_patterns` | `string` | No |
+| `coverage_types` | `string` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -10869,20 +7811,13 @@ Compile RTL + testbench for simulation (Verilog/SystemVerilog/VHDL).
 
 Get detailed compile/elaborate/simulation log for debugging.
 
-        Use this when sim_compile or sim_run reports errors and you need
-        the full log output for diagnosis.
-
-        Args:
-            stage: &quot;compile&quot; for xvlog log, &quot;elaborate&quot; for xelab log, &quot;sim&quot; for xsim log
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `stage` | `string` | No | `"compile"` | Stage |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `stage` | `string` | No |
 
 </details>
 
@@ -10891,43 +7826,15 @@ Get detailed compile/elaborate/simulation log for debugging.
 
 Generate and parse code-coverage results from the last coverage run.
 
-        Requires a prior sim_compile(coverage_types=&quot;...&quot;) + sim_run(). Runs xcrg
-        on the coverage database and returns structured JSON. This is a pure
-        data-fetch tool: it does NOT apply gates or exclusions (do that in your
-        own CI script using the covered/total counts below).
-
-        Per-module numbers are the UNION across all instances of a module
-        (keyed by source module name), so &quot;any instance hit this line&quot; counts.
-        xsim code coverage has NO FSM dimension; toggle is reported as pct only.
-
-        Args:
-            detail_level: 0=summary only; 1=+per_module covered/total/pct;
-                2=+uncovered file:line:type list
-            uncovered_limit: Max uncovered entries when detail_level&gt;=2 (default 50)
-            output_dir: Optional absolute path for the HTML report. Empty (default)
-                writes to the tool scratch (mcp_sim/cov/) and returns the path;
-                copy it into your repo yourself if you want it git-tracked.
-
-        Returns JSON:
-            {
-              &quot;summary&quot;: {&quot;statement&quot;: %, &quot;branch&quot;: %, &quot;condition&quot;: %, &quot;toggle&quot;: %},
-              &quot;per_module&quot;: {&quot;&lt;module&gt;&quot;: {&quot;instances&quot;: N,
-                  &quot;statement&quot;: {&quot;covered&quot;, &quot;total&quot;, &quot;pct&quot;}, &quot;branch&quot;: {...},
-                  &quot;condition&quot;: {...}, &quot;toggle&quot;: {&quot;pct&quot;}}},
-              &quot;uncovered&quot;: [{&quot;file&quot;, &quot;line&quot;, &quot;type&quot;, &quot;context&quot;}],   # detail_level&gt;=2
-              &quot;report_path&quot;: &quot;&lt;...&gt;/dashboard.html&quot;
-            }
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `detail_level` | `integer` | No | `1` | Detail Level |
-| `uncovered_limit` | `integer` | No | `50` | Uncovered Limit |
-| `output_dir` | `string` | No | `""` | Output Dir |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `detail_level` | `integer` | No |
+| `uncovered_limit` | `integer` | No |
+| `output_dir` | `string` | No |
 
 </details>
 
@@ -10936,20 +7843,13 @@ Generate and parse code-coverage results from the last coverage run.
 
 Re-read simulation report at a different detail level.
 
-        Use after sim_run when AI needs more (or less) detail about results.
-        Does not re-run simulation, just re-parses the existing JSONL file.
-
-        Args:
-            detail_level: 0=summary only, 1=+failures, 2=+signals at failure times, 3=full JSONL
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `detail_level` | `integer` | No | `2` | Detail Level |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `detail_level` | `integer` | No |
 
 </details>
 
@@ -10958,24 +7858,14 @@ Re-read simulation report at a different detail level.
 
 Check background simulation status and progress.
 
-        Use after sim_run_async() to monitor progress. Returns:
-        - RUNNING: simulation in progress, shows recent output lines + elapsed time
-        - COMPLETED: simulation finished, returns full parsed results
-        - NOT_STARTED: no simulation log found
-
-        Args:
-            tail_lines: Number of recent output lines to show when RUNNING (default 30)
-            detail_level: Result detail when COMPLETED (0=summary, 1=+failures, 2=+signals)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `tail_lines` | `integer` | No | `30` | Tail Lines |
-| `detail_level` | `integer` | No | `1` | Detail Level |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `tail_lines` | `integer` | No |
+| `detail_level` | `integer` | No |
 
 </details>
 
@@ -10984,24 +7874,14 @@ Check background simulation status and progress.
 
 List available signals in the simulation design hierarchy.
 
-        Runs xsim on the compiled snapshot to discover signal paths.
-        Use this to find correct signal paths for sim_probe().
-
-        Requires sim_compile() to have been called first.
-
-        Args:
-            scope: Hierarchy path to list (e.g. &quot;dut&quot;, &quot;dut/fsm&quot;). Empty = top level.
-            max_count: Maximum number of signals to return (default 200)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `scope` | `string` | No | `""` | Scope |
-| `max_count` | `integer` | No | `200` | Max Count |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `scope` | `string` | No |
+| `max_count` | `integer` | No |
 
 </details>
 
@@ -11010,50 +7890,18 @@ List available signals in the simulation design hierarchy.
 
 Sample signal values over time and return a waveform table.
 
-        Re-runs the compiled snapshot (no re-compilation needed) and samples
-        specified signals at regular intervals, returning an aligned text table.
-
-        Use sim_list_signals() first if unsure about signal paths.
-
-        IMPORTANT: Use time_range to set start/end time, NOT start_time/end_time.
-
-        Args:
-            signals: Comma-separated signal paths (e.g. &quot;dut/count,dut/en,clk&quot;)
-            time_range: &quot;start:end&quot; time window. Examples:
-                &quot;0ns:all&quot; (default, full simulation)
-                &quot;50ns:200ns&quot; (specific window)
-                &quot;100us:500us&quot; (microsecond range)
-                &quot;0ns:1ms&quot; (from start to 1ms)
-            step: Sampling interval (e.g. &quot;10ns&quot;, &quot;1us&quot;, &quot;500ns&quot;). Choose based on
-                time_range to stay within max_samples limit.
-            max_samples: Maximum number of samples to capture (default 200, hard limit 2000).
-                If time_range/step would exceed this, sampling stops early.
-            radix: Display radix: hex, bin, dec (mapped to unsigned), oct
-            timeout_sec: Timeout in seconds (default 300, increase for long simulations)
-
-        Examples:
-            # Probe reset sequence in first 1us
-            sim_probe(signals=&quot;dut/rst_n,dut/state&quot;, time_range=&quot;0ns:1us&quot;, step=&quot;10ns&quot;)
-
-            # Probe FSM at microsecond scale
-            sim_probe(signals=&quot;ctrl/state&quot;, time_range=&quot;100us:500us&quot;, step=&quot;1us&quot;)
-
-            # Probe full 1ms simulation with coarse step
-            sim_probe(signals=&quot;dut/count&quot;, time_range=&quot;0ns:1ms&quot;, step=&quot;5us&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `signals` | `string` | Yes | `—` | Signals |
-| `time_range` | `string` | No | `"0ns:all"` | Time Range |
-| `step` | `string` | No | `"10ns"` | Step |
-| `max_samples` | `integer` | No | `200` | Max Samples |
-| `radix` | `string` | No | `"hex"` | Radix |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `signals` | `string` | Yes |
+| `time_range` | `string` | No |
+| `step` | `string` | No |
+| `max_samples` | `integer` | No |
+| `radix` | `string` | No |
+| `timeout_sec` | `integer` | No |
 
 </details>
 
@@ -11062,29 +7910,16 @@ Sample signal values over time and return a waveform table.
 
 Run simulation and return captured output.
 
-        Captures ALL console output including $display, $monitor, $write.
-        Also parses structured JSONL report if testbench uses MCP macros.
-        Handles long simulations gracefully with configurable timeout.
-
-        Requires sim_compile() first.
-
-        Args:
-            run_time: Simulation duration (&quot;all&quot;, &quot;100ns&quot;, &quot;1us&quot;, etc.)
-            timeout_sec: Process timeout in seconds (default 300)
-            detail_level: Result detail (0=summary, 1=+failures, 2=+signals, 3=full)
-            extra_tcl: Additional Tcl commands to execute before run (e.g., &quot;log_wave *&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `run_time` | `string` | No | `"all"` | Run Time |
-| `timeout_sec` | `integer` | No | `300` | Timeout Sec |
-| `detail_level` | `integer` | No | `1` | Detail Level |
-| `extra_tcl` | `string` | No | `""` | Extra Tcl |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `run_time` | `string` | No |
+| `timeout_sec` | `integer` | No |
+| `detail_level` | `integer` | No |
+| `extra_tcl` | `string` | No |
 
 </details>
 
@@ -11093,27 +7928,14 @@ Run simulation and return captured output.
 
 Start simulation in background (non-blocking).
 
-        Launches xsim as a background process and returns immediately.
-        Use sim_get_sim_status() to check progress and retrieve results.
-
-        Preferred for long-running simulations (&gt;30s expected runtime).
-        For quick simulations, use sim_run() which blocks and returns results directly.
-
-        Requires sim_compile() first.
-
-        Args:
-            run_time: Simulation duration (&quot;all&quot;, &quot;100ns&quot;, &quot;1us&quot;, etc.)
-            extra_tcl: Additional Tcl commands before run (e.g., &quot;log_wave *&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `run_time` | `string` | No | `"all"` | Run Time |
-| `extra_tcl` | `string` | No | `""` | Extra Tcl |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `run_time` | `string` | No |
+| `extra_tcl` | `string` | No |
 
 </details>
 
@@ -11122,26 +7944,7 @@ Start simulation in background (non-blocking).
 
 Deploy mcp_report.vh macro library to project simulation directory.
 
-        Call this before writing a testbench that uses MCP reporting macros.
-        Returns the include path for the testbench `include directive.
-
-        The macro library provides structured JSONL output:
-        - `MCP_INIT        : Initialize report file
-        - `MCP_ASSERT      : Test assertion (pass/fail)
-        - `MCP_ASSERT_EQ   : Assert with expected/actual values
-        - `MCP_SIGNAL      : Record signal value (hex)
-        - `MCP_SIGNAL_DEC  : Record signal value (decimal)
-        - `MCP_SIGNAL_BIN  : Record signal value (binary)
-        - `MCP_LOG         : Log message
-        - `MCP_WARN        : Warning message
-        - `MCP_ERROR       : Error message
-        - `MCP_GROUP_BEGIN : Start test group
-        - `MCP_GROUP_END   : End test group
-        - `MCP_MARKER      : Waveform marker
-        - `MCP_FINISH      : Write summary and close
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11154,21 +7957,7 @@ No parameters.
 
 Stop a stuck/background xsim simulation and clear its snapshot lock.
 
-        Use this when sim_compile() reports SIM_LOCKED (XSIM 43-3345 &quot;Unable to
-        remove previous simulation file xsimk.exe&quot;). That error means a previous
-        kernel launched by sim_run_async()/sim_run() is still running and is
-        locking xsim.dir/mcp_snapshot/xsimk.exe, so xelab cannot rebuild the
-        snapshot. On Windows a running .exe cannot be overwritten, so every
-        re-compile keeps failing until the kernel is killed.
-
-        This terminates the stale xsim kernel(s) and removes the locked snapshot
-        so the next sim_compile() rebuilds cleanly. Note: it kills ALL xsim
-        kernels on this machine (the standalone engine controls one sim at a
-        time), so do not call it while an unrelated xsim run you care about is
-        still in progress.
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11185,7 +7974,6 @@ No parameters.
 Get current run status (synthesis/implementation)
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11199,7 +7987,6 @@ No parameters.
 Get synthesis report summary
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11208,16 +7995,11 @@ No parameters.
 </details>
 
 <details id="get_synthesis_warnings">
-<summary><code>get_synthesis_warnings</code> — Extract warnings and critical warnings from synthesis log (synth_1/runme.log). Reads the actual synthesis log file, not DRC reports. <strong>Pro</strong></summary>
+<summary><code>get_synthesis_warnings</code> — Extract warnings and critical warnings from synthesis log (synth_1/runme.log). <strong>Pro</strong></summary>
 
 Extract warnings and critical warnings from synthesis log (synth_1/runme.log).
-Reads the actual synthesis log file, not DRC reports.
-
-Returns:
-    Summary count and up to 200 warning lines from the synthesis log
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11231,7 +8013,6 @@ No parameters.
 Open synthesized design (for viewing schematic, etc.)
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -11240,27 +8021,18 @@ No parameters.
 </details>
 
 <details id="run_synthesis">
-<summary><code>run_synthesis</code> — Run synthesis (synchronous, waits for completion). On failure, automatically extracts error summary from the log. <strong>Free</strong></summary>
+<summary><code>run_synthesis</code> — Run synthesis (synchronous, waits for completion). <strong>Free</strong></summary>
 
 Run synthesis (synchronous, waits for completion).
-On failure, automatically extracts error summary from the log.
-
-Args:
-    jobs: Number of parallel jobs, default 4
-    run_name: Synthesis run name (default &quot;synth_1&quot;)
-
-Returns:
-    Synthesis status and resource utilization summary; error details on failure
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
-| `run_name` | `string` | No | `"synth_1"` | Run Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
+| `run_name` | `string` | No |
 
 </details>
 
@@ -11269,19 +8041,14 @@ Returns:
 
 Start synthesis asynchronously (does not wait for completion)
 
-Args:
-    jobs: Number of parallel jobs, default 4
-    run_name: Synthesis run name (default &quot;synth_1&quot;)
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `jobs` | `integer` | No | `4` | Jobs |
-| `run_name` | `string` | No | `"synth_1"` | Run Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `jobs` | `integer` | No |
+| `run_name` | `string` | No |
 
 </details>
 
@@ -11290,23 +8057,13 @@ Args:
 
 Set synthesis strategy
 
-Args:
-    strategy: Strategy name, options:
-        - Vivado Synthesis Defaults: Default balanced strategy (recommended)
-        - Flow_PerfOptimized_high: High performance optimization
-        - Flow_AreaOptimized_high: Area optimization
-        - Flow_AreaMultThresholdDSP: Reduce DSP usage
-        - Flow_AlternateRoutability: Improve routability
-        - Flow_RuntimeOptimized: Runtime optimization
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `strategy` | `string` | Yes | `—` | Strategy |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `strategy` | `string` | Yes |
 
 </details>
 
@@ -11318,20 +8075,13 @@ Args:
 
 Get template usage example
 
-Args:
-    example_name: Example name, leave empty to list all available examples
-
-Returns:
-    Example code and design notes
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `example_name` | `string` | No | `""` | Example Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `example_name` | `string` | No |
 
 </details>
 
@@ -11340,20 +8090,13 @@ Returns:
 
 Get detailed information for a specific template
 
-Args:
-    template_name: Template name, e.g., &quot;aurora&quot;, &quot;axi&quot;, &quot;data_sync&quot;, &quot;img_pro&quot;
-
-Returns:
-    Template details including module list, parameters, ports, and usage examples
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `template_name` | `string` | Yes | `—` | Template Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `template_name` | `string` | Yes |
 
 </details>
 
@@ -11362,22 +8105,14 @@ Returns:
 
 Get detailed interface definition for a template (ports, parameters, instantiation template)
 
-Args:
-    template_name: Template name, e.g., &quot;aurora&quot;, &quot;axi_dma&quot;, &quot;data_sync&quot;
-    module_name: Optional module name, leave empty to return all module interfaces
-
-Returns:
-    Detailed interface definition including port list and instantiation code template
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `template_name` | `string` | Yes | `—` | Template Name |
-| `module_name` | `string` | No | `""` | Module Name |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `template_name` | `string` | Yes |
+| `module_name` | `string` | No |
 
 </details>
 
@@ -11386,21 +8121,13 @@ Returns:
 
 List available RTL templates
 
-Args:
-    category: Optional category filter, e.g., &quot;high_speed_serial&quot;, &quot;bus_interface&quot;, &quot;image_processing&quot;
-             Leave empty to list all templates
-
-Returns:
-    Template list with name, description, and complexity
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `category` | `string` | No | `""` | Category |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `category` | `string` | No |
 
 </details>
 
@@ -11409,19 +8136,12 @@ Returns:
 
 Search template library
 
-Args:
-    keyword: Search keyword, supports searching in name, description, and tags
-
-Returns:
-    List of matching templates
-
 - **Minimum plan:** Pro
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `keyword` | `string` | Yes | `—` | Keyword |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `keyword` | `string` | Yes |
 
 </details>

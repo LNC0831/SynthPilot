@@ -4,13 +4,11 @@
 
 **102 public tools** — Free 4 · Pro 90 · Max 102
 
-The catalog documents all public capabilities. A running MCP server registers only the selected platform and the tools allowed by the verified license plan; these catalogs are not loaded together.
+This user-facing index summarizes public capabilities. Exact schemas and execution contracts are provided by the licensed MCP runtime.
 
 Trial currently uses the Pro tool entitlement.
 
-Catalog schema: `1` · Product version: `1.3.1` · Name digest: `ccfbe331e41ad3d290d12d1a76cc3ac8e975c3785a74ea0a3b255bd6584bdf46`
-
-[Machine-readable catalog](catalog.json)
+Public index schema: `2` · Product version: `1.3.1`
 
 ## Categories
 
@@ -26,147 +24,147 @@ Catalog schema: `1` · Product version: `1.3.1` · Name digest: `ccfbe331e41ad3d
 ## Advanced Controls
 
 <details id="td_add_dir">
-<summary><code>td_add_dir</code> — Add HDL and IPC sources beneath an EDA-host directory. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_add_dir</code> — Add HDL and IPC sources beneath an EDA-host directory. <strong>Pro</strong></summary>
 
-Add HDL and IPC sources beneath an EDA-host directory. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Add HDL and IPC sources beneath an EDA-host directory.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `dir` | `string` | Yes | `—` | EDA-host directory path. |
-| `recursive` | `boolean` | No | `false` | Include subdirectories. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `dir` | `string` | Yes |
+| `recursive` | `boolean` | No |
 
 </details>
 
 <details id="td_add_include_dir">
-<summary><code>td_add_include_dir</code> — Add an EDA-host HDL include directory. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_add_include_dir</code> — Add an EDA-host HDL include directory. <strong>Pro</strong></summary>
 
-Add an EDA-host HDL include directory. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Add an EDA-host HDL include directory.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `dir` | `string` | Yes | `—` | EDA-host directory path. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `dir` | `string` | Yes |
 
 </details>
 
 <details id="td_clear_adc">
-<summary><code>td_clear_adc</code> — Clear scoped ADC constraints; clearing all requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_clear_adc</code> — Clear scoped ADC constraints; clearing all requires acknowledgement. <strong>Pro</strong></summary>
 
-Clear scoped ADC constraints; clearing all requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Clear scoped ADC constraints; clearing all requires acknowledgement.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `user` | `boolean` | No | `false` | Limit clearing to user constraints. |
-| `confirm_all` | `boolean` | No | `false` | Must be true when no narrower clear scope is selected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `user` | `boolean` | No |
+| `confirm_all` | `boolean` | No |
 
 </details>
 
 <details id="td_clear_param">
-<summary><code>td_clear_param</code> — Clear all TD parameters after explicit acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_clear_param</code> — Clear all TD parameters after explicit acknowledgement. <strong>Max</strong></summary>
 
-Clear all TD parameters after explicit acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Clear all TD parameters after explicit acknowledgement.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `confirm` | `boolean` | Yes | `—` | Must be true to acknowledge clearing every parameter. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `confirm` | `boolean` | Yes |
 
 </details>
 
 <details id="td_clear_sdc">
-<summary><code>td_clear_sdc</code> — Clear scoped SDC constraints in a proven active flow; clearing all requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_clear_sdc</code> — Clear scoped SDC constraints in a proven active flow; clearing all requires acknowledgement. <strong>Pro</strong></summary>
 
-Clear scoped SDC constraints in a proven active flow; clearing all requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Clear scoped SDC constraints in a proven active flow; clearing all requires acknowledgement.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip` | `string &#124; null` | No | `null` | IP name, or select IP SDC export where boolean. |
-| `user` | `boolean` | No | `false` | Limit clearing to user constraints. |
-| `confirm_all` | `boolean` | No | `false` | Must be true when no narrower clear scope is selected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip` | `value` | No |
+| `user` | `boolean` | No |
+| `confirm_all` | `boolean` | No |
 
 </details>
 
 <details id="td_create_run">
-<summary><code>td_create_run</code> — Create a synthesis or physical run in a multi-run project. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_create_run</code> — Create a synthesis or physical run in a multi-run project. <strong>Max</strong></summary>
 
-Create a synthesis or physical run in a multi-run project. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Create a synthesis or physical run in a multi-run project.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `run_name` | `string` | Yes | `—` | New run name. |
-| `constrset` | `string` | Yes | `—` | Constraint-set name. |
-| `syn_run` | `string &#124; null` | No | `null` | Parent synthesis run; required for phy_* runs. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `run_name` | `string` | Yes |
+| `constrset` | `string` | Yes |
+| `syn_run` | `value` | No |
 
 </details>
 
 <details id="td_export_db">
-<summary><code>td_export_db</code> — Create one new explicit EDA-host TD checkpoint artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_export_db</code> — Create one new explicit EDA-host TD checkpoint artifact. <strong>Max</strong></summary>
 
-Create one new explicit EDA-host TD checkpoint artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Create one new explicit EDA-host TD checkpoint artifact.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | Explicit EDA-host input/output path; outputs must not exist. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
 
 </details>
 
 <details id="td_export_sdc">
-<summary><code>td_export_sdc</code> — Print SDC or create one new explicit EDA-host .sdc artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_export_sdc</code> — Print SDC or create one new explicit EDA-host .sdc artifact. <strong>Pro</strong></summary>
 
-Print SDC or create one new explicit EDA-host .sdc artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Print SDC or create one new explicit EDA-host .sdc artifact.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ip` | `boolean` | No | `false` | IP name, or select IP SDC export where boolean. |
-| `file` | `string &#124; null` | No | `null` | Explicit EDA-host input/output path; outputs must not exist. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ip` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_fix_hold">
-<summary><code>td_fix_hold</code> — Run post-route hold repair. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_fix_hold</code> — Run post-route hold repair. <strong>Max</strong></summary>
 
-Run post-route hold repair. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Run post-route hold repair.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -175,232 +173,232 @@ No parameters.
 </details>
 
 <details id="td_generate_elaborate_package">
-<summary><code>td_generate_elaborate_package</code> — Generate the elaborate package for an opened synthesis run. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_generate_elaborate_package</code> — Generate the elaborate package for an opened synthesis run. <strong>Max</strong></summary>
 
-Generate the elaborate package for an opened synthesis run. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Generate the elaborate package for an opened synthesis run.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `expected_db` | `string` | Yes | `—` | Expected new non-empty elaborate-package .db artifact path. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `expected_db` | `string` | Yes |
 
 </details>
 
 <details id="td_import_db">
-<summary><code>td_import_db</code> — Import a TD checkpoint into an empty session with a caller-declared stage. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_import_db</code> — Import a TD checkpoint into an empty session with a caller-declared stage. <strong>Max</strong></summary>
 
-Import a TD checkpoint into an empty session with a caller-declared stage. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Import a TD checkpoint into an empty session with a caller-declared stage.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | Explicit EDA-host input/output path; outputs must not exist. |
-| `checkpoint_stage` | `gate &#124; place &#124; route` | Yes | `—` | Caller-declared imported checkpoint stage: gate, place, or route. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `checkpoint_stage` | `string` | Yes |
 
 </details>
 
 <details id="td_phys_opt">
-<summary><code>td_phys_opt</code> — Run post-route physical optimization. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_phys_opt</code> — Run post-route physical optimization. <strong>Max</strong></summary>
 
-Run post-route physical optimization. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Run post-route physical optimization.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `effort` | `low &#124; medium &#124; high &#124; ultra &#124; null` | No | `null` | Post-route optimization effort. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `effort` | `value` | No |
 
 </details>
 
 <details id="td_reset_runs">
-<summary><code>td_reset_runs</code> — Roll back structured project runs; forced folder deletion requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_reset_runs</code> — Roll back structured project runs; forced folder deletion requires acknowledgement. <strong>Max</strong></summary>
 
-Roll back structured project runs; forced folder deletion requires acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Roll back structured project runs; forced folder deletion requires acknowledgement.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `runs` | `array&lt;string&gt;` | Yes | `—` | One to 64 exact run names. |
-| `prev_step` | `boolean` | No | `false` | Roll back only one step. |
-| `force` | `boolean` | No | `false` | Delete run folders. |
-| `confirm_force` | `boolean` | No | `false` | Must be true with force. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `runs` | `array` | Yes |
+| `prev_step` | `boolean` | No |
+| `force` | `boolean` | No |
+| `confirm_force` | `boolean` | No |
 
 </details>
 
 <details id="td_reset_switching_activity">
-<summary><code>td_reset_switching_activity</code> — Reset switching activity on a structured object selection; requires TD capability. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_reset_switching_activity</code> — Reset switching activity on a structured object selection; requires TD capability. <strong>Pro</strong></summary>
 
-Reset switching activity on a structured object selection; requires TD capability. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Reset switching activity on a structured object selection; requires TD capability.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `object` | `any` | Yes | `—` | Structured TD selector; raw getter Tcl is rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `object` | `value` | Yes |
 
 </details>
 
 <details id="td_set_param">
-<summary><code>td_set_param</code> — Set one TD flow parameter before its target step runs. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_set_param</code> — Set one TD flow parameter before its target step runs. <strong>Max</strong></summary>
 
-Set one TD flow parameter before its target step runs. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Set one TD flow parameter before its target step runs.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `step` | `flow &#124; design &#124; rtl &#124; gate &#124; place &#124; route &#124; timing &#124; sim &#124; bitgen` | Yes | `—` | TD flow stage. |
-| `param` | `string` | Yes | `—` | TD parameter name. |
-| `value` | `string` | Yes | `—` | Exact parameter/property value passed as Tcl data. |
-| `run` | `string &#124; null` | No | `null` | Multi-run project run name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `step` | `string` | Yes |
+| `param` | `string` | Yes |
+| `value` | `string` | Yes |
+| `run` | `value` | No |
 
 </details>
 
 <details id="td_set_property">
-<summary><code>td_set_property</code> — Set one property on a non-empty structured object selection. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_set_property</code> — Set one property on a non-empty structured object selection. <strong>Max</strong></summary>
 
-Set one property on a non-empty structured object selection. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Set one property on a non-empty structured object selection.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `property` | `string` | Yes | `—` | TD property name. |
-| `value` | `string` | Yes | `—` | Exact parameter/property value passed as Tcl data. |
-| `object` | `any` | Yes | `—` | Structured TD selector; raw getter Tcl is rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `property` | `string` | Yes |
+| `value` | `string` | Yes |
+| `object` | `value` | Yes |
 
 </details>
 
 <details id="td_set_seed_param">
-<summary><code>td_set_seed_param</code> — Configure the active physical run&#x27;s multi-seed policy after explicit acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_set_seed_param</code> — Configure the active physical run&#x27;s multi-seed policy after explicit acknowledgement. <strong>Max</strong></summary>
 
-Configure the active physical run&#x27;s multi-seed policy after explicit acknowledgement. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Configure the active physical run&#x27;s multi-seed policy after explicit acknowledgement.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `acknowledge_active_phy_run` | `boolean` | Yes | `—` | Confirms TD's implicit active run is the intended unlaunched physical run. |
-| `num` | `integer &#124; null` | No | `null` | Seed count, 1 through 1000. |
-| `init` | `integer &#124; null` | No | `null` | Initial seed value. |
-| `step` | `integer &#124; null` | No | `null` | TD flow stage. |
-| `jobs` | `integer &#124; null` | No | `null` | Parallel seed jobs, 1 through 256. |
-| `save` | `integer &#124; null` | No | `null` | Number of seed results retained. |
-| `end_step` | `place &#124; route &#124; bitgen &#124; null` | No | `null` | Seed target stage. |
-| `gen_bit` | `on &#124; off &#124; null` | No | `null` | Generate bitstreams on or off. |
-| `random` | `on &#124; off &#124; null` | No | `null` | Random seed selection on or off. |
-| `disable` | `boolean` | No | `false` | Disable the selected feature. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `acknowledge_active_phy_run` | `boolean` | Yes |
+| `num` | `value` | No |
+| `init` | `value` | No |
+| `step` | `value` | No |
+| `jobs` | `value` | No |
+| `save` | `value` | No |
+| `end_step` | `value` | No |
+| `gen_bit` | `value` | No |
+| `random` | `value` | No |
+| `disable` | `boolean` | No |
 
 </details>
 
 <details id="td_set_src_file_global_include">
-<summary><code>td_set_src_file_global_include</code> — Set or clear global-include status for structured source files. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_set_src_file_global_include</code> — Set or clear global-include status for structured source files. <strong>Pro</strong></summary>
 
-Set or clear global-include status for structured source files. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Set or clear global-include status for structured source files.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `files` | `array&lt;string&gt;` | Yes | `—` | Structured EDA-host source-file list. |
-| `disable` | `boolean` | No | `false` | Disable the selected feature. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `files` | `array` | Yes |
+| `disable` | `boolean` | No |
 
 </details>
 
 <details id="td_set_strategy">
-<summary><code>td_set_strategy</code> — Apply a synthesis or physical strategy to a multi-run project run. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Max</strong></summary>
+<summary><code>td_set_strategy</code> — Apply a synthesis or physical strategy to a multi-run project run. <strong>Max</strong></summary>
 
-Apply a synthesis or physical strategy to a multi-run project run. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Apply a synthesis or physical strategy to a multi-run project run.
 
 - **Minimum plan:** Max
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `run` | `string` | Yes | `—` | Multi-run project run name. |
-| `strategy` | `string` | Yes | `—` | TD strategy name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `run` | `string` | Yes |
+| `strategy` | `string` | Yes |
 
 </details>
 
 <details id="td_set_switching_activity">
-<summary><code>td_set_switching_activity</code> — Set switching activity on a structured object selection; requires TD capability. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_set_switching_activity</code> — Set switching activity on a structured object selection; requires TD capability. <strong>Pro</strong></summary>
 
-Set switching activity on a structured object selection; requires TD capability. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Set switching activity on a structured object selection; requires TD capability.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `toggle_rate` | `integer &#124; number` | Yes | `—` | Finite toggle rate from 0 through 200. |
-| `object` | `any` | Yes | `—` | Structured TD selector; raw getter Tcl is rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `toggle_rate` | `value` | Yes |
+| `object` | `value` | Yes |
 
 </details>
 
 <details id="td_write_sdf">
-<summary><code>td_write_sdf</code> — Create one new explicit EDA-host SDF artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_write_sdf</code> — Create one new explicit EDA-host SDF artifact. <strong>Pro</strong></summary>
 
-Create one new explicit EDA-host SDF artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Create one new explicit EDA-host SDF artifact.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | Explicit EDA-host input/output path; outputs must not exist. |
-| `check_corner` | `SLOW &#124; FAST &#124; SLOW_FAST &#124; null` | No | `null` | SDF process corner. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `check_corner` | `value` | No |
 
 </details>
 
 <details id="td_write_verilog">
-<summary><code>td_write_verilog</code> — Create one new explicit EDA-host intermediate Verilog artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried. <strong>Pro</strong></summary>
+<summary><code>td_write_verilog</code> — Create one new explicit EDA-host intermediate Verilog artifact. <strong>Pro</strong></summary>
 
-Create one new explicit EDA-host intermediate Verilog artifact. This destructive, non-idempotent operation shares the guarded TD flow ledger and is never automatically retried.
+Create one new explicit EDA-host intermediate Verilog artifact.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | Explicit EDA-host input/output path; outputs must not exist. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
 
 </details>
 
@@ -408,73 +406,73 @@ Create one new explicit EDA-host intermediate Verilog artifact. This destructive
 ## Build and Project Flow
 
 <details id="td_add_files">
-<summary><code>td_add_files</code> — Add a structured list of source files or one .list/.slist file to a multi-run project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_add_files</code> — Add a structured list of source files or one .list/.slist file to a multi-run project. <strong>Pro</strong></summary>
 
-Add a structured list of source files or one .list/.slist file to a multi-run project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Add a structured list of source files or one .list/.slist file to a multi-run project.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `files` | `array&lt;string&gt; &#124; null` | No | `null` | Non-empty structured EDA-host file-path list; space-separated raw strings are not accepted. |
-| `list` | `string &#124; null` | No | `null` | One EDA-host .list or .slist source-list file, mutually exclusive with files. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `files` | `value` | No |
+| `list` | `value` | No |
 
 </details>
 
 <details id="td_bitgen">
-<summary><code>td_bitgen</code> — Generate .bit and/or .bin output from a routed design. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_bitgen</code> — Generate .bit and/or .bin output from a routed design. <strong>Pro</strong></summary>
 
-Generate .bit and/or .bin output from a routed design. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Generate .bit and/or .bin output from a routed design.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `bit` | `string &#124; null` | No | `null` | EDA-host .bit output path; may create or replace a file. |
-| `bin` | `string &#124; null` | No | `null` | EDA-host .bin output path; may create or replace a file. |
-| `compress` | `boolean` | No | `false` | Also produce a compressed bitstream; requires bit. |
-| `security` | `boolean` | No | `false` | Disable SRAM readback in generated output. |
-| `unused_io_status` | `pullup &#124; pulldown &#124; keeper &#124; none &#124; null` | No | `null` | Unused-IO startup state: pullup, pulldown, keeper, or none. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `bit` | `value` | No |
+| `bin` | `value` | No |
+| `compress` | `boolean` | No |
+| `security` | `boolean` | No |
+| `unused_io_status` | `value` | No |
 
 </details>
 
 <details id="td_build">
-<summary><code>td_build</code> — Run the deterministic single-run TD build trunk as an exclusive fail-stop sequence. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_build</code> — Build the current Anlogic TD project through the supported flow. <strong>Pro</strong></summary>
 
-Run the deterministic single-run TD build trunk as an exclusive fail-stop sequence. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Build the current Anlogic TD project through the supported flow.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `al` | `string` | Yes | `—` | EDA-host .al project path. |
-| `device_db` | `string` | Yes | `—` | TD arch database basename such as ph1_180.db; directories are rejected. |
-| `package` | `string` | Yes | `—` | Device package/part such as PH1A180SFG676. |
-| `top` | `string` | Yes | `—` | Top HDL module name. |
-| `speed` | `integer &#124; null` | No | `null` | Optional strict integer speed grade from 1 through 99. |
-| `adc` | `string &#124; null` | No | `null` | Optional EDA-host .adc constraint path. |
-| `sdc` | `string &#124; null` | No | `null` | Optional EDA-host .sdc constraint path; the build reloads it after gate optimization. |
-| `end_step` | `elaborate &#124; opt_rtl &#124; opt_gate &#124; place &#124; route &#124; timing &#124; bitgen` | No | `"bitgen"` | Last build milestone: elaborate, opt_rtl, opt_gate, place, route, timing, or bitgen. |
-| `bit` | `string &#124; null` | No | `null` | EDA-host .bit output path; may create or replace a file. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `al` | `string` | Yes |
+| `device_db` | `string` | Yes |
+| `package` | `string` | Yes |
+| `top` | `string` | Yes |
+| `speed` | `value` | No |
+| `adc` | `value` | No |
+| `sdc` | `value` | No |
+| `end_step` | `string` | No |
+| `bit` | `value` | No |
 
 </details>
 
 <details id="td_close_project">
-<summary><code>td_close_project</code> — Close the current project and discard the process generation to avoid unsafe mode reuse. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_close_project</code> — Close the current project and discard the process generation to avoid unsafe mode reuse. <strong>Pro</strong></summary>
 
-Close the current project and discard the process generation to avoid unsafe mode reuse. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Close the current project and discard the process generation to avoid unsafe mode reuse.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -483,12 +481,12 @@ No parameters.
 </details>
 
 <details id="td_close_run">
-<summary><code>td_close_run</code> — Close the currently open multi-run database. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_close_run</code> — Close the currently open multi-run database. <strong>Pro</strong></summary>
 
-Close the currently open multi-run database. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Close the currently open multi-run database.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -497,66 +495,66 @@ No parameters.
 </details>
 
 <details id="td_create_project">
-<summary><code>td_create_project</code> — Create and open a multi-run TD project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_create_project</code> — Create and open a multi-run TD project. <strong>Pro</strong></summary>
 
-Create and open a multi-run TD project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Create and open a multi-run TD project.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Project or top-module name, passed as Tcl data. |
-| `dir` | `string` | Yes | `—` | EDA-host project directory; create_project writes beneath it. |
-| `family` | `string` | Yes | `—` | TD device family such as ph1. |
-| `device` | `string` | Yes | `—` | TD device part/package. |
-| `speed` | `integer &#124; null` | No | `null` | Optional strict integer speed grade from 1 through 99. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `family` | `string` | Yes |
+| `device` | `string` | Yes |
+| `speed` | `value` | No |
 
 </details>
 
 <details id="td_elaborate">
-<summary><code>td_elaborate</code> — Elaborate a single-run project after device import. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_elaborate</code> — Elaborate a single-run project after device import. <strong>Pro</strong></summary>
 
-Elaborate a single-run project after device import. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Elaborate a single-run project after device import.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `top` | `string` | Yes | `—` | Top HDL module name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `top` | `string` | Yes |
 
 </details>
 
 <details id="td_import_device">
-<summary><code>td_import_device</code> — Load one TD device database; mandatory before single-run HDL or elaboration. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_import_device</code> — Load one TD device database; mandatory before single-run HDL or elaboration. <strong>Pro</strong></summary>
 
-Load one TD device database; mandatory before single-run HDL or elaboration. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Load one TD device database; mandatory before single-run HDL or elaboration.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `device_db` | `string` | Yes | `—` | TD arch database basename such as ph1_180.db; directories are rejected. |
-| `package` | `string` | Yes | `—` | Device package/part such as PH1A180SFG676. |
-| `speed` | `integer &#124; null` | No | `null` | Optional strict integer speed grade from 1 through 99. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `device_db` | `string` | Yes |
+| `package` | `string` | Yes |
+| `speed` | `value` | No |
 
 </details>
 
 <details id="td_legalize_phy_inst">
-<summary><code>td_legalize_phy_inst</code> — Legalize physical instances after gate optimization or packing. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_legalize_phy_inst</code> — Legalize physical instances after gate optimization or packing. <strong>Pro</strong></summary>
 
-Legalize physical instances after gate optimization or packing. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Legalize physical instances after gate optimization or packing.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -565,12 +563,12 @@ No parameters.
 </details>
 
 <details id="td_map">
-<summary><code>td_map</code> — Run the granular LUT mapping step after macro mapping. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_map</code> — Run the granular LUT mapping step after macro mapping. <strong>Pro</strong></summary>
 
-Run the granular LUT mapping step after macro mapping. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Run the granular LUT mapping step after macro mapping.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -579,12 +577,12 @@ No parameters.
 </details>
 
 <details id="td_map_macro">
-<summary><code>td_map_macro</code> — Run the granular device-macro mapping step. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_map_macro</code> — Run the granular device-macro mapping step. <strong>Pro</strong></summary>
 
-Run the granular device-macro mapping step. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Run the granular device-macro mapping step.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -593,64 +591,64 @@ No parameters.
 </details>
 
 <details id="td_open_project">
-<summary><code>td_open_project</code> — Open a TD .al project in multi-run or explicitly selected single-run mode. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_open_project</code> — Open a TD .al project in multi-run or explicitly selected single-run mode. <strong>Pro</strong></summary>
 
-Open a TD .al project in multi-run or explicitly selected single-run mode. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Open a TD .al project in multi-run or explicitly selected single-run mode.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | EDA-host input file path with the tool-specific suffix. |
-| `single_run` | `boolean` | No | `false` | Use the deterministic single-run mode; requires prior td_import_device. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `single_run` | `boolean` | No |
 
 </details>
 
 <details id="td_open_run">
-<summary><code>td_open_run</code> — Open a completed multi-run project database for A2/A3 tools. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_open_run</code> — Open a completed multi-run project database for A2/A3 tools. <strong>Pro</strong></summary>
 
-Open a completed multi-run project database for A2/A3 tools. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Open a completed multi-run project database for A2/A3 tools.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `run` | `string` | Yes | `—` | Multi-run project run name such as phy_1. |
-| `run_type` | `syn &#124; phy &#124; null` | No | `null` | Optional trusted run type metadata used by advanced state guards. |
-| `run_stage` | `read_design &#124; gate &#124; place &#124; route &#124; null` | No | `null` | Optional trusted completed run stage used by advanced state guards. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `run` | `string` | Yes |
+| `run_type` | `value` | No |
+| `run_stage` | `value` | No |
 
 </details>
 
 <details id="td_optimize_gate">
-<summary><code>td_optimize_gate</code> — Run TD gate mapping and packing after RTL optimization. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_optimize_gate</code> — Run TD gate mapping and packing after RTL optimization. <strong>Pro</strong></summary>
 
-Run TD gate mapping and packing after RTL optimization. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Run TD gate mapping and packing after RTL optimization.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `maparea` | `string &#124; null` | No | `null` | Optional EDA-host map-area report output path; may create or replace a file. |
-| `packarea` | `string &#124; null` | No | `null` | Optional EDA-host pack-area report output path; may create or replace a file. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `maparea` | `value` | No |
+| `packarea` | `value` | No |
 
 </details>
 
 <details id="td_optimize_rtl">
-<summary><code>td_optimize_rtl</code> — Run TD RTL optimization after HDL/elaboration. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_optimize_rtl</code> — Run TD RTL optimization after HDL/elaboration. <strong>Pro</strong></summary>
 
-Run TD RTL optimization after HDL/elaboration. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Run TD RTL optimization after HDL/elaboration.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -659,12 +657,12 @@ No parameters.
 </details>
 
 <details id="td_pack">
-<summary><code>td_pack</code> — Run the granular packing step after LUT mapping. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_pack</code> — Run the granular packing step after LUT mapping. <strong>Pro</strong></summary>
 
-Run the granular packing step after LUT mapping. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Run the granular packing step after LUT mapping.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -673,12 +671,12 @@ No parameters.
 </details>
 
 <details id="td_place">
-<summary><code>td_place</code> — Place a legalized design after any required SDC reload. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_place</code> — Place a legalized design after any required SDC reload. <strong>Pro</strong></summary>
 
-Place a legalized design after any required SDC reload. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Place a legalized design after any required SDC reload.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -687,64 +685,64 @@ No parameters.
 </details>
 
 <details id="td_read_adc">
-<summary><code>td_read_adc</code> — Read one .adc constraint file at a safe flow state. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_read_adc</code> — Read one .adc constraint file at a safe flow state. <strong>Pro</strong></summary>
 
-Read one .adc constraint file at a safe flow state. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Read one .adc constraint file at a safe flow state.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | EDA-host input file path with the tool-specific suffix. |
-| `ip` | `string &#124; null` | No | `null` | Optional TD IP model name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `ip` | `value` | No |
 
 </details>
 
 <details id="td_read_hdl">
-<summary><code>td_read_hdl</code> — Read HDL in a device-initialized non-project flow. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_read_hdl</code> — Read HDL in a device-initialized non-project flow. <strong>Pro</strong></summary>
 
-Read HDL in a device-initialized non-project flow. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Read HDL in a device-initialized non-project flow.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `files` | `array&lt;string&gt;` | Yes | `—` | Non-empty structured EDA-host file-path list; space-separated raw strings are not accepted. |
-| `top` | `string` | Yes | `—` | Top HDL module name. |
-| `define` | `array&lt;string&gt; &#124; null` | No | `null` | Optional structured HDL macro list such as ["NAME", "NAME2=VALUE"]. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `files` | `array` | Yes |
+| `top` | `string` | Yes |
+| `define` | `value` | No |
 
 </details>
 
 <details id="td_read_sdc">
-<summary><code>td_read_sdc</code> — Read one .sdc constraint file, including the required post-gate reload point. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_read_sdc</code> — Read one .sdc constraint file, including the required post-gate reload point. <strong>Pro</strong></summary>
 
-Read one .sdc constraint file, including the required post-gate reload point. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Read one .sdc constraint file, including the required post-gate reload point.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | EDA-host input file path with the tool-specific suffix. |
-| `ip` | `string &#124; null` | No | `null` | Optional TD IP model name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `ip` | `value` | No |
 
 </details>
 
 <details id="td_route">
-<summary><code>td_route</code> — Route a placed design. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_route</code> — Route a placed design. <strong>Pro</strong></summary>
 
-Route a placed design. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Route a placed design.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -753,12 +751,12 @@ No parameters.
 </details>
 
 <details id="td_save_design">
-<summary><code>td_save_design</code> — Persist in-memory edits into the currently open run database. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_save_design</code> — Persist in-memory edits into the currently open run database. <strong>Pro</strong></summary>
 
-Persist in-memory edits into the currently open run database. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Persist in-memory edits into the currently open run database.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -767,18 +765,18 @@ No parameters.
 </details>
 
 <details id="td_top_module">
-<summary><code>td_top_module</code> — Set the top module of an open multi-run project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome. <strong>Pro</strong></summary>
+<summary><code>td_top_module</code> — Set the top module of an open multi-run project. <strong>Pro</strong></summary>
 
-Set the top module of an open multi-run project. This destructive, non-idempotent operation acts on EDA-host paths and is never automatically retried after an uncertain outcome.
+Set the top module of an open multi-run project.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Project or top-module name, passed as Tcl data. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
 
 </details>
 
@@ -786,422 +784,422 @@ Set the top module of an open multi-run project. This destructive, non-idempoten
 ## Constraints
 
 <details id="td_create_clock">
-<summary><code>td_create_clock</code> — Create a physical or virtual primary clock constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_create_clock</code> — Create a physical or virtual primary clock constraint. <strong>Pro</strong></summary>
 
-Create a physical or virtual primary clock constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Create a physical or virtual primary clock constraint.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Constraint or clock name, passed as data rather than Tcl. |
-| `period` | `number` | Yes | `—` | Positive clock period in ns. |
-| `waveform` | `array&lt;number&gt; &#124; null` | No | `null` | Two numbers [rise, fall] in ns satisfying 0 &lt;= rise &lt; fall &lt; period. |
-| `target` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `add` | `boolean` | No | `false` | Add a physical clock; generated clocks require master_clock at the same time. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `period` | `number` | Yes |
+| `waveform` | `value` | No |
+| `target` | `value` | No |
+| `add` | `boolean` | No |
 
 </details>
 
 <details id="td_create_generated_clock">
-<summary><code>td_create_generated_clock</code> — Create a generated clock from one structured source selector. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_create_generated_clock</code> — Create a generated clock from one structured source selector. <strong>Pro</strong></summary>
 
-Create a generated clock from one structured source selector. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Create a generated clock from one structured source selector.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Constraint or clock name, passed as data rather than Tcl. |
-| `source` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `master_clock` | `any &#124; null` | No | `null` | Structured clocks selector matching exactly one master clock. |
-| `divide_by` | `number &#124; null` | No | `null` | Positive generated-clock divide factor. |
-| `multiply_by` | `number &#124; null` | No | `null` | Positive generated-clock multiply factor. |
-| `edges` | `array&lt;integer&gt; &#124; null` | No | `null` | Three strictly increasing positive edge indices. |
-| `edge_shift` | `array&lt;number&gt; &#124; null` | No | `null` | Three finite edge shifts, valid only with edges. |
-| `invert` | `boolean` | No | `false` | Invert a factor-based generated clock. |
-| `target` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `add` | `boolean` | No | `false` | Add a physical clock; generated clocks require master_clock at the same time. |
-| `phase` | `number &#124; null` | No | `null` | Generated-clock phase in degrees from 0 through 360. |
-| `duty_cycle` | `number &#124; null` | No | `null` | Multiply-mode duty cycle percentage from 0 through 100. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `source` | `value` | Yes |
+| `master_clock` | `value` | No |
+| `divide_by` | `value` | No |
+| `multiply_by` | `value` | No |
+| `edges` | `value` | No |
+| `edge_shift` | `value` | No |
+| `invert` | `boolean` | No |
+| `target` | `value` | No |
+| `add` | `boolean` | No |
+| `phase` | `value` | No |
+| `duty_cycle` | `value` | No |
 
 </details>
 
 <details id="td_derive_clocks">
-<summary><code>td_derive_clocks</code> — Derive clocks for one instance, or globally with explicit confirmation. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_derive_clocks</code> — Derive clocks for one instance, or globally with explicit confirmation. <strong>Pro</strong></summary>
 
-Derive clocks for one instance, or globally with explicit confirmation. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Derive clocks for one instance, or globally with explicit confirmation.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `instance` | `any &#124; null` | No | `null` | Structured cells selector matching exactly one instance. |
-| `all_instances` | `boolean` | No | `false` | Explicitly confirm global derive_clocks scope. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `instance` | `value` | No |
+| `all_instances` | `boolean` | No |
 
 </details>
 
 <details id="td_rename_clock">
-<summary><code>td_rename_clock</code> — Rename exactly one selected clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_rename_clock</code> — Rename exactly one selected clock. <strong>Pro</strong></summary>
 
-Rename exactly one selected clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Rename exactly one selected clock.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Constraint or clock name, passed as data rather than Tcl. |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `target` | `value` | Yes |
 
 </details>
 
 <details id="td_set_annotated_check">
-<summary><code>td_set_annotated_check</code> — Set a post-route timing check between two individual pins. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_annotated_check</code> — Set a post-route timing check between two individual pins. <strong>Pro</strong></summary>
 
-Set a post-route timing check between two individual pins. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set a post-route timing check between two individual pins.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `value` | `number` | Yes | `—` | Finite non-negative timing value in ns. |
-| `setup` | `boolean` | No | `false` | Apply the setup variant. |
-| `hold` | `boolean` | No | `false` | Apply the hold variant. |
-| `max` | `boolean` | No | `false` | Select the maximum-delay or maximum-check variant. |
-| `min` | `boolean` | No | `false` | Select the minimum-delay or minimum-check variant. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from` | `value` | Yes |
+| `to` | `value` | Yes |
+| `value` | `number` | Yes |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `max` | `boolean` | No |
+| `min` | `boolean` | No |
 
 </details>
 
 <details id="td_set_clock_groups">
-<summary><code>td_set_clock_groups</code> — Declare exclusive or asynchronous clock groups. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_groups</code> — Declare exclusive or asynchronous clock groups. <strong>Pro</strong></summary>
 
-Declare exclusive or asynchronous clock groups. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Declare exclusive or asynchronous clock groups.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `groups` | `array&lt;any&gt;` | Yes | `—` | One to 32 structured clock selectors; matches are checked for overlap. |
-| `name` | `string &#124; null` | No | `null` | Constraint or clock name, passed as data rather than Tcl. |
-| `exclusive` | `boolean` | No | `false` | Declare clock groups mutually exclusive. |
-| `asynchronous` | `boolean` | No | `false` | Declare clock groups asynchronous. |
-| `single_group_against_all` | `boolean` | No | `false` | Confirm that one group is constrained against every other clock. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `groups` | `array` | Yes |
+| `name` | `value` | No |
+| `exclusive` | `boolean` | No |
+| `asynchronous` | `boolean` | No |
+| `single_group_against_all` | `boolean` | No |
 
 </details>
 
 <details id="td_set_clock_latency">
-<summary><code>td_set_clock_latency</code> — Set non-negative clock latency on selected clocks or pins. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_latency</code> — Set non-negative clock latency on selected clocks or pins. <strong>Pro</strong></summary>
 
-Set non-negative clock latency on selected clocks or pins. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set non-negative clock latency on selected clocks or pins.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `delay` | `number` | Yes | `—` | Finite delay in ns. |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `min` | `boolean` | No | `false` | Select the minimum-delay or minimum-check variant. |
-| `max` | `boolean` | No | `false` | Select the maximum-delay or maximum-check variant. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
-| `early` | `boolean` | No | `false` | Apply early clock latency. |
-| `late` | `boolean` | No | `false` | Apply late clock latency. |
-| `source` | `boolean` | No | `false` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `clock` | `boolean` | No | `false` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `delay` | `number` | Yes |
+| `target` | `value` | Yes |
+| `min` | `boolean` | No |
+| `max` | `boolean` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
+| `early` | `boolean` | No |
+| `late` | `boolean` | No |
+| `source` | `boolean` | No |
+| `clock` | `boolean` | No |
 
 </details>
 
 <details id="td_set_clock_route">
-<summary><code>td_set_clock_route</code> — Route exactly one named clock net outside global clock resources. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_route</code> — Route exactly one named clock net outside global clock resources. <strong>Pro</strong></summary>
 
-Route exactly one named clock net outside global clock resources. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Route exactly one named clock net outside global clock resources.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `net` | `string` | Yes | `—` | Exact clock-net name; it is resolved and required to match exactly one net. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `net` | `string` | Yes |
 
 </details>
 
 <details id="td_set_clock_route_enforce">
-<summary><code>td_set_clock_route_enforce</code> — Force exactly one named net onto clock routing resources. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_route_enforce</code> — Force exactly one named net onto clock routing resources. <strong>Pro</strong></summary>
 
-Force exactly one named net onto clock routing resources. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Force exactly one named net onto clock routing resources.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `net` | `string` | Yes | `—` | Exact clock-net name; it is resolved and required to match exactly one net. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `net` | `string` | Yes |
 
 </details>
 
 <details id="td_set_clock_sense">
-<summary><code>td_set_clock_sense</code> — Stop clock propagation at selected design objects. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_sense</code> — Stop clock propagation at selected design objects. <strong>Pro</strong></summary>
 
-Stop clock propagation at selected design objects. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Stop clock propagation at selected design objects.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `clocks` | `any &#124; null` | No | `null` | Optional structured clock selector controlling propagation. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `target` | `value` | Yes |
+| `clocks` | `value` | No |
 
 </details>
 
 <details id="td_set_clock_uncertainty">
-<summary><code>td_set_clock_uncertainty</code> — Set setup or hold uncertainty on selected clocks. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_clock_uncertainty</code> — Set setup or hold uncertainty on selected clocks. <strong>Pro</strong></summary>
 
-Set setup or hold uncertainty on selected clocks. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set setup or hold uncertainty on selected clocks.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `value` | `number` | Yes | `—` | Finite non-negative timing value in ns. |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `setup` | `boolean` | No | `false` | Apply the setup variant. |
-| `hold` | `boolean` | No | `false` | Apply the hold variant. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `value` | `number` | Yes |
+| `target` | `value` | Yes |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
 
 </details>
 
 <details id="td_set_cross_domain_timing">
-<summary><code>td_set_cross_domain_timing</code> — Change design-wide cross-domain timing analysis mode. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_cross_domain_timing</code> — Change design-wide cross-domain timing analysis mode. <strong>Pro</strong></summary>
 
-Change design-wide cross-domain timing analysis mode. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Change design-wide cross-domain timing analysis mode.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mode` | `all &#124; self &#124; domain` | Yes | `—` | Design-wide cross-domain timing mode: all, self, or domain. |
-| `acknowledge_global_scope` | `boolean` | No | `false` | Explicitly confirm this design-wide mutation. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mode` | `string` | Yes |
+| `acknowledge_global_scope` | `boolean` | No |
 
 </details>
 
 <details id="td_set_false_path">
-<summary><code>td_set_false_path</code> — Disable timing analysis for an explicitly scoped path. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_false_path</code> — Disable timing analysis for an explicitly scoped path. <strong>Pro</strong></summary>
 
-Disable timing analysis for an explicitly scoped path. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Disable timing analysis for an explicitly scoped path.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `setup` | `boolean` | No | `false` | Apply the setup variant. |
-| `hold` | `boolean` | No | `false` | Apply the hold variant. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from` | `value` | No |
+| `rise_from` | `value` | No |
+| `fall_from` | `value` | No |
+| `through` | `value` | No |
+| `to` | `value` | No |
+| `rise_to` | `value` | No |
+| `fall_to` | `value` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
 
 </details>
 
 <details id="td_set_input_delay">
-<summary><code>td_set_input_delay</code> — Set an input delay relative to exactly one clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_input_delay</code> — Set an input delay relative to exactly one clock. <strong>Pro</strong></summary>
 
-Set an input delay relative to exactly one clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set an input delay relative to exactly one clock.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `clock` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `delay` | `number` | Yes | `—` | Finite delay in ns. |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `min` | `boolean` | No | `false` | Select the minimum-delay or minimum-check variant. |
-| `max` | `boolean` | No | `false` | Select the maximum-delay or maximum-check variant. |
-| `add_delay` | `boolean` | No | `false` | Add rather than replace an existing IO delay. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
-| `clock_fall` | `boolean` | No | `false` | Reference the falling clock edge. |
-| `source_latency_included` | `boolean` | No | `false` | Delay already includes source clock latency. |
-| `network_latency_included` | `boolean` | No | `false` | Delay already includes network clock latency. |
-| `reference_pin` | `any &#124; null` | No | `null` | Structured pins selector matching exactly one reference pin. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `clock` | `value` | Yes |
+| `delay` | `number` | Yes |
+| `target` | `value` | Yes |
+| `min` | `boolean` | No |
+| `max` | `boolean` | No |
+| `add_delay` | `boolean` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
+| `clock_fall` | `boolean` | No |
+| `source_latency_included` | `boolean` | No |
+| `network_latency_included` | `boolean` | No |
+| `reference_pin` | `value` | No |
 
 </details>
 
 <details id="td_set_max_delay">
-<summary><code>td_set_max_delay</code> — Set a scoped maximum path delay constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_max_delay</code> — Set a scoped maximum path delay constraint. <strong>Pro</strong></summary>
 
-Set a scoped maximum path delay constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set a scoped maximum path delay constraint.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `delay` | `number` | Yes | `—` | Finite delay in ns. |
-| `from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
-| `datapath_only` | `boolean` | No | `false` | Exclude clock skew; requires a from-family selector. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `delay` | `number` | Yes |
+| `from` | `value` | No |
+| `rise_from` | `value` | No |
+| `fall_from` | `value` | No |
+| `through` | `value` | No |
+| `rise_through` | `value` | No |
+| `fall_through` | `value` | No |
+| `to` | `value` | No |
+| `rise_to` | `value` | No |
+| `fall_to` | `value` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
+| `datapath_only` | `boolean` | No |
 
 </details>
 
 <details id="td_set_min_delay">
-<summary><code>td_set_min_delay</code> — Set a scoped minimum path delay constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_min_delay</code> — Set a scoped minimum path delay constraint. <strong>Pro</strong></summary>
 
-Set a scoped minimum path delay constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set a scoped minimum path delay constraint.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `delay` | `number` | Yes | `—` | Finite delay in ns. |
-| `from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `delay` | `number` | Yes |
+| `from` | `value` | No |
+| `rise_from` | `value` | No |
+| `fall_from` | `value` | No |
+| `through` | `value` | No |
+| `rise_through` | `value` | No |
+| `fall_through` | `value` | No |
+| `to` | `value` | No |
+| `rise_to` | `value` | No |
+| `fall_to` | `value` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
 
 </details>
 
 <details id="td_set_multicycle_path">
-<summary><code>td_set_multicycle_path</code> — Set a scoped multicycle path constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_multicycle_path</code> — Set a scoped multicycle path constraint. <strong>Pro</strong></summary>
 
-Set a scoped multicycle path constraint. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set a scoped multicycle path constraint.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `multiplier` | `integer` | Yes | `—` | Strict integer cycle multiplier through 1000; hold permits 0, other modes start at 1. |
-| `from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `setup` | `boolean` | No | `false` | Apply the setup variant. |
-| `hold` | `boolean` | No | `false` | Apply the hold variant. |
-| `start` | `boolean` | No | `false` | Apply multicycle counting at the path start. |
-| `end` | `boolean` | No | `false` | Apply multicycle counting at the path end. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `multiplier` | `integer` | Yes |
+| `from` | `value` | No |
+| `rise_from` | `value` | No |
+| `fall_from` | `value` | No |
+| `through` | `value` | No |
+| `rise_through` | `value` | No |
+| `fall_through` | `value` | No |
+| `to` | `value` | No |
+| `rise_to` | `value` | No |
+| `fall_to` | `value` | No |
+| `setup` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `start` | `boolean` | No |
+| `end` | `boolean` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
 
 </details>
 
 <details id="td_set_output_delay">
-<summary><code>td_set_output_delay</code> — Set an output delay relative to exactly one clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_output_delay</code> — Set an output delay relative to exactly one clock. <strong>Pro</strong></summary>
 
-Set an output delay relative to exactly one clock. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set an output delay relative to exactly one clock.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `clock` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `delay` | `number` | Yes | `—` | Finite delay in ns. |
-| `target` | `any` | Yes | `—` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `min` | `boolean` | No | `false` | Select the minimum-delay or minimum-check variant. |
-| `max` | `boolean` | No | `false` | Select the maximum-delay or maximum-check variant. |
-| `add_delay` | `boolean` | No | `false` | Add rather than replace an existing IO delay. |
-| `rise` | `boolean` | No | `false` | Apply only to rising transitions. |
-| `fall` | `boolean` | No | `false` | Apply only to falling transitions. |
-| `clock_fall` | `boolean` | No | `false` | Reference the falling clock edge. |
-| `source_latency_included` | `boolean` | No | `false` | Delay already includes source clock latency. |
-| `network_latency_included` | `boolean` | No | `false` | Delay already includes network clock latency. |
-| `reference_pin` | `any &#124; null` | No | `null` | Structured pins selector matching exactly one reference pin. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `clock` | `value` | Yes |
+| `delay` | `number` | Yes |
+| `target` | `value` | Yes |
+| `min` | `boolean` | No |
+| `max` | `boolean` | No |
+| `add_delay` | `boolean` | No |
+| `rise` | `boolean` | No |
+| `fall` | `boolean` | No |
+| `clock_fall` | `boolean` | No |
+| `source_latency_included` | `boolean` | No |
+| `network_latency_included` | `boolean` | No |
+| `reference_pin` | `value` | No |
 
 </details>
 
 <details id="td_set_path_skew">
-<summary><code>td_set_path_skew</code> — Set maximum skew between equally sized endpoint sets. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation. <strong>Pro</strong></summary>
+<summary><code>td_set_path_skew</code> — Set maximum skew between equally sized endpoint sets. <strong>Pro</strong></summary>
 
-Set maximum skew between equally sized endpoint sets. This destructive tool changes in-memory SDC state. It requires an opened TD run or imported build database; A4 will provide that session entry. All selectors are preflighted in the same Tcl script before the single mutation.
+Set maximum skew between equally sized endpoint sets.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `skew` | `number` | Yes | `—` | Positive maximum path skew in ns. |
-| `from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_from` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `through` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `rise_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
-| `fall_to` | `any &#124; null` | No | `null` | Structured selector object with kind clocks/ports/cells/nets/regs/pins and a pattern; all_clocks is accepted only by clock-valued fields and has no pattern. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `skew` | `number` | Yes |
+| `from` | `value` | No |
+| `rise_from` | `value` | No |
+| `fall_from` | `value` | No |
+| `through` | `value` | No |
+| `to` | `value` | No |
+| `rise_to` | `value` | No |
+| `fall_to` | `value` | No |
 
 </details>
 
@@ -1214,7 +1212,6 @@ Set maximum skew between equally sized endpoint sets. This destructive tool chan
 Show TD discovery paths, encoding, and managed-process state.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -1228,7 +1225,6 @@ No parameters.
 Restart the managed TD process and verify the new generation.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -1237,12 +1233,11 @@ No parameters.
 </details>
 
 <details id="td_test_connection">
-<summary><code>td_test_connection</code> — Start Anlogic TD and verify its Tcl interpreter. <strong>Free</strong></summary>
+<summary><code>td_test_connection</code> — Check the Anlogic TD connection. <strong>Free</strong></summary>
 
-Start Anlogic TD and verify its Tcl interpreter.
+Check the Anlogic TD connection.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -1259,7 +1254,6 @@ No parameters.
 Get current license status and usage statistics
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -1271,12 +1265,12 @@ No parameters.
 ## Read-Only Queries
 
 <details id="td_all_clocks">
-<summary><code>td_all_clocks</code> — List all design clocks with verbose output. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_all_clocks</code> — List all design clocks with verbose output. <strong>Pro</strong></summary>
 
-List all design clocks with verbose output. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List all design clocks with verbose output.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1285,12 +1279,12 @@ No parameters.
 </details>
 
 <details id="td_all_inputs">
-<summary><code>td_all_inputs</code> — List all top-level input and bidirectional ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_all_inputs</code> — List all top-level input and bidirectional ports. <strong>Pro</strong></summary>
 
-List all top-level input and bidirectional ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List all top-level input and bidirectional ports.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1299,12 +1293,12 @@ No parameters.
 </details>
 
 <details id="td_all_outputs">
-<summary><code>td_all_outputs</code> — List all top-level output and bidirectional ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_all_outputs</code> — List all top-level output and bidirectional ports. <strong>Pro</strong></summary>
 
-List all top-level output and bidirectional ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List all top-level output and bidirectional ports.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1313,12 +1307,12 @@ No parameters.
 </details>
 
 <details id="td_all_registers">
-<summary><code>td_all_registers</code> — List all design registers with verbose output. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_all_registers</code> — List all design registers with verbose output. <strong>Pro</strong></summary>
 
-List all design registers with verbose output. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List all design registers with verbose output.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1327,395 +1321,395 @@ No parameters.
 </details>
 
 <details id="td_check_timing">
-<summary><code>td_check_timing</code> — Check SDC constraint health and unconstrained timing objects. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_check_timing</code> — Check SDC constraint health and unconstrained timing objects. <strong>Pro</strong></summary>
 
-Check SDC constraint health and unconstrained timing objects. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Check SDC constraint health and unconstrained timing objects.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `verbose` | `boolean` | No | `false` | Request detailed TD output. |
-| `exclude` | `array&lt;string&gt; &#124; null` | No | `null` | Timing-check item names to exclude. |
-| `override_defaults` | `array&lt;string&gt; &#124; null` | No | `null` | Timing-check item names to run instead of TD defaults. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `verbose` | `boolean` | No |
+| `exclude` | `value` | No |
+| `override_defaults` | `value` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_get_cells">
-<summary><code>td_get_cells</code> — List cell instances; forces -verbose and defaults to all cells. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_cells</code> — List cell instances; forces -verbose and defaults to all cells. <strong>Pro</strong></summary>
 
-List cell instances; forces -verbose and defaults to all cells. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List cell instances; forces -verbose and defaults to all cells.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
-| `regexp` | `boolean` | No | `false` | Interpret patterns as regular expressions. |
-| `filter` | `string &#124; null` | No | `null` | TD property-filter DSL expression, passed as data rather than Tcl. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
+| `regexp` | `boolean` | No |
+| `filter` | `value` | No |
 
 </details>
 
 <details id="td_get_clocks">
-<summary><code>td_get_clocks</code> — List clocks; forces -verbose and defaults to all clocks. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_clocks</code> — List clocks; forces -verbose and defaults to all clocks. <strong>Pro</strong></summary>
 
-List clocks; forces -verbose and defaults to all clocks. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List clocks; forces -verbose and defaults to all clocks.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
-| `include_generated_clocks` | `boolean` | No | `false` | Include generated clocks. |
-| `filter` | `string &#124; null` | No | `null` | TD property-filter DSL expression, passed as data rather than Tcl. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
+| `include_generated_clocks` | `boolean` | No |
+| `filter` | `value` | No |
 
 </details>
 
 <details id="td_get_nets">
-<summary><code>td_get_nets</code> — List nets; forces -verbose and defaults to all nets. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_nets</code> — List nets; forces -verbose and defaults to all nets. <strong>Pro</strong></summary>
 
-List nets; forces -verbose and defaults to all nets. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List nets; forces -verbose and defaults to all nets.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
-| `regexp` | `boolean` | No | `false` | Interpret patterns as regular expressions. |
-| `full_hier` | `boolean` | No | `false` | Keep wildcard matching within hierarchy separators. |
-| `filter` | `string &#124; null` | No | `null` | TD property-filter DSL expression, passed as data rather than Tcl. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
+| `regexp` | `boolean` | No |
+| `full_hier` | `boolean` | No |
+| `filter` | `value` | No |
 
 </details>
 
 <details id="td_get_pins">
-<summary><code>td_get_pins</code> — List pins; forces -verbose and defaults to all pins. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_pins</code> — List pins; forces -verbose and defaults to all pins. <strong>Pro</strong></summary>
 
-List pins; forces -verbose and defaults to all pins. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List pins; forces -verbose and defaults to all pins.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
-| `regexp` | `boolean` | No | `false` | Interpret patterns as regular expressions. |
-| `full_hier` | `boolean` | No | `false` | Keep wildcard matching within hierarchy separators. |
-| `filter` | `string &#124; null` | No | `null` | TD property-filter DSL expression, passed as data rather than Tcl. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
+| `regexp` | `boolean` | No |
+| `full_hier` | `boolean` | No |
+| `filter` | `value` | No |
 
 </details>
 
 <details id="td_get_ports">
-<summary><code>td_get_ports</code> — List top-level ports; forces -verbose and defaults to all ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_ports</code> — List top-level ports; forces -verbose and defaults to all ports. <strong>Pro</strong></summary>
 
-List top-level ports; forces -verbose and defaults to all ports. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List top-level ports; forces -verbose and defaults to all ports.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
 
 </details>
 
 <details id="td_get_property">
-<summary><code>td_get_property</code> — Get one property from an allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_property</code> — Get one property from an allowlisted getter expression. <strong>Pro</strong></summary>
 
-Get one property from an allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Get one property from an allowlisted getter expression.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `property` | `string` | Yes | `—` | TD property identifier. |
-| `object` | `string` | Yes | `—` | One allowlisted expression such as [get_cells {name}] or [get_nets *]. |
-| `max` | `boolean` | No | `false` | Maximum fanout to include, or select the maximum property value. |
-| `min` | `boolean` | No | `false` | Minimum fanout to include. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `property` | `string` | Yes |
+| `object` | `string` | Yes |
+| `max` | `boolean` | No |
+| `min` | `boolean` | No |
 
 </details>
 
 <details id="td_get_regs">
-<summary><code>td_get_regs</code> — List register output nets; forces -verbose and defaults to all registers. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_get_regs</code> — List register output nets; forces -verbose and defaults to all registers. <strong>Pro</strong></summary>
 
-List register output nets; forces -verbose and defaults to all registers. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List register output nets; forces -verbose and defaults to all registers.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `patterns` | `string &#124; null` | No | `null` | TD object name patterns; empty selects all objects. |
-| `nocase` | `boolean` | No | `false` | Use case-insensitive matching. |
-| `regexp` | `boolean` | No | `false` | Interpret patterns as regular expressions. |
-| `full_hier` | `boolean` | No | `false` | Keep wildcard matching within hierarchy separators. |
-| `filter` | `string &#124; null` | No | `null` | TD property-filter DSL expression, passed as data rather than Tcl. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `patterns` | `value` | No |
+| `nocase` | `boolean` | No |
+| `regexp` | `boolean` | No |
+| `full_hier` | `boolean` | No |
+| `filter` | `value` | No |
 
 </details>
 
 <details id="td_list_property">
-<summary><code>td_list_property</code> — List property names for one allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_list_property</code> — List property names for one allowlisted getter expression. <strong>Pro</strong></summary>
 
-List property names for one allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+List property names for one allowlisted getter expression.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `object` | `string` | Yes | `—` | One allowlisted expression such as [get_cells {name}] or [get_nets *]. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `object` | `string` | Yes |
 
 </details>
 
 <details id="td_report_analysis">
-<summary><code>td_report_analysis</code> — Report critical-path or congestion analysis. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_analysis</code> — Report critical-path or congestion analysis. <strong>Pro</strong></summary>
 
-Report critical-path or congestion analysis. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report critical-path or congestion analysis.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mode` | `basic &#124; manhattan &#124; final` | Yes | `—` | TD analysis stage: basic, manhattan, or final where supported. |
-| `timing` | `boolean` | No | `false` | Include timing analysis; some tools require mode when enabled. |
-| `congestion` | `boolean` | No | `false` | Include congestion analysis and write it to file. |
-| `max_path_num` | `integer &#124; null` | No | `null` | Maximum number of paths to analyze. |
-| `path_num_per_ep` | `integer &#124; null` | No | `null` | Maximum analyzed paths per endpoint. |
-| `slack_threshold` | `integer &#124; null` | No | `null` | Maximum analyzed slack in ps. |
-| `full` | `boolean` | No | `false` | For final timing analysis, also include Manhattan values. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mode` | `string` | Yes |
+| `timing` | `boolean` | No |
+| `congestion` | `boolean` | No |
+| `max_path_num` | `value` | No |
+| `path_num_per_ep` | `value` | No |
+| `slack_threshold` | `value` | No |
+| `full` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_annotated_check">
-<summary><code>td_report_annotated_check</code> — Write the TD annotated-check report to the required file path. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_annotated_check</code> — Write the TD annotated-check report to the required file path. <strong>Pro</strong></summary>
 
-Write the TD annotated-check report to the required file path. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Write the TD annotated-check report to the required file path.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string` | Yes | `—` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `string` | Yes |
+| `no_header` | `boolean` | No |
 
 </details>
 
 <details id="td_report_area">
-<summary><code>td_report_area</code> — Report resource and area utilization. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_area</code> — Report resource and area utilization. <strong>Pro</strong></summary>
 
-Report resource and area utilization. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report resource and area utilization.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `verbose` | `boolean` | No | `false` | Request detailed TD output. |
-| `io_info` | `boolean` | No | `false` | Include detailed IO information. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `verbose` | `boolean` | No |
+| `io_info` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_cells">
-<summary><code>td_report_cells</code> — Report detailed information for selected cells. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_cells</code> — Report detailed information for selected cells. <strong>Pro</strong></summary>
 
-Report detailed information for selected cells. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report detailed information for selected cells.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `cell` | `string` | Yes | `—` | Cell name patterns. |
-| `connection` | `boolean` | No | `false` | Include connected nets or pins. |
-| `pin_loc` | `boolean` | No | `false` | Include pin locations; requires connection. |
-| `mode` | `basic &#124; manhattan &#124; final &#124; null` | No | `null` | TD analysis stage: basic, manhattan, or final where supported. |
-| `timing` | `boolean` | No | `false` | Include timing analysis; some tools require mode when enabled. |
-| `hold` | `boolean` | No | `false` | Include hold timing; requires timing. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `cell` | `string` | Yes |
+| `connection` | `boolean` | No |
+| `pin_loc` | `boolean` | No |
+| `mode` | `value` | No |
+| `timing` | `boolean` | No |
+| `hold` | `boolean` | No |
 
 </details>
 
 <details id="td_report_clock_intersection">
-<summary><code>td_report_clock_intersection</code> — Report cross-clock-domain intersections. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_clock_intersection</code> — Report cross-clock-domain intersections. <strong>Pro</strong></summary>
 
-Report cross-clock-domain intersections. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report cross-clock-domain intersections.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_clock_summary">
-<summary><code>td_report_clock_summary</code> — Report clock-tree structure. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_clock_summary</code> — Report clock-tree structure. <strong>Pro</strong></summary>
 
-Report clock-tree structure. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report clock-tree structure.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `clocks` | `string &#124; null` | No | `null` | Clock name patterns. |
-| `append` | `boolean` | No | `false` | Append to the selected new report file where TD supports it. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `clocks` | `value` | No |
+| `append` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_hfn">
-<summary><code>td_report_hfn</code> — Report high-fanout nets for one flow stage. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_hfn</code> — Report high-fanout nets for one flow stage. <strong>Pro</strong></summary>
 
-Report high-fanout nets for one flow stage. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report high-fanout nets for one flow stage.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mode` | `rtl &#124; gate &#124; place &#124; route` | Yes | `—` | High-fanout analysis stage: rtl, gate, place, or route. |
-| `net` | `string &#124; null` | No | `null` | Net name patterns. |
-| `module` | `string &#124; null` | No | `null` | One hierarchical module instance name. |
-| `limit` | `integer &#124; null` | No | `null` | Maximum high-fanout nets in the summary. |
-| `min` | `integer &#124; null` | No | `null` | Minimum fanout to include. |
-| `max` | `integer &#124; null` | No | `null` | Maximum fanout to include, or select the maximum property value. |
-| `timing` | `boolean` | No | `false` | Include timing analysis; some tools require mode when enabled. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mode` | `string` | Yes |
+| `net` | `value` | No |
+| `module` | `value` | No |
+| `limit` | `value` | No |
+| `min` | `value` | No |
+| `max` | `value` | No |
+| `timing` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_logic_level">
-<summary><code>td_report_logic_level</code> — Report combinational logic depth. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_logic_level</code> — Report combinational logic depth. <strong>Pro</strong></summary>
 
-Report combinational logic depth. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report combinational logic depth.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `worst_n` | `integer &#124; null` | No | `null` | Maximum number of worst setup-slack paths. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `worst_n` | `value` | No |
+| `no_header` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_mtbf">
-<summary><code>td_report_mtbf</code> — Report CDC synchronizer MTBF (requires TD capability report_mtbf). Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_mtbf</code> — Report CDC synchronizer MTBF (requires TD capability report_mtbf). <strong>Pro</strong></summary>
 
-Report CDC synchronizer MTBF (requires TD capability report_mtbf). Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report CDC synchronizer MTBF (requires TD capability report_mtbf).
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mtbf_warn_below` | `string &#124; null` | No | `null` | Positive MTBF warning threshold in seconds, including scientific notation. |
-| `cdc_sink_pin` | `boolean` | No | `false` | Include the CDC sink pin for each path. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `append` | `boolean` | No | `false` | Append to the selected new report file where TD supports it. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mtbf_warn_below` | `value` | No |
+| `cdc_sink_pin` | `boolean` | No |
+| `no_header` | `boolean` | No |
+| `append` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_nets">
-<summary><code>td_report_nets</code> — Report detailed information for selected nets. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_nets</code> — Report detailed information for selected nets. <strong>Pro</strong></summary>
 
-Report detailed information for selected nets. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report detailed information for selected nets.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `net` | `string` | Yes | `—` | Net name patterns. |
-| `connection` | `boolean` | No | `false` | Include connected nets or pins. |
-| `mode` | `basic &#124; manhattan &#124; final &#124; null` | No | `null` | TD analysis stage: basic, manhattan, or final where supported. |
-| `timing` | `boolean` | No | `false` | Include timing analysis; some tools require mode when enabled. |
-| `hold` | `boolean` | No | `false` | Include hold timing; requires timing. |
-| `pin_display_limit` | `integer &#124; null` | No | `null` | Maximum printed pins per direction. |
-| `of_pins` | `string &#124; null` | No | `null` | Select nets through connected pin name patterns. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `net` | `string` | Yes |
+| `connection` | `boolean` | No |
+| `mode` | `value` | No |
+| `timing` | `boolean` | No |
+| `hold` | `boolean` | No |
+| `pin_display_limit` | `value` | No |
+| `of_pins` | `value` | No |
 
 </details>
 
 <details id="td_report_param">
-<summary><code>td_report_param</code> — Report TD database parameters. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_param</code> — Report TD database parameters. <strong>Pro</strong></summary>
 
-Report TD database parameters. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report TD database parameters.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `stage` | `flow &#124; design &#124; rtl &#124; gate &#124; place &#124; route &#124; timing &#124; sim &#124; bitgen &#124; null` | No | `null` | TD parameter stage: flow, design, rtl, gate, place, route, timing, sim, or bitgen. |
-| `detail` | `boolean` | No | `false` | Include default-valued parameters. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `stage` | `value` | No |
+| `detail` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_path_skew">
-<summary><code>td_report_path_skew</code> — Report path-skew constraints using the TD 6.2.1-compatible no-option form. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_path_skew</code> — Report path-skew constraints using the TD 6.2.1-compatible no-option form. <strong>Pro</strong></summary>
 
-Report path-skew constraints using the TD 6.2.1-compatible no-option form. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report path-skew constraints using the TD 6.2.1-compatible no-option form.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1724,45 +1718,45 @@ No parameters.
 </details>
 
 <details id="td_report_property">
-<summary><code>td_report_property</code> — Report all properties of one allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_property</code> — Report all properties of one allowlisted getter expression. <strong>Pro</strong></summary>
 
-Report all properties of one allowlisted getter expression. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report all properties of one allowlisted getter expression.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `object` | `string` | Yes | `—` | One allowlisted expression such as [get_cells {name}] or [get_nets *]. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `object` | `string` | Yes |
 
 </details>
 
 <details id="td_report_qor">
-<summary><code>td_report_qor</code> — Report quality of results and optimization hints for one flow stage. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_qor</code> — Report quality of results and optimization hints for one flow stage. <strong>Pro</strong></summary>
 
-Report quality of results and optimization hints for one flow stage. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report quality of results and optimization hints for one flow stage.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `step` | `gate &#124; place &#124; route` | Yes | `—` | Flow stage: gate, place, or route. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `step` | `string` | Yes |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_seed_param">
-<summary><code>td_report_seed_param</code> — Report multi-seed configuration. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_seed_param</code> — Report multi-seed configuration. <strong>Pro</strong></summary>
 
-Report multi-seed configuration. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report multi-seed configuration.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -1771,122 +1765,122 @@ No parameters.
 </details>
 
 <details id="td_report_switching_activity">
-<summary><code>td_report_switching_activity</code> — Report switching activity (requires TD capability report_switching_activity). Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_switching_activity</code> — Report switching activity (requires TD capability report_switching_activity). <strong>Pro</strong></summary>
 
-Report switching activity (requires TD capability report_switching_activity). Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report switching activity (requires TD capability report_switching_activity).
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `object` | `string` | Yes | `—` | One allowlisted expression such as [get_cells {name}] or [get_nets *]. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `object` | `string` | Yes |
 
 </details>
 
 <details id="td_report_timing_exception">
-<summary><code>td_report_timing_exception</code> — Report timing exception paths. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_timing_exception</code> — Report timing exception paths. <strong>Pro</strong></summary>
 
-Report timing exception paths. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report timing exception paths.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ep_num` | `integer &#124; null` | No | `null` | Maximum number of timing endpoints to report. |
-| `path_num` | `integer &#124; null` | No | `null` | Maximum paths to report per endpoint. |
-| `slack_less_than` | `number &#124; null` | No | `null` | Only include paths with slack below this value in ns. |
-| `slack_greater_than` | `number &#124; null` | No | `null` | Only include paths with slack above this value in ns. |
-| `viol_only` | `boolean` | No | `false` | Only include paths with negative slack. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ep_num` | `value` | No |
+| `path_num` | `value` | No |
+| `slack_less_than` | `value` | No |
+| `slack_greater_than` | `value` | No |
+| `viol_only` | `boolean` | No |
+| `no_header` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_timing_ignored">
-<summary><code>td_report_timing_ignored</code> — Report paths ignored by false-path or clock-group constraints. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_timing_ignored</code> — Report paths ignored by false-path or clock-group constraints. <strong>Pro</strong></summary>
 
-Report paths ignored by false-path or clock-group constraints. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report paths ignored by false-path or clock-group constraints.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `ep_num` | `integer &#124; null` | No | `null` | Maximum number of timing endpoints to report. |
-| `path_num` | `integer &#124; null` | No | `null` | Maximum paths to report per endpoint. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `ep_num` | `value` | No |
+| `path_num` | `value` | No |
+| `no_header` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_timing_path">
-<summary><code>td_report_timing_path</code> — Report selected timing paths using allowlisted getter expressions. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_timing_path</code> — Report selected timing paths using allowlisted getter expressions. <strong>Pro</strong></summary>
 
-Report selected timing paths using allowlisted getter expressions. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report selected timing paths using allowlisted getter expressions.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `from` | `string &#124; null` | No | `null` | Allowlisted getter expression for path start points. |
-| `through` | `string &#124; null` | No | `null` | Allowlisted getter expression for path through points. |
-| `to` | `string &#124; null` | No | `null` | Allowlisted getter expression for path end points. |
-| `ep_num` | `integer &#124; null` | No | `null` | Maximum number of timing endpoints to report. |
-| `path_num` | `integer &#124; null` | No | `null` | Maximum paths to report per endpoint. |
-| `slack_less_than` | `number &#124; null` | No | `null` | Only include paths with slack below this value in ns. |
-| `slack_greater_than` | `number &#124; null` | No | `null` | Only include paths with slack above this value in ns. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `from` | `value` | No |
+| `through` | `value` | No |
+| `to` | `value` | No |
+| `ep_num` | `value` | No |
+| `path_num` | `value` | No |
+| `slack_less_than` | `value` | No |
+| `slack_greater_than` | `value` | No |
+| `no_header` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_report_timing_summary">
-<summary><code>td_report_timing_summary</code> — Report whole-design timing summary from an opened run or imported database. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_report_timing_summary</code> — Report whole-design timing summary from an opened run or imported database. <strong>Pro</strong></summary>
 
-Report whole-design timing summary from an opened run or imported database. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Report whole-design timing summary from an opened run or imported database.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `viol_only` | `boolean` | No | `false` | Only include paths with negative slack. |
-| `slack_less_than` | `number &#124; null` | No | `null` | Only include paths with slack below this value in ns. |
-| `slack_greater_than` | `number &#124; null` | No | `null` | Only include paths with slack above this value in ns. |
-| `ep_num` | `integer &#124; null` | No | `null` | Maximum number of timing endpoints to report. |
-| `path_num` | `integer &#124; null` | No | `null` | Maximum paths to report per endpoint. |
-| `include_ignored` | `boolean` | No | `false` | Include paths ignored by false-path or clock-group constraints. |
-| `no_header` | `boolean` | No | `false` | Omit the TD report header. |
-| `file` | `string &#124; null` | No | `null` | New output filename beneath the managed TD report root; directories and overwrite are rejected. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `viol_only` | `boolean` | No |
+| `slack_less_than` | `value` | No |
+| `slack_greater_than` | `value` | No |
+| `ep_num` | `value` | No |
+| `path_num` | `value` | No |
+| `include_ignored` | `boolean` | No |
+| `no_header` | `boolean` | No |
+| `file` | `value` | No |
 
 </details>
 
 <details id="td_update_timing">
-<summary><code>td_update_timing</code> — Idempotently refresh the in-memory timing database. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session. <strong>Pro</strong></summary>
+<summary><code>td_update_timing</code> — Idempotently refresh the in-memory timing database. <strong>Pro</strong></summary>
 
-Idempotently refresh the in-memory timing database. Requires an opened TD run or imported build database; use the A4 project and build tools to establish that session.
+Idempotently refresh the in-memory timing database.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, idempotent, closed-world
+- **Operation:** changes project or session state
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `mode` | `basic &#124; manhattan &#124; final &#124; null` | No | `null` | TD analysis stage: basic, manhattan, or final where supported. |
-| `check_corner` | `fast &#124; slow &#124; null` | No | `null` | Process corner: fast or slow. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `mode` | `value` | No |
+| `check_corner` | `value` | No |
 
 </details>

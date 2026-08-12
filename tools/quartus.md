@@ -4,13 +4,11 @@
 
 **24 public tools** — Free 6 · Pro 24 · Max 24
 
-The catalog documents all public capabilities. A running MCP server registers only the selected platform and the tools allowed by the verified license plan; these catalogs are not loaded together.
+This user-facing index summarizes public capabilities. Exact schemas and execution contracts are provided by the licensed MCP runtime.
 
 Trial currently uses the Pro tool entitlement.
 
-Catalog schema: `1` · Product version: `1.3.1` · Name digest: `4944e96debaf4c7bea5ba231300f40d9b91f3e50b921c510f541e72b9e49c492`
-
-[Machine-readable catalog](catalog.json)
+Public index schema: `2` · Product version: `1.3.1`
 
 ## Categories
 
@@ -32,7 +30,7 @@ Catalog schema: `1` · Product version: `1.3.1` · Name digest: `4944e96debaf4c7
 Show Quartus discovery paths and managed-process state without starting it.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -41,12 +39,12 @@ No parameters.
 </details>
 
 <details id="quartus_get_capabilities">
-<summary><code>quartus_get_capabilities</code> — Probe a fixed allowlist of Quartus packages, commands, and executables. <strong>Free</strong></summary>
+<summary><code>quartus_get_capabilities</code> — Show the Quartus capabilities available on this installation. <strong>Free</strong></summary>
 
-Probe a fixed allowlist of Quartus packages, commands, and executables.
+Show the Quartus capabilities available on this installation.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -60,7 +58,7 @@ No parameters.
 Run the fixed bounded Quartus --version identity probe.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -69,12 +67,12 @@ No parameters.
 </details>
 
 <details id="quartus_restart">
-<summary><code>quartus_restart</code> — Discard the Quartus process tree, restart it, and verify Tcl. <strong>Free</strong></summary>
+<summary><code>quartus_restart</code> — Restart the managed Quartus session. <strong>Free</strong></summary>
 
-Discard the Quartus process tree, restart it, and verify Tcl.
+Restart the managed Quartus session.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -83,12 +81,12 @@ No parameters.
 </details>
 
 <details id="quartus_test_connection">
-<summary><code>quartus_test_connection</code> — Start the managed Quartus shell and run a fixed Tcl version probe. <strong>Free</strong></summary>
+<summary><code>quartus_test_connection</code> — Check the Quartus connection. <strong>Free</strong></summary>
 
-Start the managed Quartus shell and run a fixed Tcl version probe.
+Check the Quartus connection.
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -105,7 +103,6 @@ No parameters.
 Get current license status and usage statistics
 
 - **Minimum plan:** Free
-- **MCP behavior hints:** unspecified
 
 ### Parameters
 
@@ -117,18 +114,18 @@ No parameters.
 ## Managed Build
 
 <details id="quartus_cancel_build">
-<summary><code>quartus_cancel_build</code> — Cancel the matching active build and wait for fail-stop process cleanup. <strong>Pro</strong></summary>
+<summary><code>quartus_cancel_build</code> — Cancel the active Quartus build. <strong>Pro</strong></summary>
 
-Cancel the matching active build and wait for fail-stop process cleanup.
+Cancel the active Quartus build.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `job_id` | `string` | Yes | `—` | Canonical lowercase UUID returned by quartus_start_build. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `job_id` | `string` | Yes |
 
 </details>
 
@@ -138,15 +135,15 @@ Cancel the matching active build and wait for fail-stop process cleanup.
 Read a bounded page from the managed build log using a monotonic cursor.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `job_id` | `string` | Yes | `—` | Canonical lowercase UUID returned by quartus_start_build. |
-| `after_seq` | `integer` | No | `0` | Return retained log records with sequence numbers greater than this cursor. |
-| `limit` | `integer` | No | `100` | Maximum retained log records to return, from 1 through 200. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `job_id` | `string` | Yes |
+| `after_seq` | `integer` | No |
+| `limit` | `integer` | No |
 
 </details>
 
@@ -156,29 +153,29 @@ Read a bounded page from the managed build log using a monotonic cursor.
 Read an immutable snapshot of the current or most recent managed build.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `job_id` | `string &#124; null` | No | `null` | Canonical lowercase UUID returned by quartus_start_build. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `job_id` | `value` | No |
 
 </details>
 
 <details id="quartus_start_build">
-<summary><code>quartus_start_build</code> — Start one managed fail-stop Quartus synthesis/Fitter job and return after the background worker acquires the semantic flow transaction. <strong>Pro</strong></summary>
+<summary><code>quartus_start_build</code> — Start a Quartus synthesis or Fitter build. <strong>Pro</strong></summary>
 
-Start one managed fail-stop Quartus synthesis/Fitter job and return after the background worker acquires the semantic flow transaction.
+Start a Quartus synthesis or Fitter build.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `end_stage` | `synthesis &#124; fit` | No | `"fit"` | Stop after edition-aware synthesis or continue through Fitter. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `end_stage` | `string` | No |
 
 </details>
 
@@ -191,13 +188,13 @@ Start one managed fail-stop Quartus synthesis/Fitter job and return after the ba
 Set and persist one exact top-level entity in the managed project.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `top_level_entity` | `string` | Yes | `—` | Exact managed Quartus top-level entity name. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `top_level_entity` | `string` | Yes |
 
 </details>
 
@@ -210,7 +207,7 @@ Set and persist one exact top-level entity in the managed project.
 Close the managed project without exporting assignments, then discard the shell.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
@@ -224,16 +221,16 @@ No parameters.
 Create and keep open one new Quartus project without overwrite.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `project_file` | `string` | Yes | `—` | Absolute missing local .qpf path beneath an existing real directory. |
-| `revision` | `string &#124; null` | No | `null` | New revision name; defaults to the QPF stem. |
-| `family` | `string &#124; null` | No | `null` | Optional exact Quartus device family passed to project_new. |
-| `part` | `string &#124; null` | No | `null` | Optional exact Quartus part passed to project_new. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `project_file` | `string` | Yes |
+| `revision` | `value` | No |
+| `family` | `value` | No |
+| `part` | `value` | No |
 
 </details>
 
@@ -243,14 +240,14 @@ Create and keep open one new Quartus project without overwrite.
 Open one existing Quartus project without force, migration, or overwrite.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `project_file` | `string` | Yes | `—` | Absolute path to one existing local .qpf project file. |
-| `revision` | `string &#124; null` | No | `null` | Exact existing revision; defaults to the QPF current revision. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `project_file` | `string` | Yes |
+| `revision` | `value` | No |
 
 </details>
 
@@ -263,14 +260,14 @@ Open one existing Quartus project without force, migration, or overwrite.
 Query Quartus&#x27;s structured Fitter resource-usage API.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `resource` | `alut &#124; reg &#124; le &#124; alm &#124; lab &#124; io_pin &#124; mem_bit` | No | `"le"` | One documented Fitter resource kind. |
-| `metric` | `total &#124; used &#124; available &#124; percentage` | No | `"total"` | Total, used, available, or percentage value. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `resource` | `string` | No |
+| `metric` | `string` | No |
 
 </details>
 
@@ -280,14 +277,14 @@ Query Quartus&#x27;s structured Fitter resource-usage API.
 Return selected metadata fields for one exact Quartus part.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `part` | `string` | Yes | `—` | Exact Quartus part identifier. |
-| `fields` | `array&lt;family &#124; device &#124; package &#124; pin_count &#124; speed_grade &#124; temperature_grade &#124; default_voltage &#124; family_variant &#124; hssi_speed_grade &#124; pdn_model_status &#124; pof_id &#124; power_model &#124; power_model_status &#124; rohs_grade &#124; sip_tile&gt; &#124; null` | No | `null` | Unique part metadata fields; defaults to the stable core set. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `part` | `string` | Yes |
+| `fields` | `value` | No |
 
 </details>
 
@@ -297,7 +294,7 @@ Return selected metadata fields for one exact Quartus part.
 Return current Quartus project/revision state; works with no project open.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -311,15 +308,15 @@ No parameters.
 Read a bounded page from one exact Quartus report panel.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `panel` | `string` | Yes | `—` | Exact full report panel name returned by quartus_list_report_panels. |
-| `start_row` | `integer` | No | `0` | Zero-based row offset; row zero is the panel header. |
-| `row_limit` | `integer` | No | `100` | Maximum rows to return. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `panel` | `string` | Yes |
+| `start_row` | `integer` | No |
+| `row_limit` | `integer` | No |
 
 </details>
 
@@ -329,7 +326,7 @@ Read a bounded page from one exact Quartus report panel.
 List device families supported by the discovered Quartus installation.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -343,19 +340,19 @@ No parameters.
 List Quartus device parts with typed filters and bounded pagination.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `family` | `string &#124; null` | No | `null` | Exact Quartus family filter. |
-| `device` | `string &#124; null` | No | `null` | Exact device-name filter. |
-| `package` | `string &#124; null` | No | `null` | Exact package filter. |
-| `pin_count` | `integer &#124; null` | No | `null` | Exact positive pin-count filter. |
-| `speed_grade` | `string &#124; null` | No | `null` | Exact speed-grade filter. |
-| `offset` | `integer` | No | `0` | Zero-based result offset. |
-| `limit` | `integer` | No | `200` | Maximum returned parts. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `family` | `value` | No |
+| `device` | `value` | No |
+| `package` | `value` | No |
+| `pin_count` | `value` | No |
+| `speed_grade` | `value` | No |
+| `offset` | `integer` | No |
+| `limit` | `integer` | No |
 
 </details>
 
@@ -365,7 +362,7 @@ List Quartus device parts with typed filters and bounded pagination.
 List real compilation-report panel names for the current open project.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
@@ -374,24 +371,24 @@ No parameters.
 </details>
 
 <details id="quartus_query_assignments">
-<summary><code>quartus_query_assignments</code> — Query exact QSF assignments and expand collection IDs inside one Tcl script. <strong>Pro</strong></summary>
+<summary><code>quartus_query_assignments</code> — Query project assignments using exact selectors. <strong>Pro</strong></summary>
 
-Query exact QSF assignments and expand collection IDs inside one Tcl script.
+Query project assignments using exact selectors.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Exact Quartus assignment identifier, without glob patterns. |
-| `assignment_type` | `global &#124; instance &#124; parameter` | No | `"global"` | Global, instance, or parameter assignment scope. |
-| `from_selector` | `string &#124; null` | No | `null` | Exact instance-assignment source selector. |
-| `to_selector` | `string &#124; null` | No | `null` | Exact instance/parameter destination selector. |
-| `entity` | `string &#124; null` | No | `null` | Exact entity selector. |
-| `offset` | `integer` | No | `0` | Zero-based collection offset. |
-| `limit` | `integer` | No | `100` | Maximum assignments to return. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `assignment_type` | `string` | No |
+| `from_selector` | `value` | No |
+| `to_selector` | `value` | No |
+| `entity` | `value` | No |
+| `offset` | `integer` | No |
+| `limit` | `integer` | No |
 
 </details>
 
@@ -401,17 +398,17 @@ Query exact QSF assignments and expand collection IDs inside one Tcl script.
 Expand one exact compiled design name without exposing Quartus object IDs.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** read-only, idempotent, closed-world
+- **Operation:** read-only
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `name` | `string` | Yes | `—` | Exact compiled-design full path; one terminal numeric bus index is allowed. |
-| `node_type` | `pin &#124; reg &#124; comb &#124; hierarchy &#124; bus` | Yes | `—` | Exact Quartus compiled-design node class. |
-| `observable_type` | `post_synthesis &#124; post_fitter` | Yes | `—` | Explicit compiled database view; no automatic fallback. |
-| `offset` | `integer` | No | `0` | Zero-based exact-match offset. |
-| `limit` | `integer` | No | `100` | Maximum matching names to return. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `name` | `string` | Yes |
+| `node_type` | `string` | Yes |
+| `observable_type` | `string` | Yes |
+| `offset` | `integer` | No |
+| `limit` | `integer` | No |
 
 </details>
 
@@ -424,12 +421,12 @@ Expand one exact compiled design name without exposing Quartus object IDs.
 Register one exact project-local Verilog, SystemVerilog, or VHDL source.
 
 - **Minimum plan:** Pro
-- **MCP behavior hints:** state-changing, destructive, closed-world
+- **Operation:** high-impact operation
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-| --- | --- | :---: | --- | --- |
-| `source_file` | `string` | Yes | `—` | Absolute existing RTL source inside the managed project. |
+| Parameter | Type | Required |
+| --- | --- | :---: |
+| `source_file` | `string` | Yes |
 
 </details>
