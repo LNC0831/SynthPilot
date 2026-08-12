@@ -26,6 +26,18 @@ It runs **locally**: your RTL never leaves your machine. **500+ tools** cover th
 flow, and a free methodology layer ([oh-my-fpga](https://github.com/LNC0831/oh-my-fpga))
 turns them into one-sentence outcomes.
 
+## Public tool catalogs
+
+SynthPilot publishes its complete public MCP contracts for transparency. The
+running server registers only the selected FPGA platform and the tools allowed
+by the verified Free, Pro, or Max license; these catalogs are not loaded into
+one model context.
+
+- [AMD Vivado tools](tools/vivado.md)
+- [Anlogic TD tools](tools/anlogic.md)
+- [Intel Quartus tools](tools/quartus.md)
+- [Machine-readable catalog](tools/catalog.json)
+
 > *Used by engineers from **AMD**, **Tsinghua / Fudan / SJTU** and the **Chinese Academy of
 > Sciences (CAS)**, FPGA vendor **Fudan Microelectronics (复旦微)**, and lidar leaders
 > **Hesai (禾赛)** and **Benewake (北醒)**.*
