@@ -2,7 +2,8 @@
 
 # SynthPilot
 
-**Talk to your AI. Watch it drive Vivado.**
+**让 AI 真正参与 FPGA 开发。**<br>
+**Bring AI into the FPGA development loop.**
 
 [![PyPI](https://img.shields.io/pypi/v/synthpilot)](https://pypi.org/project/synthpilot/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/synthpilot/)
@@ -10,130 +11,183 @@
 [![License](https://img.shields.io/badge/license-proprietary-orange)](#license)
 [![Stars](https://img.shields.io/github/stars/LNC0831/SynthPilot?style=social)](https://github.com/LNC0831/SynthPilot)
 
-[Website](https://synthpilot.dev) · [Docs](https://synthpilot.dev/docs.html) · [oh-my-fpga skills](https://github.com/LNC0831/oh-my-fpga) · [PyPI](https://pypi.org/project/synthpilot/) · [Changelog](CHANGELOG.md)
+[Website](https://synthpilot.dev) · [Docs](https://synthpilot.dev/docs.html) · [Tool catalogs](#public-tool-catalogs) · [PyPI](https://pypi.org/project/synthpilot/) · [Changelog](CHANGELOG.md)
 
 </div>
 
 > **English** | [简体中文](#简体中文)
 
-SynthPilot is an [MCP](https://modelcontextprotocol.io) server that lets your AI assistant
-(Claude, Cursor, Cline, …) **control Xilinx Vivado** for FPGA development — create projects,
-write and lint RTL, run synthesis/implementation, close timing, configure IP & Block
-Designs, run simulations, and program hardware — all by **describing what you want**, in
-plain language.
+SynthPilot is a proprietary [Model Context Protocol](https://modelcontextprotocol.io)
+server for FPGA development. It gives AI assistants such as Claude, Codex, Cursor, and
+other MCP clients structured access to three EDA platforms:
 
-It runs **locally**: your RTL never leaves your machine. **500+ tools** cover the whole FPGA
-flow, and a free methodology layer ([oh-my-fpga](https://github.com/LNC0831/oh-my-fpga))
-turns them into one-sentence outcomes.
+- **AMD Vivado™**
+- **TangDynasty® (TD)**
+- **Intel® Quartus® Prime**
+
+Choose one platform when the MCP server starts. Your verified Free, Pro, or Max license
+then determines which tools are registered for that session. SynthPilot runs alongside
+your EDA environment and does not upload your RTL or project sources.
+
+## Platform status
+
+| Platform | Public catalog | Current supported scope |
+|---|---:|---|
+| AMD Vivado™ | [510 tools](tools/vivado.md) | Mature local workflow; Remote Vivado over SSH is available in **Beta** |
+| TangDynasty® (TD) | [102 tools](tools/anlogic.md) | Windows runtime; representative TD 6.2.1 project and bitstream flow verified |
+| Intel® Quartus® Prime | [24 tools](tools/quartus.md) | Windows Lite 25.1 clean-session flow verified; Standard, Pro, and Linux vendor-live matrices remain in validation |
+
+Windows and Linux wheels are published on PyPI. Platform-specific EDA execution still
+depends on the vendor software and acceptance scope stated above.
 
 ## Public tool catalogs
 
-SynthPilot publishes a user-facing index of its public tools. Each entry shows
-what the tool does, its category, plan, operation type, and a coarse parameter
-overview. Exact schemas and execution contracts remain available through the
-licensed MCP runtime.
+The public catalogs show each tool's purpose, category, plan, operation type, and a
+coarse parameter overview. They are generated from the product registry and intentionally
+do not publish the proprietary execution implementation. The live MCP schema remains the
+authority for exact arguments.
 
-The running server registers only the selected FPGA platform and the tools
-allowed by the verified Free, Pro, or Max license.
+- [AMD Vivado tool catalog](tools/vivado.md)
+- [TangDynasty tool catalog](tools/anlogic.md)
+- [Intel Quartus tool catalog](tools/quartus.md)
 
-- [AMD Vivado tools](tools/vivado.md)
-- [Anlogic TD tools](tools/anlogic.md)
-- [Intel Quartus tools](tools/quartus.md)
-
-> *Used by engineers from **AMD**, **Tsinghua / Fudan / SJTU** and the **Chinese Academy of
-> Sciences (CAS)**, FPGA vendor **Fudan Microelectronics (复旦微)**, and lidar leaders
-> **Hesai (禾赛)** and **Benewake (北醒)**.*
-
-## How it works
-
-```
- AI editor (Claude / Cursor / Cline / …)
-        │   MCP (stdio)
-        ▼
-   SynthPilot   ──TCP:9999──▶   Vivado (Tcl server)
-```
-
-The AI calls SynthPilot tools; SynthPilot drives Vivado over a local socket and returns
-structured results (timing metrics, utilization, error summaries, waveforms …) back to the AI.
-
-## See it in action
-
-> You: *"Create an Artix-7 project, add this counter, run synthesis, and show me the timing."*
->
-> The AI: `create_project` → `add_source_file` → `run_synthesis` → `report_timing_summary`
-> → reports WNS/TNS and flags any failing paths — no Tcl, no wizard clicking.
+Only the selected platform and the tools allowed by the active license are registered in
+an MCP session; the three catalogs are not loaded together.
 
 ## Quick start
 
+Install or upgrade SynthPilot:
+
 ```bash
-uv tool install synthpilot      # requires uv — https://docs.astral.sh/uv/
-synthpilot setup                # guided, one-command onboarding
+uv tool install synthpilot --upgrade --refresh
 ```
 
-`synthpilot setup` does the rest for you: it detects Vivado and installs the Tcl server,
-activates your license, and **registers SynthPilot in your AI editor — no hand-editing JSON**
-(Claude Code, Claude Desktop, Cursor, Codex), then runs an end-to-end health check.
-Something off later? `synthpilot doctor` diagnoses it and `synthpilot doctor --fix`
-self-heals.
+Choose the EDA platform you want to use:
+
+```bash
+synthpilot setup --platform vivado
+# or: synthpilot setup --platform anlogic
+# or: synthpilot setup --platform quartus
+```
+
+`setup` handles supported discovery, license activation, MCP registration, and health
+checks. Run the platform doctor when you need a bounded diagnosis:
+
+```bash
+synthpilot doctor --platform vivado
+```
 
 <details>
-<summary>Prefer to wire the MCP client up by hand?</summary>
+<summary>Manual MCP configuration</summary>
 
 ```jsonc
-{ "mcpServers": { "synthpilot": { "command": "synthpilot" } } }
+{
+  "mcpServers": {
+    "synthpilot": {
+      "command": "synthpilot",
+      "args": ["--platform", "vivado"]
+    }
+  }
+}
 ```
 
-Works with Claude Desktop / Claude Code, Cursor, Cline, Codex, and other MCP clients.
+Replace `vivado` with `anlogic` or `quartus`. Plan access comes from the activated
+license, not from an MCP argument.
 </details>
 
-## Skills & methodology — [oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)
+## Remote Vivado over SSH · Beta
 
-500 tools give your AI *capability* — not *strategy*.
-**[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)** is a **free, open** companion that
-adds the methodology layer: named, expert workflows like *"close timing"*, *"audit CDC"*,
-*"bring up a Zynq SoC"*. You describe the outcome; the AI runs the right tools in the right
-order, with the right safety rails (verify before claiming, never fake-pass a real violation).
+SynthPilot can run the complete MCP process on a remote Linux development host and connect
+to Vivado on that same machine. MCP uses OpenSSH stdio; the Vivado Tcl listener remains
+loopback-only and is never exposed directly to the network.
 
-- **Claude Code** — `/plugin marketplace add LNC0831/oh-my-fpga` then `/plugin install oh-my-fpga`
-- **Cursor · Codex · Claude Desktop** — the same 13 workflows ship as **MCP prompts** built
-  into SynthPilot (1.3.0+); pick them from your client's `/` menu.
+```bash
+synthpilot remote add lab vivado-lab
+synthpilot remote doctor lab
+synthpilot install-mcp --remote lab
+```
 
-→ **[github.com/LNC0831/oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)**
+The remote host must already have an activated SynthPilot installation and an interactive
+Vivado session with the Tcl listener running. File paths refer to the remote filesystem.
+SynthPilot does not start Vivado or synchronize source/project trees. The full remote
+Linux + Vivado end-to-end live matrix is still under acceptance, so this capability is
+currently labeled **Beta**.
+
+→ [Remote Vivado setup guide](https://synthpilot.dev/docs.html#remote-vivado)
+
+## How it fits together
+
+```text
+AI client (Claude / Codex / Cursor / other MCP client)
+                         │
+                    MCP stdio
+                         ▼
+                    SynthPilot
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+        AMD Vivado   TangDynasty   Intel Quartus
+        local/SSH    managed TD    managed quartus_sh
+```
+
+The AI calls structured tools and receives bounded results such as status, timing,
+utilization, reports, diagnostics, and build progress. Exact capabilities depend on the
+selected platform and license.
 
 ## Editions
 
 | | Free | Pro | Max |
 |---|---|---|---|
-| Tools | **40** core | **~475** | **all 500+** |
-| Project / synth / impl / basic reports | ✅ | ✅ | ✅ |
-| IP config · Block Design · Simulation · Linter · async runs | — | ✅ | ✅ |
-| Devices | 1 | 2 | 3 |
+| Core diagnostics and entry workflows | ✓ | ✓ | ✓ |
+| Standard engineering workflows for the selected platform | Limited | ✓ | ✓ |
+| Max-exclusive Vivado and TangDynasty capabilities | — | — | ✓ |
+| Licensed devices | 1 | 2 | 3 |
 
-The methodology layer ([oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)) is **free for
-everyone**, on every edition. Pricing, a **¥1 / 7-day trial**, and team / offline / academic
-editions are on **[synthpilot.dev](https://synthpilot.dev)**.
+Tool counts differ by platform. See the three public catalogs for exact Free, Pro, and Max
+membership. Pricing, the trial offer, and team/offline/academic options are maintained on
+[synthpilot.dev](https://synthpilot.dev).
+
+## Skills and methodology
+
+[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) is the free, open methodology layer
+for named workflows such as timing closure, CDC review, and Zynq bring-up.
+
+- **Claude Code:** `/plugin marketplace add LNC0831/oh-my-fpga`, then
+  `/plugin install oh-my-fpga`
+- **Codex, Cursor, Claude Desktop:** the same workflows are also available as built-in MCP
+  prompts in SynthPilot 1.3.0 and later.
 
 ## Requirements
 
-- Xilinx Vivado 2018.1+ (Windows or Linux)
+- Windows x64 or Linux x86_64 for the SynthPilot package
+- A supported vendor EDA installation for the selected platform
 - An MCP-capable AI client
-- [uv](https://docs.astral.sh/uv/) (Python 3.10+ is fetched automatically)
+- [uv](https://docs.astral.sh/uv/) for the recommended installation path
+
+See the [website platform pages](https://synthpilot.dev/#platforms) for the current
+vendor/version acceptance boundaries.
 
 ## Links
 
-- 🌐 Website & pricing — https://synthpilot.dev
-- 🧠 oh-my-fpga skills — https://github.com/LNC0831/oh-my-fpga
-- 📦 PyPI — https://pypi.org/project/synthpilot/
-- 📖 Docs — https://synthpilot.dev/docs.html
-- 🗒️ [Changelog](CHANGELOG.md)
+- Website and pricing: https://synthpilot.dev
+- Documentation: https://synthpilot.dev/docs.html
+- Public tool browser: https://synthpilot.dev/tools.html
+- PyPI: https://pypi.org/project/synthpilot/
+- oh-my-fpga: https://github.com/LNC0831/oh-my-fpga
+- [Changelog](CHANGELOG.md)
 
 ## License
 
-SynthPilot is a **proprietary** commercial product. This repository hosts its public
-documentation and marketing materials only — the software itself is distributed via PyPI.
-The RTL you process stays on your machine; SynthPilot does not upload your design sources.
-(The companion [oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) skill pack is separate and
-MIT-licensed.)
+SynthPilot is a **proprietary commercial product**. This repository contains public
+documentation and product catalogs only; the software is distributed through PyPI.
+SynthPilot does not upload the RTL or project sources it processes.
+
+AMD, the AMD logo, and Vivado are trademarks of Advanced Micro Devices, Inc.
+TangDynasty is a registered trademark of Shanghai Anlogic Infotech Co., Ltd.
+Intel, the Intel logo, and Quartus are trademarks of Intel Corporation or its subsidiaries.
+SynthPilot is not affiliated with or endorsed by these companies.
+
+The companion [oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) project is separate and
+MIT-licensed.
 
 ---
 
@@ -141,101 +195,111 @@ MIT-licensed.)
 
 ## 简体中文
 
-**对你的 AI 说一句话,它替你操作 Vivado。**
+SynthPilot 是面向 FPGA 开发的专有商业 MCP 产品，让 Claude、Codex、Cursor 等 AI
+客户端通过结构化工具参与真实工程流程。目前覆盖：
 
-SynthPilot 是一个 [MCP](https://modelcontextprotocol.io) 服务器,让你的 AI 助手(Claude、
-Cursor、Cline…)用**自然语言**控制 Xilinx Vivado 做 FPGA 开发——建项目、写/查 RTL、
-跑综合与实现、收敛时序、配置 IP 与 Block Design、跑仿真、烧录硬件。
+- **AMD Vivado™**
+- **TangDynasty®（TD）**
+- **Intel® Quartus® Prime**
 
-**全程本地运行,你的 RTL 不出本机。500+ 工具**覆盖完整 FPGA 流程,再加一层免费的方法论
-([oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)),把它们变成一句话的结果。
+每个 MCP 进程只选择一个 FPGA 平台；当前激活的 Free、Pro 或 Max 许可证决定本次会话
+注册哪些工具。SynthPilot 在 EDA 环境旁运行，不上传 RTL 与工程源码。
 
-> *已被 **AMD**、**清华 / 复旦 / 上海交大** 与 **中科院(CAS)** 的工程师,国产 FPGA 厂商
-> **复旦微**,以及激光雷达企业 **禾赛、北醒** 使用。*
+### 平台状态
 
-### 工作原理
+| 平台 | 公开目录 | 当前支持范围 |
+|---|---:|---|
+| AMD Vivado™ | [510 个工具](tools/vivado.md) | 成熟的本地工作流；SSH 远程 Vivado 为 **Beta** |
+| TangDynasty®（TD） | [102 个工具](tools/anlogic.md) | Windows 运行时；TD 6.2.1 代表性工程与 bitstream 流程已验证 |
+| Intel® Quartus® Prime | [24 个工具](tools/quartus.md) | Windows Lite 25.1 干净会话流程已验证；Standard、Pro 与 Linux 厂商真机矩阵仍在验收 |
 
-```
- AI 编辑器 (Claude / Cursor / Cline / …)
-        │   MCP (stdio)
-        ▼
-   SynthPilot   ──TCP:9999──▶   Vivado (Tcl 服务器)
-```
+Windows 与 Linux 安装包均已发布到 PyPI。具体 EDA 执行能力仍取决于厂商软件与上述验收范围。
 
-AI 调用 SynthPilot 的工具,SynthPilot 通过本地 socket 驱动 Vivado,并把结构化结果
-(时序指标、资源利用、错误摘要、波形…)返回给 AI。
+### 公开工具目录
 
-### 一个例子
+公开目录展示工具用途、分类、套餐、操作类型和参数概览，由产品注册表生成，但不公开专有
+执行实现。精确参数以运行中的 MCP schema 为准。
 
-> 你:*"建一个 Artix-7 工程,加入这个计数器,跑综合,把时序给我看看。"*
->
-> AI:`create_project` → `add_source_file` → `run_synthesis` → `report_timing_summary`
-> → 报告 WNS/TNS 并标出违例路径——不写 Tcl,不点向导。
+- [AMD Vivado 工具目录](tools/vivado.md)
+- [TangDynasty 工具目录](tools/anlogic.md)
+- [Intel Quartus 工具目录](tools/quartus.md)
+
+三个目录不会同时进入 MCP 上下文；运行时只注册所选平台及许可证允许的工具。
 
 ### 快速开始
 
 ```bash
-uv tool install synthpilot      # 需要 uv —— https://docs.astral.sh/uv/
-synthpilot setup                # 一条命令,引导式上手
+uv tool install synthpilot --upgrade --refresh
+
+synthpilot setup --platform vivado
+# 或：synthpilot setup --platform anlogic
+# 或：synthpilot setup --platform quartus
 ```
 
-`synthpilot setup` 替你把剩下的事做完:检测 Vivado 并安装 Tcl 服务器、激活授权,并
-**把 SynthPilot 注册进你的 AI 编辑器——免手改 JSON**(Claude Code、Claude Desktop、
-Cursor、Codex),最后跑一遍端到端健康检查。后面出问题?`synthpilot doctor` 自检、
-`synthpilot doctor --fix` 自愈。
+`setup` 完成支持范围内的平台发现、License 激活、MCP 注册与健康检查。诊断环境时运行：
 
-<details>
-<summary>想手动配置 MCP 客户端?</summary>
-
-```jsonc
-{ "mcpServers": { "synthpilot": { "command": "synthpilot" } } }
+```bash
+synthpilot doctor --platform vivado
 ```
 
-支持 Claude Desktop / Claude Code、Cursor、Cline、Codex 等 MCP 客户端。
-</details>
+### SSH 远程 Vivado · Beta
 
-### 技能与方法论 —— [oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)
+SynthPilot 可以运行在远程 Linux 开发机上，并连接同一台机器中已经启动的 Vivado。
+MCP 通过 OpenSSH stdio 传输，Vivado Tcl 端口保持只监听远程回环地址。
 
-500 个工具给 AI 的是*能力*,不是*策略*。
-**[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)** 是一个**免费开源**的配套,补上方法论
-这一层:一组命名的专家工作流,比如 *"收敛时序"*、*"审查 CDC"*、*"搭一个 Zynq SoC"*。你说
-出想要的结果,AI 就按正确顺序调用正确的工具,带着正确的安全护栏(先验证再下结论,绝不为了
-让数字变绿而假装通过)。
+```bash
+synthpilot remote add lab vivado-lab
+synthpilot remote doctor lab
+synthpilot install-mcp --remote lab
+```
 
-- **Claude Code** —— `/plugin marketplace add LNC0831/oh-my-fpga` 然后 `/plugin install oh-my-fpga`
-- **Cursor · Codex · Claude Desktop** —— 同样这 13 个工作流作为 **MCP prompts** 内置在
-  SynthPilot(1.3.0+),在客户端的 `/` 菜单里选用。
+远程主机必须已经安装并激活 SynthPilot，Vivado 也必须在交互会话中启动并运行 Tcl
+listener。工具路径都指向远程 Linux 文件系统；SynthPilot 不负责启动 Vivado，也不自动同步
+源码或工程目录。完整的远程 Linux + Vivado 端到端真机矩阵仍在验收，因此当前标记为
+**Beta**。
 
-→ **[github.com/LNC0831/oh-my-fpga](https://github.com/LNC0831/oh-my-fpga)**
+→ [远程 Vivado 配置文档](https://synthpilot.dev/docs.html#remote-vivado)
 
-### 档位
+### 套餐
 
-| | 免费版 | Pro | Max |
+| | Free | Pro | Max |
 |---|---|---|---|
-| 工具数 | **40** 基础 | **约 475** | **全部 500+** |
-| 工程 / 综合 / 实现 / 基础报告 | ✅ | ✅ | ✅ |
-| IP 配置 · Block Design · 仿真 · Linter · 异步执行 | — | ✅ | ✅ |
-| 设备数 | 1 | 2 | 3 |
+| 基础诊断与入口流程 | ✓ | ✓ | ✓ |
+| 所选平台的标准工程能力 | 有限 | ✓ | ✓ |
+| Vivado 与 TangDynasty 的 Max 专属能力 | — | — | ✓ |
+| 授权设备数 | 1 | 2 | 3 |
 
-方法论层([oh-my-fpga](https://github.com/LNC0831/oh-my-fpga))对**所有人、所有档位永久免费**。
-定价、**¥1 / 7 天试用**,以及团队 / 离线 / 高校版,见 **[synthpilot.dev](https://synthpilot.dev)**。
+不同平台的工具数不同，准确的 Free、Pro、Max 归属请查看三份公开目录。定价、试用、团队、
+离线与高校方案以 [synthpilot.dev](https://synthpilot.dev) 为准。
+
+### 方法论
+
+[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) 是独立、免费开源的方法论层，提供时序
+收敛、CDC 审查、Zynq bring-up 等命名工作流。
 
 ### 环境要求
 
-- Xilinx Vivado 2018.1+(Windows 或 Linux)
-- 一个支持 MCP 的 AI 客户端
-- [uv](https://docs.astral.sh/uv/)(Python 3.10+ 会自动获取)
+- SynthPilot 安装包支持 Windows x64 与 Linux x86_64
+- 所选平台对应的厂商 EDA 环境
+- 支持 MCP 的 AI 客户端
+- 推荐使用 [uv](https://docs.astral.sh/uv/) 安装
 
-### 链接
+### 相关链接
 
-- 🌐 官网与定价 —— https://synthpilot.dev
-- 🧠 oh-my-fpga 技能包 —— https://github.com/LNC0831/oh-my-fpga
-- 📦 PyPI —— https://pypi.org/project/synthpilot/
-- 📖 文档 —— https://synthpilot.dev/docs.html
-- 🗒️ [更新日志](CHANGELOG.md)
+- 官网与定价：https://synthpilot.dev
+- 使用文档：https://synthpilot.dev/docs.html
+- 在线工具目录：https://synthpilot.dev/tools.html
+- PyPI：https://pypi.org/project/synthpilot/
+- oh-my-fpga：https://github.com/LNC0831/oh-my-fpga
+- [更新日志](CHANGELOG.md)
 
-### 授权
+### 授权与商标
 
-SynthPilot 是**专有**商业产品。本仓库仅托管其公开文档与宣传材料,软件本体经 PyPI 分发。
-你处理的 RTL 始终留在本机,SynthPilot 不上传你的设计源码。(配套的
-[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) 技能包是独立的 MIT 开源项目。)
+SynthPilot 是**专有商业产品**。本仓库只包含公开文档与产品目录，软件经 PyPI 分发。
+SynthPilot 不上传其处理的 RTL 或工程源码。
+
+AMD、AMD 标识与 Vivado 是 Advanced Micro Devices, Inc. 的商标；TangDynasty 是上海安路
+信息科技股份有限公司的注册商标；Intel、Intel 标识与 Quartus 是 Intel Corporation 或其
+子公司的商标。SynthPilot 与上述公司不存在隶属或背书关系。
+
+[oh-my-fpga](https://github.com/LNC0831/oh-my-fpga) 是独立的 MIT 开源项目。

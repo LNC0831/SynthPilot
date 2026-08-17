@@ -4,6 +4,38 @@ User-facing changes to SynthPilot. Install or upgrade with
 `uv tool install synthpilot --upgrade --refresh`. For pricing and editions see
 [synthpilot.dev](https://synthpilot.dev).
 
+## 1.4.0 — 2026-08-17
+
+- **One product, three FPGA platforms.** Select AMD Vivado™, TangDynasty® (TD),
+  or Intel® Quartus® Prime with `synthpilot setup --platform <name>`. Each MCP
+  process registers only the selected platform and the tools allowed by the
+  active Free, Pro, or Max license.
+- **Public tool catalogs.** The showcase repository and website now publish
+  registry-derived catalogs for [Vivado](tools/vivado.md),
+  [TangDynasty](tools/anlogic.md), and [Quartus](tools/quartus.md), with purpose,
+  category, plan, operation type, and coarse parameter summaries.
+- **TangDynasty managed workflow.** Added bounded environment diagnostics,
+  project/run entry, compilation, reports, and managed process cleanup. A
+  representative Windows TD 6.2.1 project and bitstream workflow has passed;
+  broader command/version matrices remain in validation.
+- **Quartus managed workflow.** Added diagnostics, project open/create,
+  read-only design/report queries, asynchronous build status/log/cancel,
+  one-file source registration, fixed `TOP_LEVEL_ENTITY` configuration, and
+  close/reopen persistence. The clean-session flow is verified on Windows Lite
+  25.1; Standard, Pro, and Linux vendor-live matrices remain in validation.
+- **Remote Vivado over SSH (Beta).** Added remote Linux profiles, bounded
+  diagnostics, and MCP registration over OpenSSH stdio. Vivado stays on a
+  loopback-only Tcl listener. The complete remote Linux + Vivado end-to-end
+  live matrix remains under acceptance.
+- **Windows and Linux release.** Version 1.4.0 is published as Windows x64 and
+  `manylinux_2_17_x86_64` wheels. Both packages report the exact three-platform
+  runtime manifest.
+- **Unified workflow plugin.** SynthPilot can export its shared Codex/Claude
+  workflow bundle for setup, Vivado, TangDynasty, and Quartus guidance.
+
+See the [platform pages](https://synthpilot.dev/#platforms) for the precise live,
+source-complete, Beta, and pending acceptance boundaries.
+
 ## 1.3.0 — 2026-06-09
 
 - **One-command setup.** `synthpilot setup` detects Vivado, installs the Tcl server,
